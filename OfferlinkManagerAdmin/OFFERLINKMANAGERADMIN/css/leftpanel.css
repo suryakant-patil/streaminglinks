@@ -1,0 +1,7 @@
+/* CSS Document */
+.menu_list {width: 150px;}
+.menu_head {padding:3px 15px;cursor: pointer;position: relative;margin:1px;font-weight:bold;background:  url(../images/blog_arrow.JPG) center Left no-repeat;/*border-bottom:solid 1px #cccccc;*/}
+.menu_body {display:none;}
+.menu_body a{display:block;color:#000000;font-family:Verdana,Arial,Helvetica,sans-serif ; background-color:#EFEFEF;padding-left:10px;text-decoration:none;}
+.menu_body a:hover{color: #000000;text-decoration:underline;}
+.ahover{FONT-SIZE: 11px;COLOR: black; font-family:Verdana,Arial,Helvetica,sans-serif ;text-align:left;}

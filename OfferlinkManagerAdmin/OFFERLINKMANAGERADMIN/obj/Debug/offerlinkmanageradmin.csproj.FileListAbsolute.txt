@@ -1,0 +1,8 @@
+D:\WWW\offerlinkmanageradmin\offerlinkmanageradmin\obj\Debug\ResolveAssemblyReference.cache
+D:\WWW\offerlinkmanageradmin\offerlinkmanageradmin\bin\offerlinkmanageradmin.dll
+D:\WWW\offerlinkmanageradmin\offerlinkmanageradmin\bin\offerlinkmanageradmin.pdb
+D:\WWW\offerlinkmanageradmin\offerlinkmanageradmin\bin\BLL.dll
+D:\WWW\offerlinkmanageradmin\offerlinkmanageradmin\bin\BLL.pdb
+D:\WWW\offerlinkmanageradmin\offerlinkmanageradmin\obj\Debug\offerlinkmanageradmin.dll
+D:\WWW\offerlinkmanageradmin\offerlinkmanageradmin\obj\Debug\offerlinkmanageradmin.pdb
+D:\WWW\offerlinkmanageradmin\offerlinkmanageradmin\bin\CommonLib.dll

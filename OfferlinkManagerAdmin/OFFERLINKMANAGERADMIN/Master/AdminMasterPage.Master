@@ -1,0 +1,138 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AdminMasterPage.master.cs" Inherits="offerlinkmanageradmin.Master.AdminMasterPage" %>
+
+<%@ Register TagName="Leftinc" TagPrefix="uc1" Src="~/Controls/leftmenu.ascx" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title> Admin Panel</title>
+    <link href="~/css/admincp.css" rel="stylesheet" type="text/css" />  
+    <script src="../Scripts/jquery-1.4.1.min.js"></script>
+    <script language="javascript" type="text/javascript">
+        var netwrkID;
+        var SiteID;
+        function Frmsubmit() { // Network dropdown selected index changed
+            netwrkID = document.getElementById("ctl00_dbnetwork").value;
+            document.getElementById("netwid").value = netwrkID;
+            document.forms["Header"].submit();
+        }
+
+        function FrmSitesubmit() { // Site dropdown selected index changed
+
+            netwrkID = document.getElementById("ctl00_dbnetwork").value;
+            document.getElementById("netwid").value = netwrkID;
+
+            SiteID = document.getElementById("ctl00_dbselsite").value;
+            document.getElementById("site").value = SiteID;
+            document.forms["Header"].submit();
+        }
+
+        function frmShowSession() {
+            Header.checkSession(session_CallBack);
+            setTimeout("frmShowSession();", 10000);
+        }
+
+        function session_CallBack(response) {
+            var states = response.value;
+            if (states == "N") {
+                document.getElementById('checksession').style.display = 'block';
+                document.getElementById('checksession').style.visibility = 'visible';
+                // document.getElementById ('checksession').style.display='';        
+            }
+
+        }
+
+        // setTimeout("frmShowSession();", 3000);
+    </script>
+</head>
+<body>
+<table width="100%" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td colspan="2">
+            <table bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="1" width="100%">
+                        <tr style="height: 40px;">
+                            <td>
+                                <form name="Header" method="post" action="RedirectHeader.aspx">  
+                                                      
+                                <input type="hidden" name="netwid" id="netwid" />
+                                <input type="hidden" name="htm2" id="htm2" />
+                                <input type="hidden" name="site" id="site" />
+                               <%-- <table bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="1" width="100%">
+                                    <tr height="40">
+                                        <td align="left">
+                                            <table>
+                                                <tr>
+                                                    <td><asp:Literal runat="server" ID="ltname"></asp:Literal></td>  
+                                                    
+                                                </tr>
+                                            </table>
+                                        </td>  
+                                        <td align="right">
+                                            <table>
+                                                <tr>  
+                                                <td align="right">
+                                            <asp:Literal runat="server" ID="ltDateTime"></asp:Literal>
+                                        </td>  
+                                         <td align="right">
+                                                      <asp:Literal ID="ltlogout" runat="server"></asp:Literal> 
+                                           </td>                                  
+                                        
+                                    </tr>
+                                    </table>
+                                    </td>
+                                    </tr>                                  
+                                </table>--%>
+
+                           <ul class="headLinks">
+								<li>
+									<asp:Literal runat="server" ID="ltname"></asp:Literal></li>
+								<li>									
+									
+									<span>Site</span>
+									
+								</li>
+                                <li>							
+									
+									<span>Bettingpro</span>
+									
+								</li>
+								<li>
+									<span id="header_lbsitenama" class="bluenormal">(Currently editing Bettingpro)</span>
+								</li>
+								<li>
+                                 <span id="header_lbldatetime"style="float: right;"><asp:Literal runat="server" ID="ltDateTime"></asp:Literal>
+
+                                  <asp:Literal ID="ltlogout" runat="server"></asp:Literal> 
+                                </span>
+                                
+                                </li>
+								
+							</ul>
+                            
+                                <asp:Literal runat="server" ID="ltlink"></asp:Literal>
+
+
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+        </td>
+    </tr>
+    <tr valign="top" style="background-color:#FFFFFF;" class="midcontent">
+        <td width="12%"><uc1:Leftinc ID="left" runat="server"></uc1:Leftinc></td>
+        <td width="88%">            
+                 <asp:ContentPlaceHolder ID="cphRightPanel" runat="server">
+                  
+                </asp:ContentPlaceHolder>            
+        </td>
+    </tr>
+    <tr>
+	<td class="footer" colSpan="2" height="30"><asp:literal id="ltdate" Runat="server"></asp:literal></td>
+	</tr>
+</table>   
+
+    
+   
+         
+        
+</body>
+</html>

@@ -1,0 +1,797 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ED78F76B-AB8A-4FE6-99AF-5F6DBBF618E0}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>offerlinkmanageradmin</RootNamespace>
+    <AssemblyName>offerlinkmanageradmin</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommonLib">
+      <HintPath>..\BLL\bin\Debug\CommonLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AjaxOfferLink.aspx" />
+    <Content Include="Controls\leftmenu.ascx" />
+    <Content Include="css\admincp.css" />
+    <Content Include="css\admincp_1.css" />
+    <Content Include="css\calendar-blue.css" />
+    <Content Include="css\DarkStyle.css" />
+    <Content Include="css\layout-bkp-27-10-2015.css" />
+    <Content Include="css\layout.css" />
+    <Content Include="css\leftpanel.css" />
+    <Content Include="css\LightStyle.css" />
+    <Content Include="css\linkmanager.css" />
+    <Content Include="css\style.css" />
+    <Content Include="images\ace.jpg" />
+    <Content Include="images\active.gif" />
+    <Content Include="images\add.png" />
+    <Content Include="images\addevent.gif" />
+    <Content Include="images\addtomyfeedster.gif" />
+    <Content Include="images\addtomyyahoo4.gif" />
+    <Content Include="images\addtonewsgator.gif" />
+    <Content Include="images\add_icon.jpg" />
+    <Content Include="images\aduint1.jpg" />
+    <Content Include="images\adunit2.jpg" />
+    <Content Include="images\adunit3.jpg" />
+    <Content Include="images\adunit4.jpg" />
+    <Content Include="images\adunit5.jpg" />
+    <Content Include="images\adunit6.jpg" />
+    <Content Include="images\adunit7.jpg" />
+    <Content Include="images\adunit8.jpg" />
+    <Content Include="images\an-actual.gif" />
+    <Content Include="images\aol.gif" />
+    <Content Include="images\archives.jpg" />
+    <Content Include="images\arrow.gif" />
+    <Content Include="images\arrow.jpg" />
+    <Content Include="images\arrowwhite.gif" />
+    <Content Include="images\ask_icon.jpg" />
+    <Content Include="images\assignteam.png" />
+    <Content Include="images\assign_activity.gif" />
+    <Content Include="images\available1.gif" />
+    <Content Include="images\back.png" />
+    <Content Include="images\backflip_icon.jpg" />
+    <Content Include="images\bamboe.jpg" />
+    <Content Include="images\bar.gif" />
+    <Content Include="images\bar.jpg" />
+    <Content Include="images\bb_bgtrn.jpg" />
+    <Content Include="images\bb_trn.jpg" />
+    <Content Include="images\best_offer_bg.jpg" />
+    <Content Include="images\best_offer_bgold.jpg" />
+    <Content Include="images\bg.gif" />
+    <Content Include="images\bg.jpg" />
+    <Content Include="images\bg6.gif" />
+    <Content Include="images\bgadmin.gif" />
+    <Content Include="images\bgadminblack.gif" />
+    <Content Include="images\bgblack.gif" />
+    <Content Include="images\bgcolor.gif" />
+    <Content Include="images\bgleft.jpg" />
+    <Content Include="images\bgleft1.jpg" />
+    <Content Include="images\bgline.jpg" />
+    <Content Include="images\bg_main.jpg" />
+    <Content Include="images\bg_menulink.gif" />
+    <Content Include="images\binklist_icon.jpg" />
+    <Content Include="images\bloggerimg.jpg" />
+    <Content Include="images\bloglines.gif" />
+    <Content Include="images\blogmakrs_icon.jpg" />
+    <Content Include="images\blog_arrow.jpg" />
+    <Content Include="images\bluedot_icon.jpg" />
+    <Content Include="images\blue_bar.jpg" />
+    <Content Include="images\bold.gif" />
+    <Content Include="images\bonos.jpg" />
+    <Content Include="images\bottom.jpg" />
+    <Content Include="images\bottom_bg.jpg" />
+    <Content Include="images\bot_bg.gif" />
+    <Content Include="images\bot_bg.jpg" />
+    <Content Include="images\bot_cor.jpg" />
+    <Content Include="images\bot_right_cor.jpg" />
+    <Content Include="images\box_07.jpg" />
+    <Content Include="images\box_09.jpg" />
+    <Content Include="images\box_top_bg.jpg" />
+    <Content Include="images\br.gif" />
+    <Content Include="images\bronze.png" />
+    <Content Include="images\browse_members_icon.jpg" />
+    <Content Include="images\bull.gif" />
+    <Content Include="images\bullet_1.png" />
+    <Content Include="images\bullet_2a.gif" />
+    <Content Include="images\bullet_2b.gif" />
+    <Content Include="images\bullet_3.gif" />
+    <Content Include="images\bullist.gif" />
+    <Content Include="images\bullist_viedo.gif" />
+    <Content Include="images\but.gif" />
+    <Content Include="images\calender.png" />
+    <Content Include="images\cancel.gif" />
+    <Content Include="images\categories_icon.gif" />
+    <Content Include="images\cate_box_bg.jpg" />
+    <Content Include="images\cate_box_bot_bg.jpg" />
+    <Content Include="images\cate_box_bot_left.jpg" />
+    <Content Include="images\cate_box_bot_right.jpg" />
+    <Content Include="images\cate_box_top_bg.jpg" />
+    <Content Include="images\cate_box_top_left.jpg" />
+    <Content Include="images\cate_box_top_right.jpg" />
+    <Content Include="images\center.gif" />
+    <Content Include="images\citadel.gif" />
+    <Content Include="images\cl.gif" />
+    <Content Include="images\cl.jpg" />
+    <Content Include="images\click.gif" />
+    <Content Include="images\close.gif" />
+    <Content Include="images\closing_quotes.jpg" />
+    <Content Include="images\cntbar_rpt.jpg" />
+    <Content Include="images\cnt_rpt.jpg" />
+    <Content Include="images\Cockcroft_tristan_55.jpg" />
+    <Content Include="images\collapse.png" />
+    <Content Include="images\col_328_bg.jpg" />
+    <Content Include="images\col_328_bot.jpg" />
+    <Content Include="images\col_328_top.jpg" />
+    <Content Include="images\col_492_bg.jpg" />
+    <Content Include="images\col_492_bot.jpg" />
+    <Content Include="images\col_492_top.jpg" />
+    <Content Include="images\comments_add.png" />
+    <Content Include="images\comments_icon.gif" />
+    <Content Include="images\comments_pointer.jpg" />
+    <Content Include="images\content_bg.jpg" />
+    <Content Include="images\copy.gif" />
+    <Content Include="images\cor_left.jpg" />
+    <Content Include="images\cor_leftbot.gif" />
+    <Content Include="images\cor_lefttop.gif" />
+    <Content Include="images\cor_new1.jpg" />
+    <Content Include="images\cor_new2.jpg" />
+    <Content Include="images\cor_right.jpg" />
+    <Content Include="images\cor_rightbot.gif" />
+    <Content Include="images\cor_righttop.gif" />
+    <Content Include="images\custom-up.png" />
+    <Content Include="images\cut.gif" />
+    <Content Include="images\de-active.gif" />
+    <Content Include="images\deindent.gif" />
+    <Content Include="images\delete.jpg" />
+    <Content Include="images\Delete.png" />
+    <Content Include="images\Deleted.gif" />
+    <Content Include="images\deleted2.gif" />
+    <Content Include="images\delicious.gif" />
+    <Content Include="images\del_icon.jpg" />
+    <Content Include="images\design.gif" />
+    <Content Include="images\diamond.jpg" />
+    <Content Include="images\digg_icon.jpg" />
+    <Content Include="images\diigo_icon.jpg" />
+    <Content Include="images\direct_download_arrow.jpg" />
+    <Content Include="images\Donald5.jpg" />
+    <Content Include="images\donwload_arrow.gif" />
+    <Content Include="images\down.gif" />
+    <Content Include="images\down.png" />
+    <Content Include="images\downarrow.jpg" />
+    <Content Include="images\download_image.jpg" />
+    <Content Include="images\dw.JPG" />
+    <Content Include="images\edit.png" />
+    <Content Include="images\email_go.png" />
+    <Content Include="images\eye.gif" />
+    <Content Include="images\eye.png" />
+    <Content Include="images\facebook_icon.jpg" />
+    <Content Include="images\fark_icon.jpg" />
+    <Content Include="images\fb-load.gif" />
+    <Content Include="images\fb.png" />
+    <Content Include="images\featured_news_bg.jpg" />
+    <Content Include="images\featured_news_bg_sub.jpg" />
+    <Content Include="images\featured_new_tab.gif" />
+    <Content Include="images\featured_new_tab.jpg" />
+    <Content Include="images\featured_new_tab.png" />
+    <Content Include="images\featured_new_tab_o.png" />
+    <Content Include="images\feedme_icon.jpg" />
+    <Content Include="images\fgcolor.gif" />
+    <Content Include="images\firepay.gif" />
+    <Content Include="images\flag\flag11.jpg" />
+    <Content Include="images\flag\flag11_dis.jpg" />
+    <Content Include="images\flag\flag4.jpg" />
+    <Content Include="images\flag\flag4_dis.jpg" />
+    <Content Include="images\flag\flag7.jpg" />
+    <Content Include="images\flag\flag7_dis.jpg" />
+    <Content Include="images\flag\flag8.jpg" />
+    <Content Include="images\flag\flag8_dis.jpg" />
+    <Content Include="images\flag\flag9.jpg" />
+    <Content Include="images\flag\flag9_dis.jpg" />
+    <Content Include="images\flap-bg-clean.gif" />
+    <Content Include="images\flap-bg.gif" />
+    <Content Include="images\flap-download.gif" />
+    <Content Include="images\flap-freerolls.gif" />
+    <Content Include="images\flap-general-poker.gif" />
+    <Content Include="images\flap-hod.gif" />
+    <Content Include="images\flap-hph.gif" />
+    <Content Include="images\flap-info.gif" />
+    <Content Include="images\flap-left.gif" />
+    <Content Include="images\flap-online-poker.gif" />
+    <Content Include="images\flap-poker-freerolls.gif" />
+    <Content Include="images\flap-poker-tournaments.gif" />
+    <Content Include="images\flap-qod.gif" />
+    <Content Include="images\flap-right.gif" />
+    <Content Include="images\flap-satelites.gif" />
+    <Content Include="images\flap-sbo.gif" />
+    <Content Include="images\flap-tournament-poker.gif" />
+    <Content Include="images\flower.jpg" />
+    <Content Include="images\folder.gif" />
+    <Content Include="images\folder.png" />
+    <Content Include="images\football.gif" />
+    <Content Include="images\footer_bg.jpg" />
+    <Content Include="images\fortune_img.jpg" />
+    <Content Include="images\full-image.jpg" />
+    <Content Include="images\furl.gif" />
+    <Content Include="images\furl_icon.jpg" />
+    <Content Include="images\getty-icon.png" />
+    <Content Include="images\getty.gif" />
+    <Content Include="images\getty.png" />
+    <Content Include="images\gold.png" />
+    <Content Include="images\google-search.png" />
+    <Content Include="images\google.gif" />
+    <Content Include="images\google.png" />
+    <Content Include="images\google_bookmarks_icon.jpg" />
+    <Content Include="images\graphics1.jpg" />
+    <Content Include="images\green_arrow.jpg" />
+    <Content Include="images\grey_arrow.gif" />
+    <Content Include="images\grip.png" />
+    <Content Include="images\guidetoautos_logo.jpg" />
+    <Content Include="images\guidetocigars_logo.jpg" />
+    <Content Include="images\head-lt.png" />
+    <Content Include="images\head-mid.png" />
+    <Content Include="images\head-rt.png" />
+    <Content Include="images\header-logo.png" />
+    <Content Include="images\headerbg.jpg" />
+    <Content Include="images\header_bg.gif" />
+    <Content Include="images\headlines_bgd2.gif" />
+    <Content Include="images\heart.jpg" />
+    <Content Include="images\help.png" />
+    <Content Include="images\highest-bonus.gif" />
+    <Content Include="images\holdamoffer.JPG" />
+    <Content Include="images\homepage_top_bg.jpg" />
+    <Content Include="images\homepage_top_bg1.jpg" />
+    <Content Include="images\hot_stories_icon.jpg" />
+    <Content Include="images\howitworks.png" />
+    <Content Include="images\hr.gif" />
+    <Content Include="images\html.gif" />
+    <Content Include="images\hyperlink.gif" />
+    <Content Include="images\icon.jpg" />
+    <Content Include="images\icon1.jpg" />
+    <Content Include="images\icon2.jpg" />
+    <Content Include="images\icon3.jpg" />
+    <Content Include="images\icon4.jpg" />
+    <Content Include="images\iconSprite.png" />
+    <Content Include="images\icon_status_blue.gif" />
+    <Content Include="images\icon_status_green.gif" />
+    <Content Include="images\icon_status_red.gif" />
+    <Content Include="images\ie.gif" />
+    <Content Include="images\image.gif" />
+    <Content Include="images\images.png" />
+    <Content Include="images\img-rss.gif" />
+    <Content Include="images\in.jpg" />
+    <Content Include="images\indented_line.jpg" />
+    <Content Include="images\information.png" />
+    <Content Include="images\inindent.gif" />
+    <Content Include="images\inner_footer.jpg" />
+    <Content Include="images\inner_footer_bg_img.jpg" />
+    <Content Include="images\inner_rightcol_top.jpg" />
+    <Content Include="images\instagram.png" />
+    <Content Include="images\italic.gif" />
+    <Content Include="images\JoinFP.gif" />
+    <Content Include="images\jumperBg.jpg" />
+    <Content Include="images\key.gif" />
+    <Content Include="images\kinja.gif" />
+    <Content Include="images\lcomment.png" />
+    <Content Include="images\leave_group_icon.jpg" />
+    <Content Include="images\left.gif" />
+    <Content Include="images\left.jpg" />
+    <Content Include="images\left.png" />
+    <Content Include="images\left_ad.jpg" />
+    <Content Include="images\left_arrow.jpg" />
+    <Content Include="images\left_bg.gif" />
+    <Content Include="images\left_bg.jpg" />
+    <Content Include="images\left_bg1.jpg" />
+    <Content Include="images\left_bot_cor.gif" />
+    <Content Include="images\left_col_bot.jpg" />
+    <Content Include="images\left_col_top.jpg" />
+    <Content Include="images\left_menu_topbg.jpg" />
+    <Content Include="images\left_right_lines.png" />
+    <Content Include="images\left_top_cor.gif" />
+    <Content Include="images\left_top_cor.jpg" />
+    <Content Include="images\link.gif" />
+    <Content Include="images\linkagogo_icon.jpg" />
+    <Content Include="images\live-logo.png" />
+    <Content Include="images\livebookmarks_icon.jpg" />
+    <Content Include="images\load.gif" />
+    <Content Include="images\loader.gif" />
+    <Content Include="images\loader2.gif" />
+    <Content Include="images\loading-big.gif" />
+    <Content Include="images\loading.gif" />
+    <Content Include="images\login-masthead-tile.jpg" />
+    <Content Include="images\loginIcons.png" />
+    <Content Include="images\lt.png" />
+    <Content Include="images\magnolia_icon.jpg" />
+    <Content Include="images\Mask.png" />
+    <Content Include="images\mastercard.gif" />
+    <Content Include="images\matt-lt.png" />
+    <Content Include="images\matt-rt.png" />
+    <Content Include="images\mb_bg1.jpg" />
+    <Content Include="images\md-patient-masthead-tile.jpg" />
+    <Content Include="images\md-patient-masthead-tile1.jpg" />
+    <Content Include="images\menubar_rpt.jpg" />
+    <Content Include="images\menu_down.gif" />
+    <Content Include="images\menu_pointer.jpg" />
+    <Content Include="images\misterwong_icon.jpg" />
+    <Content Include="images\moreright.gif" />
+    <Content Include="images\mostcomments.png" />
+    <Content Include="images\most_read_icon.gif" />
+    <Content Include="images\msn.gif" />
+    <Content Include="images\mubrowser_icon.jpg" />
+    <Content Include="images\mustread_icon.jpg" />
+    <Content Include="images\neteller.gif" />
+    <Content Include="images\netscape_icon.jpg" />
+    <Content Include="images\netvouz_icon.jpg" />
+    <Content Include="images\new-hits.gif" />
+    <Content Include="images\new-misses.gif" />
+    <Content Include="images\newsburst.gif" />
+    <Content Include="images\newsgator.gif" />
+    <Content Include="images\newsvine_icon.jpg" />
+    <Content Include="images\Nicole &amp; Gran.jpg" />
+    <Content Include="images\no.gif" />
+    <Content Include="images\nophoto.gif" />
+    <Content Include="images\numlist.gif" />
+    <Content Include="images\offer_bg.jpg" />
+    <Content Include="images\offer_bg1.jpg" />
+    <Content Include="images\offer_box.jpg" />
+    <Content Include="images\oldimages.png" />
+    <Content Include="images\oldpictures.png" />
+    <Content Include="images\oldsitemap.png" />
+    <Content Include="images\oldupload.gif" />
+    <Content Include="images\oldviewall.jpg" />
+    <Content Include="images\opening_quotes.jpg" />
+    <Content Include="images\orange_bullet.gif" />
+    <Content Include="images\other_stories_bg.jpg" />
+    <Content Include="images\other_stories_bg1.jpg" />
+    <Content Include="images\other_stories_bg2.jpg" />
+    <Content Include="images\other_stories_bg3.jpg" />
+    <Content Include="images\other_stories_bg4.jpg" />
+    <Content Include="images\out.jpg" />
+    <Content Include="images\page_bg.jpg" />
+    <Content Include="images\page_top_bg.jpg" />
+    <Content Include="images\page_white_add.png" />
+    <Content Include="images\paste.gif" />
+    <Content Include="images\pics\pic1.jpg" />
+    <Content Include="images\pics\pic2.jpg" />
+    <Content Include="images\pics\pic3.jpg" />
+    <Content Include="images\pics\pic4.jpg" />
+    <Content Include="images\pics\pic5.jpg" />
+    <Content Include="images\pics\pic6.jpg" />
+    <Content Include="images\pics\pic7.jpg" />
+    <Content Include="images\Picture1.png" />
+    <Content Include="images\pictures.png" />
+    <Content Include="images\platinum.jpg" />
+    <Content Include="images\pluck.png" />
+    <Content Include="images\plus.jpg" />
+    <Content Include="images\point_comments.jpg" />
+    <Content Include="images\point_email.jpg" />
+    <Content Include="images\point_print.jpg" />
+    <Content Include="images\postimage.png" />
+    <Content Include="images\preview-video.gif" />
+    <Content Include="images\preview.gif" />
+    <Content Include="images\preview.jpg" />
+    <Content Include="images\printer.gif" />
+    <Content Include="images\pt_comment.gif" />
+    <Content Include="images\pt_email2.gif" />
+    <Content Include="images\pt_print2.gif" />
+    <Content Include="images\pt_share2.gif" />
+    <Content Include="images\published.png" />
+    <Content Include="images\quicklinks_img.jpg" />
+    <Content Include="images\quote.jpg" />
+    <Content Include="images\quote1.jpg" />
+    <Content Include="images\rating_star.jpg" />
+    <Content Include="images\rating_star1.jpg" />
+    <Content Include="images\rating_star_bg.jpg" />
+    <Content Include="images\rawsugar_icon.jpg" />
+    <Content Include="images\read.gif" />
+    <Content Include="images\recentarticle_box_bg.jpg" />
+    <Content Include="images\recentcomments.png" />
+    <Content Include="images\recent_news_icon.jpg" />
+    <Content Include="images\rec_box_bg.jpg" />
+    <Content Include="images\rec_box_bot_bg.jpg" />
+    <Content Include="images\rec_box_bot_left.jpg" />
+    <Content Include="images\rec_box_bot_right.jpg" />
+    <Content Include="images\rec_box_top_bg.jpg" />
+    <Content Include="images\rec_box_top_left.jpg" />
+    <Content Include="images\rec_box_top_right.jpg" />
+    <Content Include="images\reddit_icon.jpg" />
+    <Content Include="images\related.png" />
+    <Content Include="images\reply.jpg" />
+    <Content Include="images\report.png" />
+    <Content Include="images\report_icon.jpg" />
+    <Content Include="images\resources_icon.gif" />
+    <Content Include="images\review-bonus-bottom.gif" />
+    <Content Include="images\review-bonus-step1.gif" />
+    <Content Include="images\review-bonus-step2.gif" />
+    <Content Include="images\review-bonus-step3-last.gif" />
+    <Content Include="images\review-bonus-step3.gif" />
+    <Content Include="images\review-bonus-step4-last.gif" />
+    <Content Include="images\review-bonus-step4.gif" />
+    <Content Include="images\review-bonus-step5-last.gif" />
+    <Content Include="images\review-bonus-steps-bg.gif" />
+    <Content Include="images\review-flap-left.gif" />
+    <Content Include="images\review-flap-right.gif" />
+    <Content Include="images\reviews_tab.jpg" />
+    <Content Include="images\reviews_tab_o.jpg" />
+    <Content Include="images\right-lt.png" />
+    <Content Include="images\right-rt.png" />
+    <Content Include="images\right.gif" />
+    <Content Include="images\rightbg.jpg" />
+    <Content Include="images\right_arrow.jpg" />
+    <Content Include="images\right_bg.jpg" />
+    <Content Include="images\right_bot_cor.gif" />
+    <Content Include="images\right_box_bg.jpg" />
+    <Content Include="images\right_box_bot.jpg" />
+    <Content Include="images\right_box_hori_bg.jpg" />
+    <Content Include="images\right_box_top.jpg" />
+    <Content Include="images\right_col_bot.jpg" />
+    <Content Include="images\right_col_title_bg.jpg" />
+    <Content Include="images\right_col_top.jpg" />
+    <Content Include="images\right_top_cor.gif" />
+    <Content Include="images\room_review_top_bg.gif" />
+    <Content Include="images\rounded_corner_05px.gif" />
+    <Content Include="images\rounded_corner_05px.png" />
+    <Content Include="images\rounded_corner_10px.gif" />
+    <Content Include="images\rounded_corner_10px.png" />
+    <Content Include="images\rounded_corner_30px.gif" />
+    <Content Include="images\round_logo.jpg" />
+    <Content Include="images\rpt.PNG" />
+    <Content Include="images\rss20_icon.jpg" />
+    <Content Include="images\rss_icon.jpg" />
+    <Content Include="images\rt.png" />
+    <Content Include="images\save.png" />
+    <Content Include="images\SC_0095.jpg" />
+    <Content Include="images\sdicon.jpg" />
+    <Content Include="images\searchfox.gif" />
+    <Content Include="images\search_but.jpg" />
+    <Content Include="images\segnalo_icon.jpg" />
+    <Content Include="images\sep_hz.gif" />
+    <Content Include="images\setimage.png" />
+    <Content Include="images\setodds.png" />
+    <Content Include="images\settxodds.PNG" />
+    <Content Include="images\shadows_icon.jpg" />
+    <Content Include="images\share_this_icon.jpg" />
+    <Content Include="images\sideHeaderBg.gif" />
+    <Content Include="images\silver.png" />
+    <Content Include="images\simpy_icon.jpg" />
+    <Content Include="images\sitemap.png" />
+    <Content Include="images\sites_box_bg.jpg" />
+    <Content Include="images\site_bg.gif" />
+    <Content Include="images\slashdot_icon.jpg" />
+    <Content Include="images\smilies\ym_alien1.gif" />
+    <Content Include="images\smilies\ym_alien2.gif" />
+    <Content Include="images\smilies\ym_angel.gif" />
+    <Content Include="images\smilies\ym_angry.gif" />
+    <Content Include="images\smilies\ym_applause.gif" />
+    <Content Include="images\smilies\ym_blink.gif" />
+    <Content Include="images\smilies\ym_blushing.gif" />
+    <Content Include="images\smilies\ym_chicken.gif" />
+    <Content Include="images\smilies\ym_clown.gif" />
+    <Content Include="images\smilies\ym_coffee.gif" />
+    <Content Include="images\smilies\ym_confused.gif" />
+    <Content Include="images\smilies\ym_cool.gif" />
+    <Content Include="images\smilies\ym_cow.gif" />
+    <Content Include="images\smilies\ym_crying.gif" />
+    <Content Include="images\smilies\ym_dancing.gif" />
+    <Content Include="images\smilies\ym_devilish.gif" />
+    <Content Include="images\smilies\ym_doh.gif" />
+    <Content Include="images\smilies\ym_drooling.gif" />
+    <Content Include="images\smilies\ym_eyebrow.gif" />
+    <Content Include="images\smilies\ym_eyelashes.gif" />
+    <Content Include="images\smilies\ym_farmer.gif" />
+    <Content Include="images\smilies\ym_flag.gif" />
+    <Content Include="images\smilies\ym_frustrated.gif" />
+    <Content Include="images\smilies\ym_goodluck.gif" />
+    <Content Include="images\smilies\ym_grin.gif" />
+    <Content Include="images\smilies\ym_hand.gif" />
+    <Content Include="images\smilies\ym_happy.gif" />
+    <Content Include="images\smilies\ym_hugs.gif" />
+    <Content Include="images\smilies\ym_hypnotized.gif" />
+    <Content Include="images\smilies\ym_kiss.gif" />
+    <Content Include="images\smilies\ym_laughing.gif" />
+    <Content Include="images\smilies\ym_lightbulb.gif" />
+    <Content Include="images\smilies\ym_love.gif" />
+    <Content Include="images\smilies\ym_moneysick.gif" />
+    <Content Include="images\smilies\ym_monkey.gif" />
+    <Content Include="images\smilies\ym_nanana.gif" />
+    <Content Include="images\smilies\ym_nerd.gif" />
+    <Content Include="images\smilies\ym_nono.gif" />
+    <Content Include="images\smilies\ym_nottalking.gif" />
+    <Content Include="images\smilies\ym_peace.gif" />
+    <Content Include="images\smilies\ym_pig.gif" />
+    <Content Include="images\smilies\ym_pinokio.gif" />
+    <Content Include="images\smilies\ym_praying.gif" />
+    <Content Include="images\smilies\ym_pumpkin.gif" />
+    <Content Include="images\smilies\ym_punched.gif" />
+    <Content Include="images\smilies\ym_rolling.gif" />
+    <Content Include="images\smilies\ym_rose.gif" />
+    <Content Include="images\smilies\ym_sad.gif" />
+    <Content Include="images\smilies\ym_shhh.gif" />
+    <Content Include="images\smilies\ym_shock.gif" />
+    <Content Include="images\smilies\ym_sick.gif" />
+    <Content Include="images\smilies\ym_silly.gif" />
+    <Content Include="images\smilies\ym_skull.gif" />
+    <Content Include="images\smilies\ym_sleep.gif" />
+    <Content Include="images\smilies\ym_smug.gif" />
+    <Content Include="images\smilies\ym_straight.gif" />
+    <Content Include="images\smilies\ym_thinking.gif" />
+    <Content Include="images\smilies\ym_tired.gif" />
+    <Content Include="images\smilies\ym_tongue.gif" />
+    <Content Include="images\smilies\ym_undecided.gif" />
+    <Content Include="images\smilies\ym_vicious.gif" />
+    <Content Include="images\smilies\ym_whistling.gif" />
+    <Content Include="images\smilies\ym_wink.gif" />
+    <Content Include="images\smilies\ym_worried.gif" />
+    <Content Include="images\smily.gif" />
+    <Content Include="images\soft_delete.gif" />
+    <Content Include="images\sort_down.gif" />
+    <Content Include="images\sort_up.gif" />
+    <Content Include="images\spacer-wht.png" />
+    <Content Include="images\spacer.png" />
+    <Content Include="images\special-offers-box.gif" />
+    <Content Include="images\spinner.gif" />
+    <Content Include="images\sprt_time.gif" />
+    <Content Include="images\spurl_icon.jpg" />
+    <Content Include="images\star.gif" />
+    <Content Include="images\StarOff.gif" />
+    <Content Include="images\StarOn.gif" />
+    <Content Include="images\StarOver.gif" />
+    <Content Include="images\storibuilder.png" />
+    <Content Include="images\strikethrough.gif" />
+    <Content Include="images\stripe _blue.png" />
+    <Content Include="images\stripe.png" />
+    <Content Include="images\stumble.gif" />
+    <Content Include="images\stumble_icon.jpg" />
+    <Content Include="images\submit.gif" />
+    <Content Include="images\subscribe_bg.jpg" />
+    <Content Include="images\suggest.png" />
+    <Content Include="images\suggest_icon.jpg" />
+    <Content Include="images\tab.gif" />
+    <Content Include="images\tab1_img.jpg" />
+    <Content Include="images\tab2_img.jpg" />
+    <Content Include="images\tab3_img.jpg" />
+    <Content Include="images\table.gif" />
+    <Content Include="images\tabtop.gif" />
+    <Content Include="images\tabtop.png" />
+    <Content Include="images\tab_top.jpg" />
+    <Content Include="images\tab_top1.jpg" />
+    <Content Include="images\tab_top2.jpg" />
+    <Content Include="images\tag_blue.png" />
+    <Content Include="images\tailrank_icon.jpg" />
+    <Content Include="images\technorati.gif" />
+    <Content Include="images\technorati_icon.jpg" />
+    <Content Include="images\texture.png" />
+    <Content Include="images\ThumbsUp.gif" />
+    <Content Include="images\ThumbsUpOff.gif" />
+    <Content Include="images\ThumbsUpOver.gif" />
+    <Content Include="images\titlebar_lt.jpg" />
+    <Content Include="images\titlebar_rpt.jpg" />
+    <Content Include="images\titlebar_rt.jpg" />
+    <Content Include="images\top.jpg" />
+    <Content Include="images\top_background.jpg" />
+    <Content Include="images\top_bg.jpg" />
+    <Content Include="images\top_bg.png" />
+    <Content Include="images\top_cor.jpg" />
+    <Content Include="images\top_offers_bar.gif" />
+    <Content Include="images\top_pick.gif" />
+    <Content Include="images\top_pick2.gif" />
+    <Content Include="images\top_pick3.gif" />
+    <Content Include="images\top_pick4.gif" />
+    <Content Include="images\top_stories_icon.jpg" />
+    <Content Include="images\top_stories_icon1.jpg" />
+    <Content Include="images\trt_bg.jpg" />
+    <Content Include="images\tweet.png" />
+    <Content Include="images\tweetSearch.png" />
+    <Content Include="images\twittericon-old.png" />
+    <Content Include="images\twittericon.png" />
+    <Content Include="images\under.gif" />
+    <Content Include="images\unread.gif" />
+    <Content Include="images\up.gif" />
+    <Content Include="images\up.JPG" />
+    <Content Include="images\upload %281%29.gif" />
+    <Content Include="images\upload.gif" />
+    <Content Include="images\upload.jpg" />
+    <Content Include="images\upload_img.png" />
+    <Content Include="images\user.png" />
+    <Content Include="images\viewall.jpg" />
+    <Content Include="images\viewstats.gif" />
+    <Content Include="images\visa.gif" />
+    <Content Include="images\visit_arrow.jpg" />
+    <Content Include="images\whats_box_top_bg.jpg" />
+    <Content Include="images\whats_hot_icon.jpg" />
+    <Content Include="images\wink_icon.jpg" />
+    <Content Include="images\win_button.gif" />
+    <Content Include="images\win_rss2_button.gif" />
+    <Content Include="images\yahoo.gif" />
+    <Content Include="images\yahoo_myweb_icon.jpg" />
+    <Content Include="images\yellow_bg.jpg" />
+    <Content Include="images\yes.gif" />
+    <Content Include="images\youtube-search.png" />
+    <Content Include="images\youtube.png" />
+    <Content Include="images\zoom.png" />
+    <Content Include="images\_vti_cnf\bgcolor.gif" />
+    <Content Include="index.aspx" />
+    <Content Include="logout.aspx" />
+    <Content Include="OfferLink\AddEditOfferLink.aspx" />
+    <Content Include="OfferLink\ListOfferLinkHistory.aspx" />
+    <Content Include="OfferLink\ListOfferLinks.aspx" />
+    <Content Include="scripts\actb.js" />
+    <Content Include="scripts\calendar-en.js" />
+    <Content Include="scripts\calendar.js" />
+    <Content Include="scripts\common.js" />
+    <Content Include="scripts\context.js" />
+    <Content Include="scripts\dhtmlgoodies.js" />
+    <Content Include="scripts\divscript.js" />
+    <Content Include="scripts\floater.js" />
+    <Content Include="scripts\grid.js" />
+    <Content Include="scripts\jquery-1.4.1.js" />
+    <Content Include="scripts\jquery-1.4.1.min.js" />
+    <Content Include="scripts\jquery-1.8.3.js" />
+    <Content Include="scripts\jquery.js" />
+    <Content Include="scripts\leftmenu.js" />
+    <Content Include="scripts\ListItemTransfer.js" />
+    <Content Include="scripts\makebanner.js" />
+    <Content Include="scripts\makehome.js" />
+    <Content Include="scripts\mytreehandlers.js" />
+    <Content Include="scripts\Newsdivscript.js" />
+    <Content Include="scripts\selcolor.htm" />
+    <Content Include="scripts\Sportevent.js" />
+    <Content Include="scripts\tabpane.js" />
+    <Content Include="scripts\tabpane_new.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AjaxOfferLink.aspx.cs">
+      <DependentUpon>AjaxOfferLink.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AjaxOfferLink.aspx.designer.cs">
+      <DependentUpon>AjaxOfferLink.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\leftmenu.ascx.cs">
+      <DependentUpon>leftmenu.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\leftmenu.ascx.designer.cs">
+      <DependentUpon>leftmenu.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logout.aspx.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logout.aspx.designer.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Master\AdminMasterPage.Master.cs">
+      <DependentUpon>AdminMasterPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\AdminMasterPage.Master.designer.cs">
+      <DependentUpon>AdminMasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="OfferLink\AddEditOfferLink.aspx.cs">
+      <DependentUpon>AddEditOfferLink.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OfferLink\AddEditOfferLink.aspx.designer.cs">
+      <DependentUpon>AddEditOfferLink.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OfferLink\ListOfferLinkHistory.aspx.cs">
+      <DependentUpon>ListOfferLinkHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OfferLink\ListOfferLinkHistory.aspx.designer.cs">
+      <DependentUpon>ListOfferLinkHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OfferLink\ListOfferLinks.aspx.cs">
+      <DependentUpon>ListOfferLinks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OfferLink\ListOfferLinks.aspx.designer.cs">
+      <DependentUpon>ListOfferLinks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{83088F50-23D7-433E-9028-4513256D1173}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\flag\vssver.scc" />
+    <Content Include="images\pics.zip" />
+    <None Include="images\pics\vssver.scc" />
+    <None Include="images\smilies\vssver.scc" />
+    <None Include="images\vssver.scc" />
+    <None Include="images\Web.config.old" />
+    <None Include="images\_vti_cnf\vssver.scc" />
+    <None Include="OfferLink\vssver.scc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Master\AdminMasterPage.Master" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51089</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
