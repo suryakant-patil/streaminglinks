@@ -39,7 +39,7 @@ namespace offerlinkmanageradmin
         {
             try
             {
-                string strconn = ConfigurationSettings.AppSettings["Iframaddsense"];
+                string strconn = ConfigurationManager.AppSettings["Iframaddsense"];
                 using (OfferLinkMgmt objlink = new OfferLinkMgmt(strconn))
                 {
                     objlink.EditOfferLink(linkid, linkname, linkref, cookieuri, shortenurl);
@@ -61,7 +61,7 @@ namespace offerlinkmanageradmin
         public void GetAddedByuser(string userid)
         {
             StringBuilder sb = new StringBuilder();
-            string strconn = ConfigurationSettings.AppSettings["Network1"];
+            string strconn = ConfigurationManager.AppSettings["Network1"];
             string data = "";
             try
             {
