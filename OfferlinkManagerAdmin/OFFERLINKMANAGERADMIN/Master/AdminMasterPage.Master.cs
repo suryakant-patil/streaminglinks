@@ -16,7 +16,7 @@ namespace offerlinkmanageradmin.Master
             {
                 try
                 {
-                    string conn = System.Configuration.ConfigurationSettings.AppSettings["Network1"];
+                    string conn = System.Configuration.ConfigurationManager.AppSettings["Network1"];
                     using (BLL.OfferLinkMgmt objlink = new BLL.OfferLinkMgmt(conn))
                     {
                         DataTable dt = new DataTable();

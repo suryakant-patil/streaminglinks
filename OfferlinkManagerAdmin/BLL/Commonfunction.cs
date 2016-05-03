@@ -19,6 +19,7 @@ using System.Drawing.Imaging;
 using System.ComponentModel;
 using System.Drawing;
 using System.Net;
+using System.Configuration;
 
 /// <summary>
 /// Summary description for Commonfunction.
@@ -41,7 +42,7 @@ public class Commonfunction
         {
             strSiteURL = Constants.siteurl;            
         }
-        catch (System.Exception ex) { }
+        catch { }
         finally { }
     }
     #endregion    
@@ -51,7 +52,7 @@ public class Commonfunction
     
     public static String toTitle(object input)
     {
-        string strtype = System.Configuration.ConfigurationSettings.AppSettings["MachineType"].ToString();
+        string strtype = ConfigurationManager.AppSettings["MachineType"].ToString();
         string output = input.ToString().Trim().Replace("\"", @"");
         output = output.ToString().Trim().Replace("´", " ");
         output = output.ToString().Trim().Replace("®", " ");
@@ -272,7 +273,7 @@ public class Commonfunction
             objStreamWriter.Close();
 
         }
-        catch (Exception exp)
+        catch 
         {
             return false;
         }
@@ -289,7 +290,7 @@ public class Commonfunction
             strHTML = objStreamReader.ReadToEnd();
             objStreamReader.Close();
         }
-        catch (Exception exp)
+        catch
         {
 
         }
@@ -319,7 +320,7 @@ public class Commonfunction
     }
     public static int PageSize
     {
-        get { return Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["PageSize"].ToString()); }
+        get { return Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"].ToString()); }
     }
     public static string RootPath
     {
@@ -377,7 +378,7 @@ public class Commonfunction
             replString = replString.Replace("™", "");
             replString = replString.Replace("--", "-");
         }
-        catch (Exception ex)
+        catch
         {
 
         }
@@ -442,7 +443,7 @@ public class Commonfunction
             SourceBitmap.Dispose();
             thmimage.Dispose();
         }
-        catch (Exception exp)
+        catch
         {
             //exp.ToString(); 
         }
@@ -576,22 +577,22 @@ public class Commonfunction
     {
         /*if (imagename.StartsWith("TN"))
             imagename = imagename.Substring(2);*/
-            
-        return string.Format("<img src='{0}{1}/{2}{3}' border='0'/>", ConfigurationSettings.AppSettings["ImageServerUrl"].ToString(), sitefolder, imagefolder, imagename);
+
+        return string.Format("<img src='{0}{1}/{2}{3}' border='0'/>", ConfigurationManager.AppSettings["ImageServerUrl"].ToString(), sitefolder, imagefolder, imagename);
     }
     public static string GetMainBackendImageServerUrl(string imagename, string sitefolder, string imagefolder)
     {
         /*if (imagename.StartsWith("TN"))
             imagename = imagename.Substring(2);*/
 
-        return string.Format("<img src='{0}{1}/{2}{3}' border='0'/>", ConfigurationSettings.AppSettings["MainAdminURL"].ToString(), "NewImages", imagefolder, imagename);
+        return string.Format("<img src='{0}{1}/{2}{3}' border='0'/>", ConfigurationManager.AppSettings["MainAdminURL"].ToString(), "NewImages", imagefolder, imagename);
     }
     public static string GetImageAdminUrl(string imagename, string sitefolder, string imagefolder)
     {
         /*if (imagename.StartsWith("TN"))
             imagename = imagename.Substring(2);*/
 
-        return string.Format("<img src='{0}/{1}/{2}{3}' border='0'/>", ConfigurationSettings.AppSettings["SiteURL"].ToString(), "NewImages/" + sitefolder, imagefolder, imagename);
+        return string.Format("<img src='{0}/{1}/{2}{3}' border='0'/>", ConfigurationManager.AppSettings["SiteURL"].ToString(), "NewImages/" + sitefolder, imagefolder, imagename);
     }
     #endregion
 
