@@ -5,7 +5,7 @@
 	<HEAD>
 		<title>Promotional Links</title>
 		<LINK href="../css/admincp.css" type="text/css" rel="stylesheet">
-		<script src=../scripts/jquery-1.4.1.js></script>
+		<script src="../scripts/jquery-1.4.1.js" type="text/javascript"></script>
 		<style type="text/css">
 		
 		.ed{border:1px solid #ccc; line-height:11px; min-height:16px;display:inline-block; padding:0 15px 0 0; min-width:200px;}
@@ -199,13 +199,13 @@
 																														<td align="right" bgColor="#ffffff">
 																														     <div class="controlbtn">
 																														     <input id="cancel" type="button" class="buttontext"  value="Cancel" style="display:none;" />
-																														    <input type="button" class='buttontext' id="edit" name="addlinkmanager" value="Edit">
-																														    <input type="button" class='buttontext' id="save" name="addlinkmanager" value="Save" style="display:none;">
+																														    <input type="button" class='buttontext' id="edit" name="addlinkmanager" value="Edit"/>
+																														    <input type="button" class='buttontext' id="save" name="addlinkmanager" value="Save" style="display:none;"/>
 																															&nbsp; <input class="buttontext" id="activate" onclick="javascript:apporveallselchk();" type="button"
 																																value="Activate" name="activatecat"> <input class="buttontext" id="deactivate" onclick="javascript:deapporveallselchk();" type="button"
 																																value="Deactivate" name="deactivatecat"> <input class="buttontext" id="deletefooter" onclick="javascript:deleteallselchk();" type="button"
 																																value="Delete" name="delete"> <input class="buttontext" id="addfooter1" onclick="ShowAdd();" type="button" value="Add Link"
-																																name="adcat">
+																																name="adcat"/>
 																																</div>																																
 																														</td>
 																													</tr>
@@ -213,7 +213,7 @@
 																													<td class="text" align="left" bgColor="#ffffff">
 																													Search <asp:TextBox ID="txtsearch" Runat="server"  size="50" CssClass="text"></asp:TextBox>
 																													 &nbsp;<asp:Button ID="btnsearch" class="buttontext" Runat="server" Text="Search"></asp:Button>
-																													 &nbsp;<input id="btnClear" type="button" class="buttontext"  value="Clear" OnClick="Clear();">  <br>																												 
+																													 &nbsp;<input id="btnClear" type="button" class="buttontext"  value="Clear" OnClick="Clear();"/>  <br/>																												 
 																												  
 																													 
 																													</td>
@@ -233,10 +233,10 @@
 																								<td class="headings" align="left" width ="300px">Cookie Url</td>
 																								<td class="headings" align="left" width ="300px">Is Cookie</td>	
 																								<td class="headings" align="left" width ="300px">Bitly Url</td>	
-																								<td class="headings" align="left" width ="300px">Addded by/</br>Modified by /</br> Deleted by</td>																																																																																										  																																														
-																								<td class="headings" align="center" width ="70px">Added On/</br>Modified On</td>
+																								<td class="headings" align="left" width ="300px">Addded by/<br/>Modified by /<br/> Deleted by</td>																																																																																										  																																														
+																								<td class="headings" align="center" width ="70px">Added On/<br/>Modified On</td>
 																								<td class="headings" align="center" width ="60px">Status</td> 
-																								<td class="headings" align="center" width ="60px">Check All<br>
+																								<td class="headings" align="center" width ="60px">Check All<br/>
 																									<input onclick="checkBoxes()" type="checkbox" name="selectall" />
 																								</td>
 																							</tr>
@@ -251,10 +251,10 @@
 																														<td class="text" align="left" bgColor="#ffffff" colSpan="6"><asp:literal id="ltpaging1" Runat="server"></asp:literal></td>
 																														<td align="right" bgColor="#ffffff">
 																															&nbsp; <input class="buttontext" id="activated" onclick="javascript:apporveallselchk();" type="button"
-																																value="Activate" name="activatecat"> <input class="buttontext" id="deactivated" onclick="javascript:deapporveallselchk();" type="button"
-																																value="Deactivate" name="deactivatecat"> <input class="buttontext" id="delcategoryd" onclick="javascript:deleteallselchk();" type="button"
-																																value="Delete" name="deletecat"> <input class="buttontext" id="addfooter2" onclick="ShowAdd();" type="button" value="Add Link"
-																																name="adcat">
+																																value="Activate" name="activatecat"/> <input class="buttontext" id="deactivated" onclick="javascript:deapporveallselchk();" type="button"
+																																value="Deactivate" name="deactivatecat"/> <input class="buttontext" id="delcategoryd" onclick="javascript:deleteallselchk();" type="button"
+																																value="Delete" name="deletecat"/> <input class="buttontext" id="addfooter2" onclick="ShowAdd();" type="button" value="Add Link"
+																																name="adcat"/>
 																														</td>
 																													</tr>
 																												</table>

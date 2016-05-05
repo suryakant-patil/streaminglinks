@@ -30,11 +30,11 @@ namespace offerlinkmanageradmin.OfferLink
         {
             try
             {
-                BaseUrl = ConfigurationSettings.AppSettings["BaseURL"];
+                BaseUrl = ConfigurationManager.AppSettings["BaseURL"];
                 ltbaseurl.Text = BaseUrl.ToString();
                 ltbaseurl1.Text = BaseUrl.ToString();
-                ltbaseurl2.Text = BaseUrl.ToString();              
-                strconn = ConfigurationSettings.AppSettings["Iframaddsense"];
+                ltbaseurl2.Text = BaseUrl.ToString();
+                strconn = ConfigurationManager.AppSettings["Iframaddsense"];
                 try
                 {
                     if (string.IsNullOrEmpty(BLL.LoginInfo.Userid))

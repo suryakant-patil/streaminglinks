@@ -28,8 +28,8 @@ namespace offerlinkmanageradmin.OfferLink
         {
             try
             {
-                BaseUrl = ConfigurationSettings.AppSettings["BaseURL"];               
-                strconn = ConfigurationSettings.AppSettings["Iframaddsense"];
+                BaseUrl = ConfigurationManager.AppSettings["BaseURL"];
+                strconn = ConfigurationManager.AppSettings["Iframaddsense"];
                 if (BLL.LoginInfo.Userid == null)
                 {
                     Response.Redirect(BLL.Constants.OldAdminUrl + "login.aspx", false);

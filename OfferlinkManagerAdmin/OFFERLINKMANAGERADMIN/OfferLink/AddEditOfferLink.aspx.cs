@@ -26,14 +26,20 @@ namespace offerlinkmanageradmin.OfferLink
         string adsenseconn = "";
         #endregion
 
+       
 
         private void Page_Load(object sender, System.EventArgs e)
         {
             // Put user code to initialize the page here
             try
             {
-                BaseUrl = ConfigurationSettings.AppSettings["BaseURL"];
-                adsenseconn = ConfigurationSettings.AppSettings["Iframaddsense"];
+
+               
+                
+                BaseUrl = ConfigurationManager.AppSettings["BaseURL"];
+                adsenseconn = ConfigurationManager.AppSettings["Iframaddsense"];
+               
+
                 try
                 {
                     if (BLL.LoginInfo.Userid == null)
