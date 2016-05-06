@@ -228,14 +228,16 @@ namespace BLL
 				new SqlParameter("@LinkName",SqlDbType.VarChar),
 				new SqlParameter("@LinkReference",SqlDbType.VarChar),
 				new SqlParameter("@CookieURl",SqlDbType.VarChar),
-                new SqlParameter("@addedby",SqlDbType.Int)};
+                new SqlParameter("@addedby",SqlDbType.Int),
+                new SqlParameter("@RandomUniqueId",SqlDbType.VarChar)};
                 
                 param[0].Direction = ParameterDirection.InputOutput;
                 param[0].Value = Linkid;
                 param[1].Value = LinkName;
                 param[2].Value = LinkReference;
                 param[3].Value = CookieURl;
-                param[4].Value = LoginInfo.Userid;               
+                param[4].Value = LoginInfo.Userid;
+                param[5].Value = GenerateUniqueID();
                 dal.ExecuteNonQuery(CommandType.StoredProcedure, "AN_SP_OfferLink_Save", param);
                 linkid = Convert.ToInt32(param[0].Value);
 
@@ -245,6 +247,14 @@ namespace BLL
                 CommonLib.ExceptionHandler.WriteLog(CommonLib.Sections.BLL, "GamingNetBLL.OfferLinkMgmt.cs LinkOffer_Save", ex);
             }
             return linkid;
+        }
+
+
+        private string GenerateUniqueID()
+        {
+            string uniqueId="";
+            Guid randomId = Guid.NewGuid();
+            return  uniqueId = randomId.ToString().ToUpper();
         }
 
         /// <summary>
