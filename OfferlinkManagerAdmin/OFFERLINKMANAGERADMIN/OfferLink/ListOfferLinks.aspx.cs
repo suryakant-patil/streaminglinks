@@ -30,6 +30,7 @@ namespace offerlinkmanageradmin.OfferLink
         {
             try
             {
+               
                 BaseUrl = ConfigurationManager.AppSettings["BaseURL"];
                 ltbaseurl.Text = BaseUrl.ToString();
                 ltbaseurl1.Text = BaseUrl.ToString();
@@ -46,7 +47,7 @@ namespace offerlinkmanageradmin.OfferLink
                 {
                     Response.Redirect(BLL.Constants.OldAdminUrl + "login.aspx",false);
                 }
-               
+                
                 if (IsPostBack)
                 {
                     Session["txtsearch"] = txtsearch.Text;
