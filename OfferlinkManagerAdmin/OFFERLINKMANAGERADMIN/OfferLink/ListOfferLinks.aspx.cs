@@ -162,7 +162,7 @@ namespace offerlinkmanageradmin.OfferLink
                             txt += "<td class='text' align='right'   bgcolor='#FFFFFF' valign='middle' style='padding-right:5px;'>" + dr["rownumber"].ToString() + ".</td>";
                             str = dr["linkname"].ToString();
                             lid = dr["LinkID"].ToString();
-                            txt += "<td class='text' width='250px'  align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle' nowrap title='" + dr["LinkName"].ToString() + "'><div id='" + lid + "_divname'><a href='AddEditOfferLink.aspx?linkid=" + dr["LinkID"].ToString() + "' class='link'>" + str + "</a></div></td>";
+                            txt += "<td class='text' width='250px'  align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle' nowrap title='" + dr["LinkName"].ToString() + "'><div id='" + lid + "_divname'><a href='AddEditOfferLink.aspx?linkid=" + dr["LinkID"].ToString() + "' class='link'>" + str + "</a></div></br><span class='thread'>RandomId -" + dr["RandomUniqueId"].ToString() + "</span></td>";
                             txt += "<td class='text' align='center' bgcolor='#FFFFFF' valign='middle'><a title='click to view history' class='editlink' href='#' data-linkid='" + dr["LinkID"].ToString() + "'>View</a></td>";
                             txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle' nowrap>" + dr["LinkID"].ToString() + "</td>";
                             if (dr["linkreference"].ToString().Length > 30)
