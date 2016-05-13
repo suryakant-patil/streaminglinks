@@ -165,14 +165,14 @@ namespace offerlinkmanageradmin.OfferLink
                             txt += "<td class='text' width='250px'  align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle' nowrap title='" + dr["LinkName"].ToString() + "'><div id='" + lid + "_divname'><a href='AddEditOfferLink.aspx?linkid=" + dr["LinkID"].ToString() + "' class='link'>" + str + "</a></div></br><span class='thread'>RandomId -" + dr["RandomUniqueId"].ToString() + "</span></td>";
                             txt += "<td class='text' align='center' bgcolor='#FFFFFF' valign='middle'><a title='click to view history' class='editlink' href='#' data-linkid='" + dr["LinkID"].ToString() + "'>View</a></td>";
                             txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle' nowrap>" + dr["LinkID"].ToString() + "</td>";
-                            if (dr["linkreference"].ToString().Length > 30)
-                            {
-                               // str = Util.StringHandlers.splitNewsString(dr["linkreference"].ToString(), 30);
-                            }
-                            else
-                            {
-                                str = dr["linkreference"].ToString();
-                            }
+                            //if (dr["linkreference"].ToString().Length > 30)
+                            //{
+                            //   // str = Util.StringHandlers.splitNewsString(dr["linkreference"].ToString(), 30);
+                            //}
+                            //else
+                            //{
+                            //    str = dr["linkreference"].ToString();
+                            //}
                             str = dr["linkreference"].ToString();
 
                             //txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle' nowrap><div id='"+lid+"_div'><a href='" + dr["linkreference"].ToString()  + "' target='_blank' id='"+lid+"_a' class='text'> " +  str + " </a></div><br><input type='button' id='"+dr["LinkID"].ToString()+"' value='Edit' style='font-size :10px;' onclick='javascript:ModifyLink(this);'></td>";
