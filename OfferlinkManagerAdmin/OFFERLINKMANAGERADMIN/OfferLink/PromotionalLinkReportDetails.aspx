@@ -47,7 +47,7 @@
 																			 <td class="text" align="left" bgColor="#ffffff" colSpan="6"><asp:literal id="ltpaging" Runat="server"></asp:literal></td>
 																				</tr>
                                                                                 <tr>
-                                                                                <td class="text" align="left">
+                                                                                <td class="text" align="right">
                                                                                 Start date <asp:TextBox ID="txtstartdate" runat="server" Class="text"></asp:TextBox>&nbsp;
                                                                                 End date <asp:TextBox ID="txtenddate" runat="server" Class="text"></asp:TextBox>&nbsp;
                                                                                 <asp:Button ID="btnsearch" class="buttontext" Runat="server" Text="Search"></asp:Button>
@@ -64,11 +64,13 @@
 																							
 																							<tr bgColor="#eeeeee" height="20">
 																								<td class="headings" align="center" width ="20px"></td>
-																								<td class="headings" align="left" width ="100px">Link Name</td>
+																								<td class="headings" align="left" width ="100px">Landing Name</td>
 																								<td class="headings" align="left" width ="200px">Referrer Url</td>	
-																								<td class="headings" align="left" width ="100px">User IP</td>			
-																								<td class="headings" align="center" width ="70px">Hit Click</td>		
-                                                                                                <td class="headings" align="center" width ="100px">Hit Date</td>																									
+																								<%--<td class="headings" align="left" width ="100px">User IP</td>	--%>
+                                                                                                <td class="headings" align="left" width ="100px">Hit Date</td>	
+																								<%--<td class="headings" align="center" width ="100px">Todays Click</td>	
+                                                                                                <td class="headings" align="center" width ="100px">Yesterdays Click</td>	--%>
+                                                                                                <td class="headings" align="center" width ="70px">Total Clicks</td>																									
 																							</tr>
 																							<asp:literal id="ltlist" Runat="server"></asp:literal>
 																							

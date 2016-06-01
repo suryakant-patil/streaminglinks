@@ -124,6 +124,14 @@ namespace BLL
             set { _cookieURl = value; }
         }
 
+        private string _randomid = "";
+      
+        public string RandomId
+        {
+            get { return _randomid; ; }
+            set { _randomid = value; }
+        }
+
 
 
         #endregion
@@ -229,7 +237,8 @@ namespace BLL
 				new SqlParameter("@LinkReference",SqlDbType.VarChar),
 				new SqlParameter("@CookieURl",SqlDbType.VarChar),
                 new SqlParameter("@addedby",SqlDbType.Int),
-                new SqlParameter("@RandomUniqueId",SqlDbType.VarChar)};
+                new SqlParameter("@RandomUniqueId",SqlDbType.VarChar)
+                };
                 
                 param[0].Direction = ParameterDirection.InputOutput;
                 param[0].Value = Linkid;
@@ -237,7 +246,7 @@ namespace BLL
                 param[2].Value = LinkReference;
                 param[3].Value = CookieURl;
                 param[4].Value = LoginInfo.Userid;
-                param[5].Value = GenerateUniqueID();
+                param[5].Value = RandomId;
                 dal.ExecuteNonQuery(CommandType.StoredProcedure, "AN_SP_OfferLink_Save", param);
                 linkid = Convert.ToInt32(param[0].Value);
 

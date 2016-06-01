@@ -137,6 +137,55 @@ namespace BLL
         }
         //
 
+        public int GetPromotionalLinkCountDayWise(int day,int referrerid)
+        {
+            int count = 0;
+            object objday = null;
+            try
+            {
+                SqlParameter[] param = { new SqlParameter("@day", SqlDbType.Int),
+                                       new SqlParameter("@ReferrerId",SqlDbType.Int)};
+                param[0].Value = day;
+                param[1].Value = referrerid;
+                objday = dal.ExecuteScalar(CommandType.StoredProcedure, "AN_SP_GetPromotionalLinCountDaywise", param);
+            }
+            catch (Exception ex)
+            {
+                CommonLib.ExceptionHandler.WriteLog(Sections.BLL, "PromotionalLinkReportMgmt.cs GetPromotionalLinkCountDayWise", ex);
+            }
+            if (!string.IsNullOrEmpty(objday.ToString()))
+            {
+                count = Convert.ToInt32(objday);
+            }
+            return count;
+
+        }
+
+        public int GetPromotionalReferrelurlCountDayWise(int day, string referrerurl)
+        {
+            int count = 0;
+            object objcount=null;
+            try
+            {
+                SqlParameter[] param = { new SqlParameter("@day", SqlDbType.Int),
+                                       new SqlParameter("@ReferrerUrl",SqlDbType.VarChar)};
+                param[0].Value = day;
+                param[1].Value = referrerurl;
+                objcount = dal.ExecuteScalar(CommandType.StoredProcedure, "AN_SP_GetPromotionalReferrelCountDaywise", param);
+            }
+            catch (Exception ex)
+            {
+                CommonLib.ExceptionHandler.WriteLog(Sections.BLL, "PromotionalLinkReportMgmt.cs GetPromotionalReferrelurlCountDayWise", ex);
+            }
+            if (!string.IsNullOrEmpty(objcount.ToString()))
+            {
+                count = Convert.ToInt32(objcount);
+            }
+            return count;
+
+        }
+
+
 
         #endregion
     }

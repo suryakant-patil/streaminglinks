@@ -46,6 +46,8 @@ namespace offerlinkmanageradmin.OfferLink
                 //upload pages on main site 
                 if (IsPostBack)
                 {
+                    string day1 = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
+                    string day2 = DateTime.Now.ToString("yyyy-MM-dd");
                     if (null != Request.QueryString["p"])
                     {
                         pagenumber = Convert.ToInt32(Request.QueryString["p"].ToString());
@@ -54,26 +56,29 @@ namespace offerlinkmanageradmin.OfferLink
                     {
                         pagenumber = 1;
                     }
-                    PromotinalLinkReportList(GetDate(txtstartdate.Text), GetDate(txtenddate.Text));
+                    PromotinalLinkReportList(day1,day2);
                 }
                 else
                 {
+                    string day1 = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
+                    string day2 = DateTime.Now.ToString("yyyy-MM-dd");
 
-                    txtstartdate.Text = DateTime.Now.AddDays(-1).ToString("dd/MM/yyyy");
-                    txtenddate.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                    //txtstartdate.Text = DateTime.Now.AddDays(-1).ToString("dd/MM/yyyy");
+                    //txtenddate.Text = DateTime.Now.ToString("dd/MM/yyyy");
                     disp_labels();
-                    if (Request.QueryString["clear"] != null)
-                    {
-                        txtstartdate.Text = DateTime.Now.AddDays(-1).ToString("dd/MM/yyyy");
-                        txtenddate.Text = DateTime.Now.ToString("dd/MM/yyyy");
-                    }
+                    //if (Request.QueryString["clear"] != null)
+                    //{
+                    //    txtstartdate.Text = DateTime.Now.AddDays(-1).ToString("dd/MM/yyyy");
+                    //    txtenddate.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                    //}
                     if (Request.QueryString["excel"] != null)
                     {
                         if (Request.QueryString["excel"] == "excel")
                         {
                             using (PromotionalLinkReportMgmt obj = new PromotionalLinkReportMgmt(strconn))
                             {
-                                DataTable dtexcel = obj.GetPromotionalExitClickList(GetDate(txtstartdate.Text), GetDate(txtenddate.Text));
+                               
+                                DataTable dtexcel = obj.GetPromotionalExitClickList(day1,day2);
                                 ExcelMgmt objexcel = new ExcelMgmt();
                                 string excelfilename = "promotionlink_" + DateTime.Now.ToString("ddMMyyyyHHmmsss") + ".csv";
                                 objexcel.WriteToCSV(dtexcel,excelfilename);
@@ -88,7 +93,7 @@ namespace offerlinkmanageradmin.OfferLink
                     {
                         pagenumber = 1;
                     }
-                    PromotinalLinkReportList(GetDate(txtstartdate.Text), GetDate(txtenddate.Text));
+                    PromotinalLinkReportList(day1,day2);
                 }
             }
             catch (Exception ex)
@@ -107,7 +112,7 @@ namespace offerlinkmanageradmin.OfferLink
             ltheader.Text = "Promotional Link Report";
         }
 
-        private void PromotinalLinkReportList(string fromdate,string todate)
+        private void PromotinalLinkReportList(string day1,string day2)
         {
             string txt = "";
             int i=0;            
@@ -117,17 +122,18 @@ namespace offerlinkmanageradmin.OfferLink
 
                 using (PromotionalLinkReportMgmt obj=new PromotionalLinkReportMgmt(strconn))
                 {
-                    dt = obj.GetPromotionalExitClickList(fromdate, todate);
+                    dt = obj.GetPromotionalExitClickList(day1,day2);
                     if (dt.Rows.Count > 0)
                     {
                         foreach (DataRow dr in dt.Rows)
                         {
                             i++;
+                           
                             txt += "<tr height='30' valign='top'>";
                             txt += "<td class='text' align= 'center' bgcolor='#FFFFFF' valign='middle' style='font-family:verdana;font-size:11px;'>"+i.ToString()+"</td>";
                             txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle' ><a class='link' href='PromotionalLinkReportDetails.aspx?referrerid=" + dr["Referrerid"].ToString() + "'>" + dr["ReferrerName"].ToString() + "</a> </td>";
-                            txt += "<td class='text' align='left' style='padding-left:5px;text-align: center;' bgcolor='#FFFFFF' valign='middle' >" + fromdate + "</td>";
-                            txt += "<td class='text' align='left' style='padding-left:5px;text-align: center;' bgcolor='#FFFFFF' valign='middle' >" + todate + "</td>";
+                            txt += "<td class='text' align='left' style='padding-left:5px;text-align: center;' bgcolor='#FFFFFF' valign='middle' >" + obj.GetPromotionalLinkCountDayWise(0, Convert.ToInt32(dr["Referrerid"])) + "</td>";
+                            txt += "<td class='text' align='left' style='padding-left:5px;text-align: center;' bgcolor='#FFFFFF' valign='middle' >" + obj.GetPromotionalLinkCountDayWise(1, Convert.ToInt32(dr["Referrerid"])) + "</td>";
                             txt += "<td class='text' align='left' style='padding-left:5px;text-align: center;' bgcolor='#FFFFFF' valign='middle' >" + dr["Exitclicktotal"].ToString() + "</td>";                           
                             txt += "</tr>";
                             

@@ -46,6 +46,10 @@ namespace offerlinkmanageradmin.OfferLink
                 //upload pages on main site 
                 if (IsPostBack)
                 {
+                    //string day1 = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
+                    //string day2 = DateTime.Now.ToString("yyyy-MM-dd");
+                    Session["day1"] = txtstartdate.Text;
+                    Session["day2"] = txtenddate.Text;
                     if (null != Request.QueryString["p"])
                     {
                         pagenumber = Convert.ToInt32(Request.QueryString["p"].ToString());
@@ -54,26 +58,34 @@ namespace offerlinkmanageradmin.OfferLink
                     {
                         pagenumber = 1;
                     }
-                    PromotinalLinkReportList(GetDate(txtstartdate.Text), GetDate(txtenddate.Text), Request.QueryString["referrerid"]);
+                    PromotinalLinkReportList(GetDate(txtstartdate.Text),GetDate(txtenddate.Text), Request.QueryString["referrerid"]);
                 }
                 else
                 {
+                    //string day1 = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
+                    //string day2 = DateTime.Now.ToString("yyyy-MM-dd");
 
-                    txtstartdate.Text = DateTime.Now.AddDays(-1).ToString("dd/MM/yyyy");
-                    txtenddate.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                    
                     disp_labels();
                     if (Request.QueryString["clear"] != null)
                     {
                         txtstartdate.Text = DateTime.Now.AddDays(-1).ToString("dd/MM/yyyy");
                         txtenddate.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                        Session["day1"] = txtstartdate.Text;
+                        Session["day2"] = txtenddate.Text;
                     }
                     if (Request.QueryString["excel"] != null)
                     {
                         if (Request.QueryString["excel"] == "excel")
                         {
+                            if (Session["day1"] == null && Session["day2"] == null)
+                            {
+                                Session["day1"] = DateTime.Now.AddDays(-1).ToString("dd/MM/yyyy");
+                                Session["day2"] = DateTime.Now.ToString("dd/MM/yyyy");
+                            }
                             using (PromotionalLinkReportMgmt obj = new PromotionalLinkReportMgmt(strconn))
                             {
-                                DataTable dtexcel = obj.GetPromotionalLinkDetailsForExcel(GetDate(txtstartdate.Text), GetDate(txtenddate.Text), Request.QueryString["referrerid"]);
+                                DataTable dtexcel = obj.GetPromotionalExitClickListDetails(GetDate(Session["day1"].ToString()), GetDate(Session["day2"].ToString()), Request.QueryString["referrerid"]);
                                 ExcelMgmt objexcel = new ExcelMgmt();
                                 string excelfilename = "promotionlinkdetails_" + DateTime.Now.ToString("ddMMyyyyHHmmsss") + ".csv";
                                 objexcel.WriteToCSV(dtexcel, excelfilename);
@@ -90,6 +102,8 @@ namespace offerlinkmanageradmin.OfferLink
                     }
                     if (Request.QueryString["referrerid"] != null)
                     {
+                        txtstartdate.Text = DateTime.Now.AddDays(-1).ToString("dd/MM/yyyy");
+                        txtenddate.Text = DateTime.Now.ToString("dd/MM/yyyy");
                         PromotinalLinkReportList(GetDate(txtstartdate.Text), GetDate(txtenddate.Text), Request.QueryString["referrerid"]);
                     }
                 }
@@ -107,7 +121,18 @@ namespace offerlinkmanageradmin.OfferLink
 
         private void disp_labels()
         {
-           // ltheader.Text = "Promotional Link Report Details";
+            switch(Request.QueryString["referrerid"])
+            {
+                case "1":
+                    ltheader.Text = "Twitter Promotional Link Report Details";
+                break;
+                case "2":
+                ltheader.Text = "Facebook Promotional Link Report Details";
+                break;
+                case "3":
+                ltheader.Text = "Sites Promotional Link Report Details";
+                break;
+             }
         }
 
         private void PromotinalLinkReportList(string fromdate, string todate,string referrerid)
@@ -123,17 +148,24 @@ namespace offerlinkmanageradmin.OfferLink
                     dt = obj.GetPromotionalExitClickListDetails(fromdate, todate,referrerid);
                     if (dt.Rows.Count > 0)
                     {
-                        ltheader.Text = dt.Rows[0]["ReferrerName"].ToString() +" Details";
+                        //ltheader.Text = dt.Rows[0]["ReferrerName"].ToString() +" Details";
                         foreach (DataRow dr in dt.Rows)
                         {
                             i++;
+                            //int todaysclick = obj.GetPromotionalReferrelurlCountDayWise(0, dr["ReferrerUrl"].ToString());
+                            //int yesterdayclick = obj.GetPromotionalReferrelurlCountDayWise(1, dr["ReferrerUrl"].ToString());
+                            //int totalclick = 0;
+                            //totalclick = todaysclick + yesterdayclick;
                             txt += "<tr height='30' valign='top'>";
                             txt += "<td class='text' align= 'center' bgcolor='#FFFFFF' valign='middle' style='font-family:verdana;font-size:11px;text-align: center;'>" + i.ToString() + "</td>";
                             txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle' >" + dr["LinkName"].ToString() + " </td>";
                             txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle' >" + dr["ReferrerUrl"].ToString() + "</td>";
-                            txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle' >" + dr["UserIP"].ToString() + "</td>";
+                          //  txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle' >" + dr["UserIP"].ToString() + "</td>";
+                            //txt += "<td class='text' align='left' style='padding-left:5px;text-align:center;' bgcolor='#FFFFFF' valign='middle' >" + todaysclick + "</td>";
+                            //txt += "<td class='text' align='left' style='padding-left:5px;text-align:center;' bgcolor='#FFFFFF' valign='middle' >" + yesterdayclick + "</td>";
+                            txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle' >" + Convert.ToDateTime(dr["HitDate"]).ToString("dd/MM/yyyy") + "</td>";
                             txt += "<td class='text' align='center' style='padding-left:5px;text-align:center;' bgcolor='#FFFFFF' valign='middle' >" + dr["Exitclick"].ToString() + "</td>";
-                            txt += "<td class='text' align='center' style='padding-left:5px;text-align:center;' bgcolor='#FFFFFF' valign='middle' >" + Convert.ToDateTime(dr["HitDate"]).ToString("dd/MM/yyyy") + "</td>";
+                            
                             txt += "</tr>";
                         }
                     }

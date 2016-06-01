@@ -96,12 +96,13 @@ namespace offerlinkmanageradmin.OfferLink
                                 objlink.Linkid = "0";
                             }
                             int _linkid = 0;
-                            _linkid=objlink.LinkOffer_Save();                            
-                           
+                            objlink.RandomId = GenerateUniqueID();
+                            _linkid=objlink.LinkOffer_Save();
+                          
                             if (objlink.Linkid == "0")
                             {
                                 BitlyShortenUrl objbitly = new BitlyShortenUrl();
-                                objlink.Shortenurl = objbitly.ShortenUrl(Constants.Bitlyurl + _linkid.ToString());
+                                objlink.Shortenurl = objbitly.ShortenUrl(Constants.Bitlyurl + objlink.RandomId);
                                 objlink.AddShortenUrl(_linkid);
                             }
 
@@ -150,5 +151,13 @@ namespace offerlinkmanageradmin.OfferLink
                 }
             }
         }
+
+        private string GenerateUniqueID()
+        {
+            string uniqueId = "";
+            Guid randomId = Guid.NewGuid();
+            return uniqueId = randomId.ToString().ToUpper();
+        }
+
     }
 }

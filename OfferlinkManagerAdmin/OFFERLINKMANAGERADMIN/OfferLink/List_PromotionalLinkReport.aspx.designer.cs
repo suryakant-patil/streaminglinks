@@ -40,33 +40,6 @@ namespace offerlinkmanageradmin.OfferLink {
         protected global::System.Web.UI.WebControls.Literal ltpaging;
         
         /// <summary>
-        /// txtstartdate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtstartdate;
-        
-        /// <summary>
-        /// txtenddate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtenddate;
-        
-        /// <summary>
-        /// btnsearch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnsearch;
-        
-        /// <summary>
         /// ltlist control.
         /// </summary>
         /// <remarks>

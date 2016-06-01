@@ -47,11 +47,11 @@
 																			 <td class="text" align="left" bgColor="#ffffff" colSpan="6"><asp:literal id="ltpaging" Runat="server"></asp:literal></td>
 																				</tr>
                                                                                 <tr>
-                                                                                <td class="text" align="left">
-                                                                                Start date <asp:TextBox ID="txtstartdate" runat="server" Class="text"></asp:TextBox>&nbsp;
+                                                                                <td class="text" align="right">
+                                                                              <%--  Start date <asp:TextBox ID="txtstartdate" runat="server" Class="text"></asp:TextBox>&nbsp;
                                                                                 End date <asp:TextBox ID="txtenddate" runat="server" Class="text"></asp:TextBox>&nbsp;
                                                                                 <asp:Button ID="btnsearch" class="buttontext" Runat="server" Text="Search"></asp:Button>
-                                                                                <input type="button" class="buttontext" value="clear" onclick="Showlist();" />
+                                                                                <input type="button" class="buttontext" value="clear" onclick="Showlist();" />--%>
                                                                                 &nbsp;<input id="btnexcel" name="btnexcel" value="Export To Excel" onclick="showExcellist()" type="button" class="buttontext"/>
                                                                                 </td>
                                                                                 </tr>
@@ -62,8 +62,8 @@
 																							<tr bgColor="#eeeeee" height="20">
 																								<td class="headings" align="center" width ="20px"></td>
 																								<td class="headings" align="left" width ="200px">Exit Clicks</td>
-																								<td class="headings" align="center" width ="100px">Date1</td>	
-																								<td class="headings" align="center" width ="100px">Date2</td>			
+																								<td class="headings" align="center" width ="100px">Today Click</td>	
+																								<td class="headings" align="center" width ="100px">Yesterday Click </td>			
 																								<td class="headings" align="center" width ="70px">Total Clicks</td>																								
 																							</tr>
 																							<asp:literal id="ltlist" Runat="server"></asp:literal>
@@ -90,12 +90,12 @@
 				</td>
 			</tr>
 		</table>
-		<script>
+		<%--<script>
             
 		    function showExcellist() {
 		        window.location.href = 'List_PromotionalLinkReport.aspx?excel=excel';
 		    }
-
+            
 		    function Showlist() {
 		        window.location.href = 'List_PromotionalLinkReport.aspx?clear=clear';
             }
@@ -117,6 +117,14 @@
 		        },
 		        timepicker: false
 		    });
+            
+        </script>--%>
+
+        <script>
+
+            function showExcellist() {
+                window.location.href = 'List_PromotionalLinkReport.aspx?excel=excel';
+            }
         </script>
 	</body>
 </HTML>
