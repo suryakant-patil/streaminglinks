@@ -22,7 +22,7 @@
 													
 													<td width="874" class="header" align="left">&gt;&gt;
 														<asp:Literal ID="ltheader" Runat="server"></asp:Literal><asp:Literal id="ltmaincat" Runat="server"></asp:Literal>
-                                                       <%-- <a href="http://anil/calodianmedia/promotionalstat.aspx?siteurl=75047EBB-0F29-4CBE-8A98-2000C9F628B4&siteid=1&usersessionid=4195">calendonianmedia</a>
+                                                      <%--  <a href="http://anil/calodianmedia/promotionalstat.aspx?siteurl=75047EBB-0F29-4CBE-8A98-2000C9F628B4&siteid=1&usersessionid=4195">calendonianmedia</a>
                                                         <a href="http://bit.ly/26ZruIr">calendonianmedia</a>--%>
 													</td>
 												</tr>
