@@ -369,7 +369,7 @@ function Clear()
    window.location.href	="ListOfferLinks.aspx?clear=clear";
 }
 
-var frm = document.getElementById("form1");
+var frm = document.getElementById("aspnetForm");
 
 function checkBoxes() 
 {
