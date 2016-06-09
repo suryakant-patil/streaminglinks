@@ -163,7 +163,7 @@ namespace offerlinkmanageradmin.OfferLink
                           //  txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle' >" + dr["UserIP"].ToString() + "</td>";
                             //txt += "<td class='text' align='left' style='padding-left:5px;text-align:center;' bgcolor='#FFFFFF' valign='middle' >" + todaysclick + "</td>";
                             //txt += "<td class='text' align='left' style='padding-left:5px;text-align:center;' bgcolor='#FFFFFF' valign='middle' >" + yesterdayclick + "</td>";
-                            txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle' >" + Convert.ToDateTime(dr["HitDate"]).ToString("dd/MM/yyyy") + "</td>";
+                            txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle' >" + Convert.ToDateTime(dr["HitDate"]).ToString("dd/MM/yyyy HH:mm") + "</td>";
                             txt += "<td class='text' align='center' style='padding-left:5px;text-align:center;' bgcolor='#FFFFFF' valign='middle' >" + dr["Exitclick"].ToString() + "</td>";
                             
                             txt += "</tr>";
