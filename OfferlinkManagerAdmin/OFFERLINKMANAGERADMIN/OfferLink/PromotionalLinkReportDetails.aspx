@@ -121,7 +121,7 @@
 		    $('#<%=txtenddate.ClientID%>').datetimepicker({
 		        format: 'd/m/Y',
 		        onShow: function (ct) {
-		            maxDate: jQuery('#<%=txtstartdate.ClientID%>').val()
+		            maxDate: jQuery('#<%=txtenddate.ClientID%>').val()
 
 		        },
 		        timepicker: false
