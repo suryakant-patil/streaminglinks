@@ -4,6 +4,7 @@
 	<HEAD>
 		<title>Promotional Link Report</title>
 		<LINK href="../css/admincp.css" type="text/css" rel="stylesheet">
+          <script src="../scripts/jquery-1.4.1.js" type="text/javascript"></script>
         <script src="../datepicker/jquery.datetimepicker.js"></script>
         <link href="../datepicker/jquery.datetimepicker.css" rel="Stylesheet" />
 	</HEAD>
@@ -120,11 +121,46 @@
             
         </script>--%>
 
-        <script>
+         <script>
+      
 
             function showExcellist() {
                 window.location.href = 'List_PromotionalLinkReport.aspx?excel=excel';
             }
+
+
+            $('.showdata').click(function () {
+                $("#trsitetrack").css('display', 'table-row');
+                var referrerid = $(this).attr('id');
+                ShowData(referrerid);
+            })
+
+            $(".minimize").click(function () {
+                $("#trsitetrack").css('display', 'none');
+                $("#ref_3").empty();
+            });
+
+
+            function ShowData(_referrerid) {
+                var url = "<%=BaseUrl%>AjaxOfferLink.aspx";
+                console.log(url);
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    cache: false,
+                    data: { type: 'TRACK', referrerid: _referrerid },
+                    success: function (msg) {
+                        
+                        $('#ref_' + _referrerid).html(msg);
+                        
+                    },
+                    error: function (request, err) {
+                        alert(err.status);
+                    }
+                });
+            
+            }       
+        
         </script>
 	</body>
 </HTML>

@@ -185,6 +185,50 @@ namespace BLL
 
         }
 
+        public DataTable GetSiteWiseTrackingDetails(string day1,string day2)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                SqlParameter[] param = { new SqlParameter("@fromdate",SqlDbType.DateTime),
+                                       new SqlParameter("@todate",SqlDbType.DateTime)};
+                param[0].Value = day1;
+                param[1].Value = day2;
+                dt = dal.GetDataTable(CommandType.StoredProcedure, "AN_SP_GetSiteWiseTrackingDetails",param);
+            }
+            catch (Exception ex)
+            {
+                CommonLib.ExceptionHandler.WriteLog(Sections.BLL, "PromotionalLinkReportMgmt.cs GetSiteWiseTrackingDetails", ex);
+            }
+            return dt;
+        }
+
+        public int GetPromotionalLinkCountDayWise_Site(int day, int referrerid,string siteid)
+        {
+            int count = 0;
+            object objday = null;
+            try
+            {
+                SqlParameter[] param = { new SqlParameter("@day", SqlDbType.Int),
+                                       new SqlParameter("@ReferrerId",SqlDbType.Int),
+                                       new SqlParameter("@siteid",SqlDbType.Int)};
+                param[0].Value = day;
+                param[1].Value = referrerid;
+                param[2].Value = siteid;
+                objday = dal.ExecuteScalar(CommandType.StoredProcedure, "AN_SP_GetPromotionalLinCountDaywise_Site", param);
+            }
+            catch (Exception ex)
+            {
+                CommonLib.ExceptionHandler.WriteLog(Sections.BLL, "PromotionalLinkReportMgmt.cs GetPromotionalLinkCountDayWise_Site", ex);
+            }
+            if (!string.IsNullOrEmpty(objday.ToString()))
+            {
+                count = Convert.ToInt32(objday);
+            }
+            return count;
+
+        }
+
 
 
         #endregion
