@@ -20,7 +20,7 @@ namespace offerlinkmanageradmin
                 switch (Request.Form["type"].ToString().ToUpper())
                 {
                     case "OFFERLINK":
-                        UpdateOfferLink(Request.Form["linkid"], Request.Form["linkname"], Request.Form["linkurl"], Request.Form["cookieuri"], Request.Form["shortenurl"], Request.Form["oldvalue"]);
+                        UpdateOfferLink(Request.Form["linkid"], Request.Form["linkname"], Request.Form["linkurl"], Request.Form["cookieuri"], Request.Form["shortenurl"], Request.Form["oldvalue"], Request.Form["bitlyrel"]);
                         break;
                     case "FNGETUSER":
                         GetAddedByuser(Request.Form["userid"]);
@@ -39,14 +39,14 @@ namespace offerlinkmanageradmin
 
         }
 
-        public void UpdateOfferLink(string linkid, string linkname, string linkref, string cookieuri, string shortenurl,string oldvalue)
+        public void UpdateOfferLink(string linkid, string linkname, string linkref, string cookieuri, string shortenurl,string oldvalue,string bitlyrel)
         {
             try
             {
                 string strconn = ConfigurationManager.AppSettings["Iframaddsense"];
                 using (OfferLinkMgmt objlink = new OfferLinkMgmt(strconn))
                 {
-                    objlink.EditOfferLink(linkid, linkname, linkref, cookieuri, shortenurl);
+                    objlink.EditOfferLink(linkid, linkname, linkref, cookieuri, shortenurl,bitlyrel);
                     objlink.NewValues = linkref;
                     objlink.OldValues = oldvalue;
                     objlink.Action = "Update";

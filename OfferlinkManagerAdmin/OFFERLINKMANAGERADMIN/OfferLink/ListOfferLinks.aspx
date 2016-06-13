@@ -37,6 +37,7 @@
 		                    el.find('#' + id + '_divck').attr('contenteditable', true).addClass('ed');
 		                    el.find('#' + id + '_divname').attr('contenteditable', true).addClass('ed');
 		                    el.find('#' + id + '_divbita').attr('contenteditable', true).addClass('ed');
+		                    el.find('#' + id + '_divbitylrel').attr('contenteditable', true).addClass('ed');
 		                    oldvalue += el.find('#' + id + '_div').text() + ',';
 
 		                });
@@ -64,25 +65,27 @@
 		                    var url = el.find('#' + id + '_divck').text();
 		                    var name = el.find('#' + id + '_divname').text();
 		                    var bitlyurl = el.find('#' + id + '_divbita').text();
+		                    var bityrel = el.find('#' + id + '_divbitylrel').text();
 		                    var _site = $("#" + id).val();
 		                    //alert(_site);
 		                    el.find('#' + id + '_a').attr('contenteditable', false).removeClass('ed');
 		                    el.find('#' + id + '_divck').attr('contenteditable', false).removeClass('ed');
 		                    el.find('#' + id + '_divname').attr('contenteditable', false).removeClass('ed');
 		                    el.find('#' + id + '_divbita').attr('contenteditable', false).removeClass('ed');
+		                    el.find('#' + id + '_divbitylrel').attr('contenteditable', false).removeClass('ed');
 		                    if (index == 0) {
-		                        toSave += id + '||' + link + "||" + url + "||" + name + "||" + bitlyurl;
+		                        toSave += id + '||' + link + "||" + url + "||" + name + "||" + bitlyurl+"||"+bityrel;
 		                        //alert(toSave);
 
-		                        Save(id, link, url, name, bitlyurl, stroldvalue[index]);
+		                        Save(id, link, url, name, bitlyurl, stroldvalue[index],bityrel);
 		                        //alert(bitlyurl);
 		                    }
 		                    else {
-		                        toSave += '|||' + id + '||' + link + "||" + url + "||" + name + "||" + bitlyurl;
+		                        toSave += '|||' + id + '||' + link + "||" + url + "||" + name + "||" + bitlyurl + "||" + bityrel;
 		                        //alert(toSave);
 		                        //alert(bitlyurl);
 
-		                        Save(id, link, url, name, bitlyurl, stroldvalue[index]);
+		                        Save(id, link, url, name, bitlyurl, stroldvalue[index],bityrel);
 
 		                    }
 
@@ -100,14 +103,14 @@
 		                    $('#loader').hide();
 		                }
 		            }
-		            function Save(linkid, linkurl, cookie_data, link_name, bitlyurl, _oldvalue) {
+		            function Save(linkid, linkurl, cookie_data, link_name, bitlyurl, _oldvalue,_bitlyrel) {
 		                var url = "<%= BaseUrl %>AjaxOfferLink.aspx";
 		                $.ajax({
 		                    type: "POST",
 		                    url: url,
 		                    cache: false,
 		                    async: false,
-		                    data: { type: 'offerlink', linkid: linkid, linkurl: linkurl, cookieuri: cookie_data, linkname: link_name, shortenurl: bitlyurl, oldvalue: _oldvalue },
+		                    data: { type: 'offerlink', linkid: linkid, linkurl: linkurl, cookieuri: cookie_data, linkname: link_name, shortenurl: bitlyurl, oldvalue: _oldvalue,bitlyrel:_bitlyrel},
 		                    success: function(msg) {
 
 		                        filltags_Callback(msg);
@@ -135,6 +138,7 @@
 		                    el.find('#' + id + '_divck').attr('contenteditable', false).removeClass('ed');
 		                    el.find('#' + id + '_divname').attr('contenteditable', false).removeClass('ed');
 		                    el.find('#' + id + '_divbita').attr('contenteditable', false).removeClass('ed');
+		                    el.find('#' + id + '_divbitylrel').attr('contenteditable', false).removeClass('ed');
 		                })
 		            }
 		            $('#save').hide(); $('#edit').show(); $('#cancel').hide();
@@ -211,6 +215,11 @@
 																													</tr>
 																													<tr>
 																													<td class="text" align="left" bgColor="#ffffff">
+                                                                                                                    Region <asp:DropDownList ID="ddlregion" runat="server" CssClass="text" AutoPostBack="true">
+                                                                                                                    <asp:ListItem Text="-select-" Value="0"></asp:ListItem>
+                                                                                                                    <asp:ListItem Text="AU" Value="AU"></asp:ListItem>
+                                                                                                                    <asp:ListItem Text="UK" Value="GB"></asp:ListItem>
+                                                                                                                    </asp:DropDownList>
 																													Search <asp:TextBox ID="txtsearch" Runat="server"  size="50" CssClass="text"></asp:TextBox>
 																													 &nbsp;<asp:Button ID="btnsearch" class="buttontext" Runat="server" Text="Search"></asp:Button>
 																													 &nbsp;<input id="btnClear" type="button" class="buttontext"  value="Clear" OnClick="Clear();"/>  <br/>																												 
@@ -232,7 +241,8 @@
 																								<td class="headings" align="left" width ="300px">Link</td>	
 																								<td class="headings" align="left" width ="300px">Cookie Url</td>
 																								<td class="headings" align="left" width ="300px">Is Cookie</td>	
-																								<td class="headings" align="left" width ="300px">Bitly Url</td>	
+																								<td class="headings" align="left" width ="300px">Bitly Url</td>
+                                                                                                <td class="headings" align="left" width ="300px">Bitly Url Relation</td>		
 																								<td class="headings" align="left" width ="300px">Addded by/<br/>Modified by /<br/> Deleted by</td>																																																																																										  																																														
 																								<td class="headings" align="center" width ="70px">Added On/<br/>Modified On</td>
 																								<td class="headings" align="center" width ="60px">Status</td> 

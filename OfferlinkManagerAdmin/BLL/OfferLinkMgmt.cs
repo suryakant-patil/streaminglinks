@@ -60,6 +60,7 @@ namespace BLL
         private string _newvalues = string.Empty;
         private string _actionby = string.Empty;
         private string _shortenurl = string.Empty;
+        private string _region = string.Empty;
 
         #endregion
 
@@ -132,6 +133,12 @@ namespace BLL
             set { _randomid = value; }
         }
 
+        public string Region
+        {
+            get { return _region; ; }
+            set { _region = value; }
+        }
+
 
 
         #endregion
@@ -145,7 +152,7 @@ namespace BLL
         /// <param name="currentpage">currentpage</param>
         /// <param name="search">search text</param>
         /// <returns>datattable</returns>
-        public DataTable GetOfferLinkList(int pagesize, int currentpage, string search)
+        public DataTable GetOfferLinkList(int pagesize, int currentpage, string search,string region)
         {
             DataTable dt = new DataTable();
             try
@@ -153,13 +160,15 @@ namespace BLL
                 SqlParameter[] param ={new SqlParameter("@PageSize",SqlDbType.Int),
 										 new SqlParameter("@CurrentPage",SqlDbType.Int),
 										 new SqlParameter("@ItemCount",SqlDbType.Int),										 
-										 new SqlParameter("@Search",SqlDbType.VarChar)									 
+										 new SqlParameter("@Search",SqlDbType.VarChar),
+									     new SqlParameter("@region",SqlDbType.Char)
 										 };
                 param[0].Value = pagesize;
                 param[1].Value = currentpage;
                 param[2].Value = 0;
                 param[2].Direction = ParameterDirection.InputOutput;
-                param[3].Value = search;                              
+                param[3].Value = search;
+                param[4].Value = region;             
                 dt = dal.GetDataTable(CommandType.StoredProcedure, "AN_SP_OfferLinkList", param);
                 TotalCount = Convert.ToInt32(param[2].Value);
             }
@@ -178,7 +187,7 @@ namespace BLL
         /// <param name="linkref">linkreference</param>
         /// <param name="cookieuri">cookieuri</param>
         /// <param name="shortenurl">bitlyur</param>
-        public void EditOfferLink(string linkid, string linkname, string linkref, string cookieuri, string shortenurl)
+        public void EditOfferLink(string linkid, string linkname, string linkref, string cookieuri, string shortenurl,string bitlyrel)
         {
             try
             {
@@ -187,13 +196,15 @@ namespace BLL
 				new SqlParameter("@LinkReference",SqlDbType.VarChar),
 				new SqlParameter("@CookieURl",SqlDbType.VarChar),
 				new SqlParameter("@shortenurl",SqlDbType.NVarChar),
-                new SqlParameter("@addedby",SqlDbType.Int)};
+                new SqlParameter("@addedby",SqlDbType.Int),
+                new SqlParameter("@bitlyrelation",SqlDbType.VarChar)};
                 param[0].Value = linkid;
                 param[1].Value = linkname;
                 param[2].Value = linkref;
                 param[3].Value = cookieuri;
                 param[4].Value = shortenurl;
-                param[5].Value = LoginInfo.Userid;             
+                param[5].Value = LoginInfo.Userid;
+                param[6].Value = bitlyrel;
                 dal.ExecuteNonQuery(CommandType.StoredProcedure, "AN_SP_OfferLink_Edit", param);
             }
             catch (Exception ex)
@@ -237,7 +248,8 @@ namespace BLL
 				new SqlParameter("@LinkReference",SqlDbType.VarChar),
 				new SqlParameter("@CookieURl",SqlDbType.VarChar),
                 new SqlParameter("@addedby",SqlDbType.Int),
-                new SqlParameter("@RandomUniqueId",SqlDbType.VarChar)
+                new SqlParameter("@RandomUniqueId",SqlDbType.VarChar),
+                new SqlParameter("@region",SqlDbType.Char)
                 };
                 
                 param[0].Direction = ParameterDirection.InputOutput;
@@ -247,6 +259,7 @@ namespace BLL
                 param[3].Value = CookieURl;
                 param[4].Value = LoginInfo.Userid;
                 param[5].Value = RandomId;
+                param[6].Value = Region;
                 dal.ExecuteNonQuery(CommandType.StoredProcedure, "AN_SP_OfferLink_Save", param);
                 linkid = Convert.ToInt32(param[0].Value);
 

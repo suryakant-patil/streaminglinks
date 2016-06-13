@@ -59,6 +59,18 @@
 																								<tr id="Tr2" align="left" bgColor="#ffffff" runat="server" valign="middle">
 																									<td class="error" colSpan="2" height="30"><asp:literal id="ltDup" runat="server"></asp:literal></td>
 																								</tr>
+                                                                                                <tr class="text" bgColor="#ffffff">
+																									<td class="headings" height="30" width="10%" noWrap align="left">&nbsp;<span class="bold">
+																												Region</span>
+																									</td>
+																									<td class="text" width="90%" align="left">
+                                                                                                     <asp:DropDownList ID="ddlregion" runat="server" CssClass="text">
+                                                                                                     <asp:ListItem Text="-select-" Value="0"></asp:ListItem>
+                                                                                                     <asp:ListItem Text="AU" Value="AU"></asp:ListItem>
+                                                                                                     <asp:ListItem Text="UK" Value="GB"></asp:ListItem>
+                                                                                                     </asp:DropDownList>
+																									</td>
+																								</tr>		
 																								<tr class="text" bgColor="#ffffff">
 																									<td class="headings" height="30" width="10%" noWrap align="left">&nbsp;<span class="bold">
 																												 Link Name</span>

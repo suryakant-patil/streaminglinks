@@ -59,7 +59,8 @@ namespace offerlinkmanageradmin.OfferLink
                     {
                         pagenumber = 1;
                     }
-                    OfferLinkList(pagesize, pagenumber, Session["txtsearch"].ToString());
+                    Session["region"] = ddlregion.SelectedValue;
+                    OfferLinkList(pagesize, pagenumber, Session["txtsearch"].ToString(),Session["region"].ToString());
                 }
                 else
                 {
@@ -71,10 +72,20 @@ namespace offerlinkmanageradmin.OfferLink
                     {
                         Session["txtsearch"] = "";
                     }
+                    if (Session["region"] != null)
+                    {
+                        ddlregion.SelectedValue = Session["region"].ToString();
+                    }
+                    else
+                    {
+                        Session["region"] = "0";  
+                    }
                     if (Request.QueryString["clear"] != null)
                     {
                         txtsearch.Text = "";
                         Session["txtsearch"] = "";
+                        Session["region"] = "0";
+                        ddlregion.SelectedValue = "0";
                     }                    
                     if (null != Request.QueryString["aprids"] && null != Request.QueryString["re"])
                     {
@@ -123,7 +134,7 @@ namespace offerlinkmanageradmin.OfferLink
                     {
                         pagenumber = 1;
                     }
-                    OfferLinkList(pagesize, pagenumber, Session["txtsearch"].ToString());
+                    OfferLinkList(pagesize, pagenumber, Session["txtsearch"].ToString(), Session["region"].ToString());
                 }
             }
             catch (Exception ex)
@@ -142,7 +153,7 @@ namespace offerlinkmanageradmin.OfferLink
 
         }
 
-        private void OfferLinkList(int pagesize, int currentpageno, string search)
+        private void OfferLinkList(int pagesize, int currentpageno, string search,string region)
         {
             string txt = "";
             string tmp = "";
@@ -153,7 +164,7 @@ namespace offerlinkmanageradmin.OfferLink
                 DataTable dt = new DataTable();
                 using (OfferLinkMgmt obj = new OfferLinkMgmt(strconn))
                 {
-                    dt = obj.GetOfferLinkList(pagesize, currentpageno, search);
+                    dt = obj.GetOfferLinkList(pagesize, currentpageno, search,region);
                     if (dt.Rows.Count > 0)
                     {
                         foreach (DataRow dr in dt.Rows)
@@ -176,7 +187,7 @@ namespace offerlinkmanageradmin.OfferLink
                             str = dr["linkreference"].ToString();
 
                             //txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle' nowrap><div id='"+lid+"_div'><a href='" + dr["linkreference"].ToString()  + "' target='_blank' id='"+lid+"_a' class='text'> " +  str + " </a></div><br><input type='button' id='"+dr["LinkID"].ToString()+"' value='Edit' style='font-size :10px;' onclick='javascript:ModifyLink(this);'></td>";
-                            txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle'><div id='" + lid + "_div'><a href='" + dr["linkreference"].ToString() + "' target='_blank' id='" + lid + "_a' class='text'> " + str + " </a></div></td>";
+                            txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle'><div id='" + lid + "_div'><a href='" + dr["linkreference"].ToString() + "' target='_blank' id='" + lid + "_a' class='text'> " + str + " </a></div></br>CM-Link : <a target='_blank' href='" + BLL.Constants.Bitlyurl + dr["RandomUniqueId"].ToString() + "'>" + BLL.Constants.Bitlyurl + dr["RandomUniqueId"].ToString() + "<a></td>";
                             str = dr["cookieUrl"].ToString();
                             txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle'><div id='" + lid + "_divck'>" + str + "</div></td>";
                             if (dr["CookieStatus"].ToString().Equals("N") || dr["CookieStatus"].ToString().Equals(null))
@@ -189,6 +200,7 @@ namespace offerlinkmanageradmin.OfferLink
                             }
                             txt += "<td class='text' style='text-align:center;' align='center' bgcolor='#FFFFFF' valign='middle'>" + tmp + "</td>";
                             txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle' nowrap><div id='" + lid + "_divbit'><a href='" + dr["shortenurl"].ToString() + "' target='_blank' id='" + lid + "_divbita' class='text'> " + dr["shortenurl"].ToString() + " </a></div></td>";
+                            txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle'><div id='" + lid + "_divbitylrel'>" + dr["bitlyrelation"].ToString() + "</div></td>";
                             txt += "<td class='linktd text' bgcolor='#FFFFFF' align= 'center'  valign='middle' style='font-family:verdana;font-size:11px;' ><span class='added' id='user_" + dr["LinkID"].ToString() + "'  data-id='" + dr["addedby"].ToString() + "," + dr["modifiedby"].ToString() + "'></span></br><span id='deluser_" + dr["LinkID"].ToString() + "' class='thread' data-id='" + dr["LinkID"].ToString() + "_" + dr["deletedby"].ToString() + "'></span></td>";
                             txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle' nowrap>" + Convert.ToDateTime(dr["addedon"].ToString()).ToString("dd/MM/yyyy") + "</br>" + Convert.ToDateTime(dr["modifiedon"].ToString()).ToString("dd/MM/yyyy") + "</td>";
                             if (dr["IsActive"].ToString() == "N")
@@ -213,7 +225,7 @@ namespace offerlinkmanageradmin.OfferLink
                     }
                     else
                     {
-                        txt = "<tr height='30' valign='top'><td class='error' align='center' bgcolor='#FFFFFF' valign='middle' style='padding-right:3px;' colspan='12'> No Records Found! </td></tr>";
+                        txt = "<tr height='30' valign='top'><td class='error' align='center' bgcolor='#FFFFFF' valign='middle' style='padding-right:3px;' colspan='13'> No Records Found! </td></tr>";
                     }
                     ltlist.Text = txt;
                     if (Convert.ToInt32(obj.TotalCount) > 0)

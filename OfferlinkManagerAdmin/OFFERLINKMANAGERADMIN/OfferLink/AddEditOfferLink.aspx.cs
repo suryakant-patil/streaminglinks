@@ -85,7 +85,7 @@ namespace offerlinkmanageradmin.OfferLink
                             objlink.LinkName = txtLinkName.Text;
                             objlink.LinkReference = txtlink.Text;
                             objlink.CookieURl = txtcookieurl.Text;
-                           
+                            objlink.Region = ddlregion.SelectedValue;
                             if (Request.QueryString["linkid"] != null)
                             {
                                 objlink.Linkid = Request.QueryString["linkid"].ToString();
@@ -141,6 +141,7 @@ namespace offerlinkmanageradmin.OfferLink
                                 txtlink.Text = dt.Rows[0]["LinkReference"].ToString();
                                 txtcookieurl.Text = dt.Rows[0]["CookieURl"].ToString();
                                 ViewState["oldvalue"] = txtlink.Text;
+                                ddlregion.SelectedValue = dt.Rows[0]["region"].ToString();
                             }
                         }
                     }
