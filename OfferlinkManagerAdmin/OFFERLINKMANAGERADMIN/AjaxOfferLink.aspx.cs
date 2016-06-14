@@ -46,7 +46,7 @@ namespace offerlinkmanageradmin
                 string strconn = ConfigurationManager.AppSettings["Iframaddsense"];
                 using (OfferLinkMgmt objlink = new OfferLinkMgmt(strconn))
                 {
-                    objlink.EditOfferLink(linkid, linkname, linkref, cookieuri, shortenurl,bitlyrel);
+                    objlink.EditOfferLink(linkid, linkname.Trim(), linkref.Trim(), cookieuri, shortenurl,bitlyrel);
                     objlink.NewValues = linkref;
                     objlink.OldValues = oldvalue;
                     objlink.Action = "Update";
@@ -97,7 +97,7 @@ namespace offerlinkmanageradmin
                     dt = obj.GetSiteWiseTrackingDetails(day1,day2);
                     if (dt.Rows.Count > 0)
                     {
-                         data= "<table bgcolor='#eeeeee' style='width:100%;'>{0}</table>";
+                        data = "<table bgcolor='#eeeeee' style='width:100%;'><tr bgcolor='#eeeeee'><td class='headings'>Site Exit Click</td><td class='headings' align='center'>Today Click</td><td class='headings' align='center'>Yesterday Click</td><td class='headings' align='center'>Total Click</td></tr>{0}</table>";
                         foreach (DataRow dr in dt.Rows)
                         {
                             int today = obj.GetPromotionalLinkCountDayWise_Site(0, 3, dr["SiteID"].ToString());

@@ -82,9 +82,9 @@ namespace offerlinkmanageradmin.OfferLink
                        
                         using (OfferLinkMgmt objlink = new OfferLinkMgmt(adsenseconn))
                         {
-                            objlink.LinkName = txtLinkName.Text;
-                            objlink.LinkReference = txtlink.Text;
-                            objlink.CookieURl = txtcookieurl.Text;
+                            objlink.LinkName = txtLinkName.Text.Trim();
+                            objlink.LinkReference = txtlink.Text.Trim();
+                            objlink.CookieURl = txtcookieurl.Text.Trim();
                             objlink.Region = ddlregion.SelectedValue;
                             if (Request.QueryString["linkid"] != null)
                             {
