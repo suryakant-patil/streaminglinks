@@ -62,10 +62,10 @@
 																							
 																							<tr bgColor="#eeeeee" height="20">
 																								<td class="headings" align="center" width ="20px"></td>
-																								<td class="headings" align="left" width ="200px">Exit Clicks</td>
+																								<td class="headings" align="left" width ="200px">Exit Click</td>
 																								<td class="headings" align="center" width ="100px">Today Click</td>	
 																								<td class="headings" align="center" width ="100px">Yesterday Click </td>			
-																								<td class="headings" align="center" width ="70px">Total Clicks</td>																								
+																								<td class="headings" align="center" width ="70px">Total Click</td>																								
 																							</tr>
 																							<asp:literal id="ltlist" Runat="server"></asp:literal>
 																							
