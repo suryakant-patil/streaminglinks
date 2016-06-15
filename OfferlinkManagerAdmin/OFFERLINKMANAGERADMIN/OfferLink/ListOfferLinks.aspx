@@ -10,7 +10,7 @@
 		
 		.ed{border:1px solid #ccc; line-height:11px; min-height:16px;display:inline-block; padding:0 15px 0 0; min-width:200px;}
 		.controlbtn{position:static;}
-		.controlbtn.stick{position:fixed; top:0; right:15px; background:#fff; border-bottom:1px solid gray;}
+		.controlbtn.stick{position:fixed; top:0; left:209px; background:#fff; border-bottom:1px solid gray;}
 		</style>
 		<script type="text/javascript">
 		    var oldvalue = "";
@@ -199,8 +199,22 @@
 																											<td>
 																												<table cellSpacing="0" cellPadding="0" width="100%" border="0">
 																													<tr>																													 
-																														<td class="text" align="left" bgColor="#ffffff" colSpan="6"><asp:literal id="ltpaging" Runat="server"></asp:literal></td>
-																														<td align="right" bgColor="#ffffff">
+																														<td class="text" align="left" bgColor="#ffffff" colSpan="8"><asp:literal id="ltpaging" Runat="server"></asp:literal></td>
+																														<%--<td align="left" bgColor="#ffffff">
+																														     <div class="controlbtn">
+																														     <input id="cancel" type="button" class="buttontext"  value="Cancel" style="display:none;" />
+																														    <input type="button" class='buttontext' id="edit" name="addlinkmanager" value="Edit"/>
+																														    <input type="button" class='buttontext' id="save" name="addlinkmanager" value="Save" style="display:none;"/>
+																															&nbsp; <input class="buttontext" id="activate" onclick="javascript:apporveallselchk();" type="button"
+																																value="Activate" name="activatecat"> <input class="buttontext" id="deactivate" onclick="javascript:deapporveallselchk();" type="button"
+																																value="Deactivate" name="deactivatecat"> <input class="buttontext" id="deletefooter" onclick="javascript:deleteallselchk();" type="button"
+																																value="Delete" name="delete"> <input class="buttontext" id="addfooter1" onclick="ShowAdd();" type="button" value="Add Link"
+																																name="adcat"/>
+																																</div>																																
+																														</td>--%>
+																													</tr>
+                                                                                                                    <tr>
+                                                                                                                    <td align="left" bgColor="#ffffff">
 																														     <div class="controlbtn">
 																														     <input id="cancel" type="button" class="buttontext"  value="Cancel" style="display:none;" />
 																														    <input type="button" class='buttontext' id="edit" name="addlinkmanager" value="Edit"/>
@@ -212,7 +226,7 @@
 																																name="adcat"/>
 																																</div>																																
 																														</td>
-																													</tr>
+                                                                                                                    </tr>
 																													<tr>
 																													<td class="text" align="left" bgColor="#ffffff">
                                                                                                                     Region <asp:DropDownList ID="ddlregion" runat="server" CssClass="text" AutoPostBack="true">
@@ -238,9 +252,8 @@
 																								<td class="headings" align="left" width ="300px">Link Name</td>
 																								<td class="headings" align="left" width ="300px">View History</td>		
 																								<td class="headings" align="left" width ="300px">CM Link Number</td>	
-																								<td class="headings" align="left" width ="300px">Link</td>	
-																								<td class="headings" align="left" width ="300px">Cookie Url</td>
-																								<td class="headings" align="left" width ="300px">Is Cookie</td>	
+																								<td class="headings" align="left" width ="300px">Link</td>																					
+																							
 																								<td class="headings" align="left" width ="300px">Bitly Url</td>
                                                                                                 <td class="headings" align="left" width ="300px">Bitly Url Relation</td>		
 																								<td class="headings" align="left" width ="300px">Addded by/<br/>Modified by /<br/> Deleted by</td>																																																																																										  																																														
