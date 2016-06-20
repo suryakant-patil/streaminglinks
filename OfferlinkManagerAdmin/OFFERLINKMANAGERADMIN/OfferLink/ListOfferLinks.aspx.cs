@@ -174,7 +174,7 @@ namespace offerlinkmanageradmin.OfferLink
                             str = dr["linkname"].ToString();
                             lid = dr["LinkID"].ToString();
                             txt += "<td class='text' width='250px'  align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle' nowrap title='" + dr["LinkName"].ToString() + "'><div id='" + lid + "_divname'><a href='AddEditOfferLink.aspx?linkid=" + dr["LinkID"].ToString() + "' class='link'>" + str + "</a></div></br><span class='thread'>RandomId -" + dr["RandomUniqueId"].ToString() + "</span></td>";
-                            txt += "<td class='text' align='center' bgcolor='#FFFFFF' valign='middle'><a title='click to view history' class='editlink' href='#' data-linkid='" + dr["LinkID"].ToString() + "'>View</a></td>";
+                            
                             txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle' nowrap>" + dr["LinkID"].ToString() + "</td>";
                             //if (dr["linkreference"].ToString().Length > 30)
                             //{
@@ -187,7 +187,7 @@ namespace offerlinkmanageradmin.OfferLink
                             str = dr["linkreference"].ToString();
 
                             //txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle' nowrap><div id='"+lid+"_div'><a href='" + dr["linkreference"].ToString()  + "' target='_blank' id='"+lid+"_a' class='text'> " +  str + " </a></div><br><input type='button' id='"+dr["LinkID"].ToString()+"' value='Edit' style='font-size :10px;' onclick='javascript:ModifyLink(this);'></td>";
-                            txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle'><div id='" + lid + "_div'><a href='" + dr["linkreference"].ToString() + "' target='_blank' id='" + lid + "_a' class='text'> " + str + " </a></div></br>CM-Link : <a target='_blank' href='" + BLL.Constants.Bitlyurl + dr["RandomUniqueId"].ToString() + "'>" + BLL.Constants.Bitlyurl + dr["RandomUniqueId"].ToString() + "<a></td>";
+                            txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle'><div id='" + lid + "_div'><a href='" + dr["linkreference"].ToString() + "' target='_blank' id='" + lid + "_a' class='text'> " + str + " </a></div></br>CM-Link : <a target='_blank' href='" + BLL.Constants.Bitlyurl + dr["RandomUniqueId"].ToString() + "'>" + BLL.Constants.Bitlyurl + dr["RandomUniqueId"].ToString() + "</a></td>";
                             //str = dr["cookieUrl"].ToString();
                             //txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle'><div id='" + lid + "_divck'>" + str + "</div></td>";
                             //if (dr["CookieStatus"].ToString().Equals("N") || dr["CookieStatus"].ToString().Equals(null))
@@ -203,6 +203,7 @@ namespace offerlinkmanageradmin.OfferLink
                             txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle'><div id='" + lid + "_divbitylrel'>" + dr["bitlyrelation"].ToString() + "</div></td>";
                             txt += "<td class='linktd text' bgcolor='#FFFFFF' align= 'center'  valign='middle' style='font-family:verdana;font-size:11px;' ><span class='added' id='user_" + dr["LinkID"].ToString() + "'  data-id='" + dr["addedby"].ToString() + "," + dr["modifiedby"].ToString() + "'></span></br><span id='deluser_" + dr["LinkID"].ToString() + "' class='thread' data-id='" + dr["LinkID"].ToString() + "_" + dr["deletedby"].ToString() + "'></span></td>";
                             txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle' nowrap>" + Convert.ToDateTime(dr["addedon"].ToString()).ToString("dd/MM/yyyy") + "</br>" + Convert.ToDateTime(dr["modifiedon"].ToString()).ToString("dd/MM/yyyy") + "</td>";
+                           
                             if (dr["IsActive"].ToString() == "N")
                             {
                                 tmp = "<img src='../images/icon_status_red.gif' border='0'>";
@@ -219,6 +220,7 @@ namespace offerlinkmanageradmin.OfferLink
                                 }
                             }
                             txt += "<td class='text' style='text-align:center;' bgcolor='#FFFFFF' valign='middle'>" + tmp + "</td>";
+                            txt += "<td class='text' align='center' bgcolor='#FFFFFF' valign='middle'><a title='click to view history' class='editlink' href='#' data-linkid='" + dr["LinkID"].ToString() + "'>View</a></td>";
                             txt += "<td class='text'  bgcolor='#FFFFFF' style='text-align:center;' align=center valign=top style='padding-top:5px;'><input type ='checkbox' onclick='disselect()' name = 'fcheck[]' value='" + dr["linkID"].ToString() + "'></td>";
                             txt += "</tr>";
                         }
