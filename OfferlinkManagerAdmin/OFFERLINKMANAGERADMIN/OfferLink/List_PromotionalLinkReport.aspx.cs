@@ -129,22 +129,32 @@ namespace offerlinkmanageradmin.OfferLink
                         foreach (DataRow dr in dt.Rows)
                         {
                             i++;
-                           
-                            
+
+
                             if (dr["Referrerid"].ToString() == "3")
                             {
                                 showlink = "<a href='javascript:void(0);' class='showdata' id='" + dr["Referrerid"].ToString() + "' style='vertical-align:sub;'> <img src='../images/expand.png'/ title='view website'></a>&nbsp;<a href='javascript:void(0);'><img src='../images/minimize.png'/ title='minimize website' class='minimize' style='position:fixed;'></a></br>";
                             }
+                            else
+                            {
+                                showlink = "";
+                            }
                             txt += "<tr height='30' valign='top'>";
+                           
                             txt += "<td class='text' align= 'center' bgcolor='#FFFFFF' valign='middle' style='font-family:verdana;font-size:11px;'>"+i.ToString()+"</td>";
-                            txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle'><a class='link' href='PromotionalLinkReportDetails.aspx?referrerid=" + dr["Referrerid"].ToString() + "'>" + dr["ReferrerName"].ToString()+showlink+"</td>";
+                            
+                            txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle'><a class='link' href='PromotionalLinkReportDetails.aspx?referrerid=" + dr["Referrerid"].ToString() + "'>" + dr["ReferrerName"].ToString() + showlink + "</td>";                           
                             txt += "<td class='text' align='left' style='padding-left:5px;text-align: center;' bgcolor='#FFFFFF' valign='middle' >" + obj.GetPromotionalLinkCountDayWise(0, Convert.ToInt32(dr["Referrerid"]))+"</td>";
                             txt += "<td class='text' align='left' style='padding-left:5px;text-align: center;' bgcolor='#FFFFFF' valign='middle' >" + obj.GetPromotionalLinkCountDayWise(1, Convert.ToInt32(dr["Referrerid"])) + "</td>";
                             txt += "<td class='text' align='left' style='padding-left:5px;text-align: center;' bgcolor='#FFFFFF' valign='middle' >" + dr["Exitclicktotal"].ToString() + "</td>";                           
-                            txt += "</tr>";                           
+                            txt += "</tr>";
+                            if (dr["Referrerid"].ToString() == "3")
+                            {
+                                txt += "<tr id='trsitetrack' style='display:none;' height='30' valign='top'><td class='text' bgcolor='#FFFFFF'></td><td class='text' bgcolor='#FFFFFF' colspan='4'><div id='ref_3'></div></td></tr>";
+                            }
                             
                         }
-                        txt += "<tr id='trsitetrack' style='display:none;' height='30' valign='top'><td class='text' bgcolor='#FFFFFF'></td><td class='text' bgcolor='#FFFFFF' colspan='4'><div id='ref_3'></div></td></tr>";
+                       // txt += "<tr id='trsitetrack' style='display:none;' height='30' valign='top'><td class='text' bgcolor='#FFFFFF'></td><td class='text' bgcolor='#FFFFFF' colspan='4'><div id='ref_3'></div></td></tr>";
                        
                         
                     }

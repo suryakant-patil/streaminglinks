@@ -132,6 +132,9 @@ namespace offerlinkmanageradmin.OfferLink
                 case "3":
                 ltheader.Text = "Sites Promotional Link Report Details";
                 break;
+                default :
+                ltheader.Text = "Report List";
+                break;
              }
         }
 
