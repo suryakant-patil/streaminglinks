@@ -32,13 +32,10 @@ namespace offerlinkmanageradmin.OfferLink
         {
             // Put user code to initialize the page here
             try
-            {
-
-               
+            {              
                 
                 BaseUrl = ConfigurationManager.AppSettings["BaseURL"];
-                adsenseconn = ConfigurationManager.AppSettings["Iframaddsense"];
-               
+                adsenseconn = ConfigurationManager.AppSettings["Iframaddsense"];               
 
                 try
                 {
@@ -85,7 +82,7 @@ namespace offerlinkmanageradmin.OfferLink
                             objlink.LinkName = txtLinkName.Text.Trim();
                             objlink.LinkReference = txtlink.Text.Trim();
                             objlink.CookieURl = txtcookieurl.Text.Trim();
-                            objlink.Region = ddlregion.SelectedValue;
+                            objlink.Region = rdoregion.SelectedValue;
                             if (Request.QueryString["linkid"] != null)
                             {
                                 objlink.Linkid = Request.QueryString["linkid"].ToString();
@@ -141,7 +138,7 @@ namespace offerlinkmanageradmin.OfferLink
                                 txtlink.Text = dt.Rows[0]["LinkReference"].ToString();
                                 txtcookieurl.Text = dt.Rows[0]["CookieURl"].ToString();
                                 ViewState["oldvalue"] = txtlink.Text;
-                                ddlregion.SelectedValue = dt.Rows[0]["region"].ToString();
+                                rdoregion.SelectedValue= dt.Rows[0]["region"].ToString();
                             }
                         }
                     }

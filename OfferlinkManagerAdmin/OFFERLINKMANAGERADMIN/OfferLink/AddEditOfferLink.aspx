@@ -64,11 +64,11 @@
 																												Region</span>
 																									</td>
 																									<td class="text" width="90%" align="left">
-                                                                                                     <asp:DropDownList ID="ddlregion" runat="server" CssClass="text">
-                                                                                                     <asp:ListItem Text="-select-" Value="0"></asp:ListItem>
-                                                                                                     <asp:ListItem Text="AU" Value="AU"></asp:ListItem>
-                                                                                                     <asp:ListItem Text="UK" Value="GB"></asp:ListItem>
-                                                                                                     </asp:DropDownList>
+                                                                                                   
+                                                                                                      <asp:RadioButtonList ID="rdoregion" runat="server" CssClass="text" RepeatDirection="Horizontal">
+                                                                                                      <asp:ListItem Text="AU" Value="AU"></asp:ListItem>
+                                                                                                      <asp:ListItem Text="UK" Value="GB" Selected="True"></asp:ListItem>                                                                                        
+                                                                                                      </asp:RadioButtonList>
 																									</td>
 																								</tr>		
 																								<tr class="text" bgColor="#ffffff">
