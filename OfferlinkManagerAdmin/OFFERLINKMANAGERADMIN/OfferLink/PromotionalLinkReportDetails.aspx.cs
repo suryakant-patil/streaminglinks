@@ -58,13 +58,20 @@ namespace offerlinkmanageradmin.OfferLink
                     {
                         pagenumber = 1;
                     }
-                    PromotinalLinkReportList(GetDate(txtstartdate.Text),GetDate(txtenddate.Text), Request.QueryString["referrerid"]);
+                    PromotinalLinkReportList(GetDate(txtstartdate.Text),GetDate(txtenddate.Text), Request.QueryString["referrerid"],pagesize,pagenumber);
                 }
                 else
                 {
                     //string day1 = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
                     //string day2 = DateTime.Now.ToString("yyyy-MM-dd");
-
+                    if (null != Request.QueryString["p"])
+                    {
+                        pagenumber = Convert.ToInt32(Request.QueryString["p"].ToString());
+                    }
+                    else
+                    {
+                        pagenumber = 1;
+                    }
                     
                     disp_labels();
                     if (Request.QueryString["clear"] != null)
@@ -85,26 +92,19 @@ namespace offerlinkmanageradmin.OfferLink
                             }
                             using (PromotionalLinkReportMgmt obj = new PromotionalLinkReportMgmt(strconn))
                             {
-                                DataTable dtexcel = obj.GetPromotionalExitClickListDetails(GetDate(Session["day1"].ToString()), GetDate(Session["day2"].ToString()), Request.QueryString["referrerid"]);
+                                DataTable dtexcel = obj.GetPromotionalExitClickListDetails(GetDate(Session["day1"].ToString()), GetDate(Session["day2"].ToString()), Request.QueryString["referrerid"],pagesize,pagenumber);
                                 ExcelMgmt objexcel = new ExcelMgmt();
                                 string excelfilename = "promotionlinkdetails_" + DateTime.Now.ToString("ddMMyyyyHHmmsss") + ".csv";
                                 objexcel.WriteToCSV(dtexcel, excelfilename);
                             }
                         }
                     }
-                    if (null != Request.QueryString["p"])
-                    {
-                        pagenumber = Convert.ToInt32(Request.QueryString["p"].ToString());
-                    }
-                    else
-                    {
-                        pagenumber = 1;
-                    }
+                    
                     if (Request.QueryString["referrerid"] != null)
                     {
                         txtstartdate.Text = DateTime.Now.AddDays(-1).ToString("dd/MM/yyyy");
                         txtenddate.Text = DateTime.Now.ToString("dd/MM/yyyy");
-                        PromotinalLinkReportList(GetDate(txtstartdate.Text), GetDate(txtenddate.Text), Request.QueryString["referrerid"]);
+                        PromotinalLinkReportList(GetDate(txtstartdate.Text), GetDate(txtenddate.Text), Request.QueryString["referrerid"], pagesize, pagenumber);
                     }
                 }
             }
@@ -138,7 +138,7 @@ namespace offerlinkmanageradmin.OfferLink
              }
         }
 
-        private void PromotinalLinkReportList(string fromdate, string todate,string referrerid)
+        private void PromotinalLinkReportList(string fromdate, string todate, string referrerid, int pagesize, int currentpageno)
         {
             string txt = "";
             int i = 0;
@@ -148,7 +148,7 @@ namespace offerlinkmanageradmin.OfferLink
 
                 using (PromotionalLinkReportMgmt obj = new PromotionalLinkReportMgmt(strconn))
                 {
-                    dt = obj.GetPromotionalExitClickListDetails(fromdate, todate,referrerid);
+                    dt = obj.GetPromotionalExitClickListDetails(fromdate, todate,referrerid,pagesize,currentpageno);
                     if (dt.Rows.Count > 0)
                     {
                         //ltheader.Text = dt.Rows[0]["ReferrerName"].ToString() +" Details";
@@ -177,6 +177,14 @@ namespace offerlinkmanageradmin.OfferLink
                         txt = "<tr height='30' valign='top'><td class='error' align='center' bgcolor='#FFFFFF' valign='middle' style='padding-right:3px;' colspan='12'> No Records Found! </td></tr>";
                     }
                     ltlist.Text = txt;
+                    if (Convert.ToInt32(obj.TotalCount) > 0)
+                    {
+                        ltpaging.Text = "<span class='error'>Page " + pagenumber + " of " + GetPages(Convert.ToInt32(obj.TotalCount)) + "  </span> : " + getNavigationHTML(Convert.ToInt32(pagenumber), obj.TotalCount);
+                    }
+                    else
+                    {
+                        ltpaging.Text = "";
+                    }
 
                 }
             }
@@ -236,7 +244,7 @@ namespace offerlinkmanageradmin.OfferLink
                 TotalPages = TotalPages + 1;
             int end = (TotalPages > 9) ? 9 : TotalPages;
             string retVal = "";
-            string url = BaseUrl + "OfferLink/List_PromotionalLinkReport.aspx?linkid=" + Request.QueryString["linkid"] + "&p=";
+            string url = BaseUrl + "OfferLink/PromotionalLinkReportDetails.aspx?referrerid=" + Request.QueryString["referrerid"] + "&p=";
             if (pageNumber > (mid + 1) && TotalPages > range)
             {
                 int remaining = TotalPages - pageNumber;

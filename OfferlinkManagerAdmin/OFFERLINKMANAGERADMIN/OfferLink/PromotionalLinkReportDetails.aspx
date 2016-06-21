@@ -99,13 +99,12 @@
 		<script>
 
 		    function showExcellist() {
-		        var urlid = window.location.href.slice(-1);
+		        var urlid = '<%=Request.QueryString["referrerid"] %>';
 		        window.location.href = 'PromotionalLinkReportDetails.aspx?excel=excel&referrerid=' + urlid;
 		    }
 
 		    function Showlist() {
-		        var urlid = window.location.href.slice(-1);
-		        
+		        var urlid = '<%=Request.QueryString["referrerid"] %>';	       
 		        window.location.href = 'PromotionalLinkReportDetails.aspx?clear=clear&referrerid='+urlid;
 		    }
 
