@@ -19,7 +19,8 @@ namespace offerlinkmanageradmin.OfferLink
         /// </summary>
 
         #region :: public variables ::
-        public string BaseUrl = ""; 
+        public string BaseUrl = "";
+       
         #endregion
 
         #region :: variables ::
@@ -83,10 +84,17 @@ namespace offerlinkmanageradmin.OfferLink
                             objlink.LinkReference = txtlink.Text.Trim();
                             objlink.CookieURl = txtcookieurl.Text.Trim();
                             objlink.Region = rdoregion.SelectedValue;
+                            objlink.IsBetSlip = "Y";
+                            objlink.IsExpire = ddlexpire.SelectedValue;
+                            objlink.ExpireDate = GetDate(txtexpiredate.Text);                           
+                            objlink.FastBetName = txtfastbetname.Text;
+                            objlink.Shortenurl = BLL.Constants.Fastbeturl + CommonLib.StringHandler.ToTitle(txtfastbetname.Text.ToLower());
+                            objlink.FastBetTotitle = CommonLib.StringHandler.ToTitle(txtfastbetname.Text.ToLower());
                             if (Request.QueryString["linkid"] != null)
                             {
                                 objlink.Linkid = Request.QueryString["linkid"].ToString();
                                 objlink.Action = "Update";
+                                
                             }
                             else
                             {
@@ -94,22 +102,40 @@ namespace offerlinkmanageradmin.OfferLink
                             }
                             int _linkid = 0;
                             objlink.RandomId = GenerateUniqueID();
-                            _linkid=objlink.LinkOffer_Save();
-                          
-                            if (objlink.Linkid == "0")
+                            int fastbetcount = objlink.CheckDuplicateFastbet(objlink.Shortenurl, objlink.Linkid);
+                            int promolinkcount = objlink.CheckDuplicatePromotionalLink(objlink.LinkName, objlink.Linkid);
+                            if (fastbetcount == 0 && promolinkcount == 0)
                             {
-                                BitlyShortenUrl objbitly = new BitlyShortenUrl();
-                                objlink.Shortenurl = objbitly.ShortenUrl(Constants.Bitlyurl + objlink.RandomId);
-                                objlink.AddShortenUrl(_linkid);
-                            }
+                                _linkid = objlink.LinkOffer_Save();
 
-                            if (ViewState["oldvalue"] != null)
+                                //if (objlink.Linkid == "0")
+                                //{
+                                //    BitlyShortenUrl objbitly = new BitlyShortenUrl();
+                                //    objlink.Shortenurl = objbitly.ShortenUrl(Constants.Bitlyurl + objlink.RandomId);
+                                //    objlink.AddShortenUrl(_linkid);
+                                //}
+
+                                if (ViewState["oldvalue"] != null)
+                                {
+                                    objlink.OldValues = ViewState["oldvalue"].ToString();
+                                    objlink.NewValues = txtlink.Text;
+                                    objlink.SaveOfferLinkHistory();
+                                }
+                                Response.Redirect("ListOfferLinks.aspx", false);
+                            }
+                            else
                             {
-                                objlink.OldValues = ViewState["oldvalue"].ToString();
-                                objlink.NewValues = txtlink.Text;
-                                objlink.SaveOfferLinkHistory();
-                            }                          
-                            Response.Redirect("ListOfferLinks.aspx", false);
+
+                                dupli.Visible = true;
+                                if (fastbetcount > 0)
+                                {
+                                    ltdupsub.Text = "FastBet Name is already exist !";
+                                }
+                                if (promolinkcount > 0)
+                                {
+                                    ltdupsub.Text = "Link Name is already exist !";
+                                }
+                            }
                         }
                     }
                     else
@@ -139,6 +165,13 @@ namespace offerlinkmanageradmin.OfferLink
                                 txtcookieurl.Text = dt.Rows[0]["CookieURl"].ToString();
                                 ViewState["oldvalue"] = txtlink.Text;
                                 rdoregion.SelectedValue= dt.Rows[0]["region"].ToString();
+                                ddlexpire.SelectedValue = dt.Rows[0]["IsExpire"].ToString();
+                                txtexpiredate.Text = Convert.ToDateTime(dt.Rows[0]["ExpireDate"]).ToString("dd/MM/yyyy");
+                                txtfastbetname.Text = dt.Rows[0]["FastBetName"].ToString();
+                                if (dt.Rows[0]["IsBetSlip"].ToString() == "Y")
+                                {
+                                    txtfastbetname.ReadOnly = true;
+                                }
                             }
                         }
                     }
@@ -155,6 +188,31 @@ namespace offerlinkmanageradmin.OfferLink
             string uniqueId = "";
             Guid randomId = Guid.NewGuid();
             return uniqueId = randomId.ToString().ToUpper();
+        }
+
+        public string GetDate(string strdate)
+        {
+            string date = "";
+            if (strdate.Trim().Length > 0)
+            {
+                string[] strarray;
+                string[] arr;
+
+                arr = strdate.Split(' ');
+                //string time=arr[1];
+                strarray = arr[0].Split('/');
+
+                if (strarray.Length > 2)
+                {
+                    date = string.Format("{0}-{1}-{2} ", strarray[2], strarray[1], strarray[0]);
+                }
+            }
+            else
+            {
+                date = string.Format("{0} ", DateTime.Now.AddYears(5).ToString("yyyy-MM-dd"));
+            }
+            return date;
+
         }
 
     }

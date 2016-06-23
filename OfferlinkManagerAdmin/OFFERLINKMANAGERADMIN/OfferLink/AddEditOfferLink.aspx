@@ -7,6 +7,7 @@
     <head>
         <title>Add Edit Offer Link</title>
         <link href="../css/admincp.css" type="text/css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="../datepicker/jquery.datetimepicker.css" />
     </head>
     <body topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" bgcolor="#eeeeee">
         <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="1">
@@ -33,7 +34,7 @@
                                     </tr>
                                     <tr>
                                         <td width="874" valign="top" bgcolor="#ffffff">
-                                            <form id="ed" method="post" enctype="multipart/form-data" runat="server" onsubmit="validate();">
+                                            <form id="ed" method="post" enctype="multipart/form-data" runat="server" onsubmit="return validate();">
                                             <table border="0" width="100%" height="100%" cellpadding="0" cellspacing="0" align="left">
                                                 <tr valign="top">
                                                     <td>
@@ -97,11 +98,15 @@
                                                                                                     &nbsp;<span class="bold"> Link </span>
                                                                                                 </td>
                                                                                                 <td class="text" width="90%" align="left">
-                                                                                                    <asp:TextBox ID="txtlink" runat="server" Columns="75" Rows="10" TextMode="MultiLine"
+                                                                                                    <asp:TextBox ID="txtlink" runat="server" Columns="85" Rows="2" TextMode="MultiLine"
                                                                                                         class="text"></asp:TextBox>
                                                                                                     <asp:RegularExpressionValidator ID="regUrl" runat="server" ControlToValidate="txtlink"
-                                                                                                        ValidationExpression="http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?" ErrorMessage="Please Enter Valid Link !" ><span class="error">*</span></asp:RegularExpressionValidator>
-                                                                                                    <span> (example: http://www.bettingpro.com)</span>
+                                                                                                        ValidationExpression="http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?" ErrorMessage="Please Enter Valid Link !"><span class="error">*</span></asp:RegularExpressionValidator>
+                                                                                                   
+                                                                                                    <asp:RequiredFieldValidator ID="Requiredfieldvalidator12" runat="server" ControlToValidate="txtlink"
+                                                                                                        ErrorMessage="Please Enter Link !"><span class="error">*</span>
+                                                                                                    </asp:RequiredFieldValidator>
+                                                                                                     <span class='thread'>(example: http://www.bettingpro.com)</span>
                                                                                                 </td>
                                                                                             </tr>
                                                                                             <tr class="text" bgcolor="#ffffff">
@@ -109,10 +114,44 @@
                                                                                                     &nbsp;<span class="bold"> Cookie Url </span>
                                                                                                 </td>
                                                                                                 <td class="text" width="90%" align="left">
-                                                                                                    <asp:TextBox ID="txtcookieurl" runat="server" Columns="75" class="text" TextMode="MultiLine"
-                                                                                                        Rows="10"></asp:TextBox>
+                                                                                                    <asp:TextBox ID="txtcookieurl" runat="server" Columns="85" class="text" TextMode="MultiLine"
+                                                                                                        Rows="1"></asp:TextBox>
                                                                                                 </td>
                                                                                             </tr>
+                                                                                            <tr class="text" bgcolor="#ffffff">
+                                                                                                <td  class="headings" height="30" width="10%" nowrap align="left">
+                                                                                                    &nbsp;Is Expire
+                                                                                                </td>
+                                                                                                <td class='text'>
+                                                                                                   <asp:DropDownList ID="ddlexpire" runat="server" CssClass="text">
+                                                                                                   <asp:ListItem Value="Y" Text="Yes"></asp:ListItem>
+                                                                                                   <asp:ListItem Value="N" Text="No"></asp:ListItem>
+                                                                                                   </asp:DropDownList>
+
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr class="text" bgcolor="#ffffff">
+                                                                                                <td  class="headings" height="30" width="10%" nowrap align="left">
+                                                                                                    &nbsp;Expire Date
+                                                                                                </td>
+                                                                                                <td class='text'>
+                                                                                                    <asp:TextBox ID="txtexpiredate" CssClass="text" Columns="15" runat="server"></asp:TextBox>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr class="text" bgcolor="#ffffff">
+                                                                                                <td  class="headings" height="30" width="10%" nowrap align="left">
+                                                                                                    &nbsp;FastBet Name
+                                                                                                </td>
+                                                                                                <td class='text'>
+                                                                                                    <asp:TextBox ID="txtfastbetname" CssClass="text" Columns="30" runat="server" MaxLength="20"></asp:TextBox>
+                                                                                                    <asp:RequiredFieldValidator ID="Requiredfieldvalidator1" runat="server" ControlToValidate="txtfastbetname"
+                                                                                                        ErrorMessage="Please Enter FastBet Name !"><span class="error">*</span>
+                                                                                                    </asp:RequiredFieldValidator>
+                                                                                                    <span class='thread'>Only 20 character's allowed</span>
+                                                                                                   
+                                                                                                </td>
+                                                                                            </tr>                                                                                           
+                                                                                            
                                                                                             <tr class="text" bgcolor="#ffffff">
                                                                                                 <td height="30">
                                                                                                     &nbsp;
@@ -150,6 +189,28 @@
                 </td>
             </tr>
         </table>
+        <script src="../datepicker/jquery.datetimepicker.js"></script>
+        <script>
+        $('#<%=txtexpiredate.ClientID %>').datetimepicker({timepicker:false,format:'d/m/Y'})
+
+       
+        </script>
+        <script>
+
+            function validate() {
+               
+                    var length = $('#<%=txtfastbetname.ClientID %>').val().length;
+                    console.log(length);
+                    if (length > 21) {
+                        alert('Please add FastBet Name !');
+                        return false;
+                    }
+                    else { return true; }
+                
+                
+
+            }
+        </script>
     </body>
     </html>
 </asp:Content>

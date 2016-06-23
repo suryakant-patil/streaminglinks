@@ -166,6 +166,15 @@ namespace offerlinkmanageradmin.OfferLink {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator regUrl;
         
         /// <summary>
+        /// Requiredfieldvalidator12 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Requiredfieldvalidator12;
+        
+        /// <summary>
         /// txtcookieurl control.
         /// </summary>
         /// <remarks>
@@ -173,5 +182,41 @@ namespace offerlinkmanageradmin.OfferLink {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtcookieurl;
+        
+        /// <summary>
+        /// ddlexpire control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlexpire;
+        
+        /// <summary>
+        /// txtexpiredate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtexpiredate;
+        
+        /// <summary>
+        /// txtfastbetname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtfastbetname;
+        
+        /// <summary>
+        /// Requiredfieldvalidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Requiredfieldvalidator1;
     }
 }

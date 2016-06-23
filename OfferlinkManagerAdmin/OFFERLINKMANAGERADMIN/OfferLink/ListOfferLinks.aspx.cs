@@ -159,6 +159,7 @@ namespace offerlinkmanageradmin.OfferLink
             string tmp = "";
             string str = "";
             string lid = "0";
+            string urlhttp = "";
             try
             {
                 DataTable dt = new DataTable();
@@ -185,21 +186,18 @@ namespace offerlinkmanageradmin.OfferLink
                             //    str = dr["linkreference"].ToString();
                             //}
                             str = dr["linkreference"].ToString();
-
+                            
                             //txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle' nowrap><div id='"+lid+"_div'><a href='" + dr["linkreference"].ToString()  + "' target='_blank' id='"+lid+"_a' class='text'> " +  str + " </a></div><br><input type='button' id='"+dr["LinkID"].ToString()+"' value='Edit' style='font-size :10px;' onclick='javascript:ModifyLink(this);'></td>";
                             txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle'><div id='" + lid + "_div'><a href='" + dr["linkreference"].ToString() + "' target='_blank' id='" + lid + "_a' class='text'> " + str + " </a></div></br>CM-Link : <a target='_blank' href='" + BLL.Constants.Bitlyurl + dr["RandomUniqueId"].ToString() + "'>" + BLL.Constants.Bitlyurl + dr["RandomUniqueId"].ToString() + "</a></td>";
-                            //str = dr["cookieUrl"].ToString();
-                            //txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle'><div id='" + lid + "_divck'>" + str + "</div></td>";
-                            //if (dr["CookieStatus"].ToString().Equals("N") || dr["CookieStatus"].ToString().Equals(null))
-                            //{
-                            //    tmp = "<img src='../images/no.gif' border='0'>";
-                            //}
-                            //else
-                            //{
-                            //    tmp = "<img src='../images/yes.gif' border='0'>";
-                            //}
-                            //txt += "<td class='text' style='text-align:center;' align='center' bgcolor='#FFFFFF' valign='middle'>" + tmp + "</td>";
-                            txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle' nowrap><div id='" + lid + "_divbit'><a href='" + dr["shortenurl"].ToString() + "' target='_blank' id='" + lid + "_divbita' class='text'> " + dr["shortenurl"].ToString() + " </a></div></td>";
+                            if (dr["IsBetSlip"].ToString() == "Y")
+                            {
+                                urlhttp = "http://";
+                            }
+                            else
+                            {
+                                urlhttp = "";
+                            }
+                            txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle' nowrap><div id='" + lid + "_divbit'><a href='"+urlhttp+ dr["shortenurl"].ToString() + "' target='_blank' id='" + lid + "_divbita' class='text'> " + dr["shortenurl"].ToString() + " </a></div></td>";
                             txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle'><div id='" + lid + "_divbitylrel'>" + dr["bitlyrelation"].ToString() + "</div></td>";
                             txt += "<td class='linktd text' bgcolor='#FFFFFF' align= 'center'  valign='middle' style='font-family:verdana;font-size:11px;' ><span class='added' id='user_" + dr["LinkID"].ToString() + "'  data-id='" + dr["addedby"].ToString() + "," + dr["modifiedby"].ToString() + "'></span></br><span id='deluser_" + dr["LinkID"].ToString() + "' class='thread' data-id='" + dr["LinkID"].ToString() + "_" + dr["deletedby"].ToString() + "'></span></td>";
                             txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle' nowrap>" + Convert.ToDateTime(dr["addedon"].ToString()).ToString("dd/MM/yyyy") + "</br>" + Convert.ToDateTime(dr["modifiedon"].ToString()).ToString("dd/MM/yyyy") + "</td>";

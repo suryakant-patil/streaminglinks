@@ -217,7 +217,7 @@
                                                                                                                     <td align="left" bgColor="#ffffff">
 																														     <div class="controlbtn">
 																														     <input id="cancel" type="button" class="buttontext"  value="Cancel" style="display:none;" />
-																														    <input type="button" class='buttontext' id="edit" name="addlinkmanager" value="Edit"/>
+																														    <input type="button" class='buttontext' id="edit" name="addlinkmanager" value="Edit" style='display:none;'/>
 																														    <input type="button" class='buttontext' id="save" name="addlinkmanager" value="Save" style="display:none;"/>
 																															&nbsp; <input class="buttontext" id="activate" onclick="javascript:apporveallselchk();" type="button"
 																																value="Activate" name="activatecat"> <input class="buttontext" id="deactivate" onclick="javascript:deapporveallselchk();" type="button"

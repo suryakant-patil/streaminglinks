@@ -16,6 +16,7 @@ namespace BLL
         public static readonly string recachexml = "recachexml.aspx";       
         public static readonly string Bitlyurl = System.Configuration.ConfigurationSettings.AppSettings["Bitlyurl"];
         public static readonly string OldAdminUrl = System.Configuration.ConfigurationSettings.AppSettings["OldAdminUrl"];
+        public static readonly string Fastbeturl = System.Configuration.ConfigurationSettings.AppSettings["Fastbeturl"];
 
     }
 }
