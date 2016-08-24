@@ -212,7 +212,14 @@ namespace offerlinkmanageradmin.OfferLink
                             txt += "<td  align='left' style='padding-left:5px;color:#000000;font-family:verdana;font-size:11px;' bgcolor='" + color + "' valign='middle'><div id='" + lid + "_divbitylrel'>" + dr["bitlyrelation"].ToString() + "</div></td>";
                             txt += "<td  class='linktd' bgcolor='" + color + "' align= 'center'  valign='middle' style='font-family:verdana;font-size:11px;color:#000000;'><span class='added' id='user_" + dr["LinkID"].ToString() + "'  data-id='" + dr["addedby"].ToString() + "," + dr["modifiedby"].ToString() + "'></span></br><span id='deluser_" + dr["LinkID"].ToString() + "' class='thread' data-id='" + dr["LinkID"].ToString() + "_" + dr["deletedby"].ToString() + "'></span></td>";
                             txt += "<td  align='left' style='padding-left:5px;color:#000000;font-family:verdana;font-size:11px;' bgcolor='" + color + "' valign='middle' nowrap>" + Convert.ToDateTime(dr["addedon"].ToString()).ToString("dd/MM/yyyy") + "</br>" + Convert.ToDateTime(dr["modifiedon"].ToString()).ToString("dd/MM/yyyy") + "</td>";
-                            txt += "<td  align='left' style='padding-left:5px;color:#000000;font-family:verdana;font-size:11px;' bgcolor='" + color + "' valign='middle' nowrap>" + Convert.ToDateTime(dr["ExpireDate"].ToString()).ToString("dd/MM/yyyy HH:mm") + "</td>";
+                            if (dr["IsExpire"].ToString() == "Y")
+                            {
+                                txt += "<td  align='left' style='padding-left:5px;color:#000000;font-family:verdana;font-size:11px;' bgcolor='" + color + "' valign='middle' nowrap>" + Convert.ToDateTime(dr["ExpireDate"].ToString()).ToString("dd/MM/yyyy HH:mm") + "</td>";
+                            }
+                            else
+                            {
+                                txt += "<td  align='left' style='padding-left:5px;color:#000000;font-family:verdana;font-size:11px;' bgcolor='" + color + "' valign='middle' nowrap></td>";
+                            }
                             if (dr["IsActive"].ToString() == "N")
                             {
                                 tmp = "<img src='../images/icon_status_red.gif' border='0'>";
