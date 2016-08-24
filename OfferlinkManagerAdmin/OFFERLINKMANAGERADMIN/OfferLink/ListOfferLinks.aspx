@@ -248,7 +248,7 @@
 																								</td>
 																							</tr>
 																							<tr bgColor="#eeeeee" height="20">
-																								<td class="headings" align="center" width ="20px"></td>
+																								
 																								<td class="headings" align="left" width ="300px">Link Name</td>																								
 																								<td class="headings" align="left" width ="50px">CM Link Number</td>	
 																								<td class="headings" align="left" width ="200px">Link</td>																					
@@ -257,11 +257,13 @@
                                                                                                 <td class="headings" align="left" width ="200px">Bitly Url Relation</td>		
 																								<td class="headings" align="left" width ="100px">Addded by/<br/>Modified by /<br/> Deleted by</td>																																																																																										  																																														
 																								<td class="headings" align="center" width ="70px">Added On/<br/>Modified On</td>
+                                                                                                <td class="headings" align="center" width ="70px">Expire Date</td>
 																								<td class="headings" align="center" width ="60px">Status</td> 
-                                                                                                <td class="headings" align="left" width ="300px">View History</td>		
-																								<td class="headings" align="center" width ="60px">Check All<br/>
+                                                                                                <td class="headings" align="left" width ="300px">View History</td>	
+                                                                                                <td class="headings" align="center" width ="40px">Check All<br/>
 																									<input onclick="checkBoxes()" type="checkbox" name="selectall" />
-																								</td>
+																								</td>	
+																								
 																							</tr>
 																							<asp:literal id="ltlist" Runat="server"></asp:literal>
 																							<tr height="30">

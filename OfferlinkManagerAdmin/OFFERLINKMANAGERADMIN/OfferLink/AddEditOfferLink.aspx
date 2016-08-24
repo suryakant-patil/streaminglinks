@@ -191,7 +191,7 @@
         </table>
         <script src="../datepicker/jquery.datetimepicker.js"></script>
         <script>
-        $('#<%=txtexpiredate.ClientID %>').datetimepicker({timepicker:false,format:'d/m/Y'})
+        $('#<%=txtexpiredate.ClientID %>').datetimepicker({timepicker:true,format:'d/m/Y H:i',step:15})
 
        
         </script>

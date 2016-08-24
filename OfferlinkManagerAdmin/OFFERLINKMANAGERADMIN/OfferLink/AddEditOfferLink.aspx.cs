@@ -87,9 +87,9 @@ namespace offerlinkmanageradmin.OfferLink
                             objlink.IsBetSlip = "Y";
                             objlink.IsExpire = ddlexpire.SelectedValue;
                             objlink.ExpireDate = GetDate(txtexpiredate.Text);                           
-                            objlink.FastBetName = txtfastbetname.Text;
-                            objlink.Shortenurl = BLL.Constants.Fastbeturl + CommonLib.StringHandler.ToTitle(txtfastbetname.Text.ToLower());
-                            objlink.FastBetTotitle = CommonLib.StringHandler.ToTitle(txtfastbetname.Text.ToLower());
+                            objlink.FastBetName = txtfastbetname.Text.Trim();
+                            objlink.Shortenurl = BLL.Constants.Fastbeturl + CommonLib.StringHandler.ToTitle(txtfastbetname.Text.Trim());
+                            objlink.FastBetTotitle = CommonLib.StringHandler.ToTitle(txtfastbetname.Text.Trim());
                             if (Request.QueryString["linkid"] != null)
                             {
                                 objlink.Linkid = Request.QueryString["linkid"].ToString();
@@ -166,7 +166,7 @@ namespace offerlinkmanageradmin.OfferLink
                                 ViewState["oldvalue"] = txtlink.Text;
                                 rdoregion.SelectedValue= dt.Rows[0]["region"].ToString();
                                 ddlexpire.SelectedValue = dt.Rows[0]["IsExpire"].ToString();
-                                txtexpiredate.Text = Convert.ToDateTime(dt.Rows[0]["ExpireDate"]).ToString("dd/MM/yyyy");
+                                txtexpiredate.Text = Convert.ToDateTime(dt.Rows[0]["ExpireDate"]).ToString("dd/MM/yyyy HH:mm");
                                 txtfastbetname.Text = dt.Rows[0]["FastBetName"].ToString();
                                 if (dt.Rows[0]["IsBetSlip"].ToString() == "Y")
                                 {
@@ -190,6 +190,8 @@ namespace offerlinkmanageradmin.OfferLink
             return uniqueId = randomId.ToString().ToUpper();
         }
 
+        
+
         public string GetDate(string strdate)
         {
             string date = "";
@@ -199,12 +201,12 @@ namespace offerlinkmanageradmin.OfferLink
                 string[] arr;
 
                 arr = strdate.Split(' ');
-                //string time=arr[1];
+                string time = arr[1];
                 strarray = arr[0].Split('/');
 
                 if (strarray.Length > 2)
                 {
-                    date = string.Format("{0}-{1}-{2} ", strarray[2], strarray[1], strarray[0]);
+                    date = string.Format("{0}-{1}-{2} {3}", strarray[2], strarray[1], strarray[0], time);
                 }
             }
             else

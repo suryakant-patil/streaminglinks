@@ -65,7 +65,7 @@
 																							<tr bgColor="#eeeeee" height="20">
 																								<td class="headings" align="center" width ="20px"></td>
 																								<td class="headings" align="left" width ="100px">Landing Name</td>
-																								<td class="headings" align="left" width ="200px">Referrer Url</td>	
+																								<td class="headings" align="left" width ="200px">Referrer Url</td>
 																								<%--<td class="headings" align="left" width ="100px">User IP</td>	--%>
                                                                                                 <td class="headings" align="left" width ="100px">Hit Date</td>	
 																								<%--<td class="headings" align="center" width ="100px">Todays Click</td>	
