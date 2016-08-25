@@ -67,6 +67,15 @@ namespace offerlinkmanageradmin.OfferLink {
         protected global::System.Web.UI.WebControls.Button btnsearch;
         
         /// <summary>
+        /// ddlsort control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlsort;
+        
+        /// <summary>
         /// ltlist control.
         /// </summary>
         /// <remarks>
@@ -74,15 +83,6 @@ namespace offerlinkmanageradmin.OfferLink {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltlist;
-        
-        /// <summary>
-        /// ltpaging1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltpaging1;
         
         /// <summary>
         /// ltbaseurl control.

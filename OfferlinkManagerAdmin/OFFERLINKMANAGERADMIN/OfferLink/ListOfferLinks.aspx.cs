@@ -51,6 +51,7 @@ namespace offerlinkmanageradmin.OfferLink
                 if (IsPostBack)
                 {
                     Session["txtsearch"] = txtsearch.Text;
+                    Session["datesort"] = ddlsort.SelectedValue;
                     if (null != Request.QueryString["p"])
                     {
                         pagenumber = Convert.ToInt32(Request.QueryString["p"].ToString());
@@ -60,10 +61,16 @@ namespace offerlinkmanageradmin.OfferLink
                         pagenumber = 1;
                     }
                     Session["region"] = ddlregion.SelectedValue;
-                    OfferLinkList(pagesize, pagenumber, Session["txtsearch"].ToString(),Session["region"].ToString());
+                    OfferLinkList(pagesize, pagenumber, Session["txtsearch"].ToString(), Session["region"].ToString(),Session["datesort"].ToString());
                 }
                 else
                 {
+                    if (Session["datesort"] == null)
+                    {
+                        ddlsort.SelectedValue = "0";
+                        Session["datesort"] = "0";
+                    }
+                    
                     if (Session["txtsearch"] != null)
                     {
                         txtsearch.Text = Session["txtsearch"].ToString();
@@ -134,7 +141,7 @@ namespace offerlinkmanageradmin.OfferLink
                     {
                         pagenumber = 1;
                     }
-                    OfferLinkList(pagesize, pagenumber, Session["txtsearch"].ToString(), Session["region"].ToString());
+                    OfferLinkList(pagesize, pagenumber, Session["txtsearch"].ToString(), Session["region"].ToString(), Session["datesort"].ToString());
                 }
             }
             catch (Exception ex)
@@ -153,7 +160,7 @@ namespace offerlinkmanageradmin.OfferLink
 
         }
 
-        private void OfferLinkList(int pagesize, int currentpageno, string search,string region)
+        private void OfferLinkList(int pagesize, int currentpageno, string search,string region,string datesort)
         {
             string txt = "";
             string tmp = "";
@@ -166,7 +173,7 @@ namespace offerlinkmanageradmin.OfferLink
                 DataTable dt = new DataTable();
                 using (OfferLinkMgmt obj = new OfferLinkMgmt(strconn))
                 {
-                    dt = obj.GetOfferLinkList(pagesize, currentpageno, search,region);
+                    dt = obj.GetOfferLinkList(pagesize, currentpageno, search,region,datesort);
                     if (dt.Rows.Count > 0)
                     {
                         foreach (DataRow dr in dt.Rows)
@@ -181,13 +188,13 @@ namespace offerlinkmanageradmin.OfferLink
                             }
 
                             txt += "<tr height='30' valign='top'>";
-                            
+                            txt += "<td   bgcolor='" + color + "' style='text-align:center;font-family:verdana;font-size:11px;' align=center valign=top style='padding-top:5px;'><input type ='checkbox' onclick='disselect()' name = 'fcheck[]' value='" + dr["linkID"].ToString() + "'></td>";
                            // txt += "<td class='text' align='right'   bgcolor='#FFFFFF' valign='middle' style='padding-right:5px;'>" + dr["rownumber"].ToString() + ".</td>";
                             str = dr["linkname"].ToString();
                             lid = dr["LinkID"].ToString();
-                            txt += "<td  width='250px'  align='left' style='padding-left:5px;color:#000000;font-family:verdana;font-size:11px;' bgcolor='" + color + "' valign='middle' nowrap title='" + dr["LinkName"].ToString() + "'><div id='" + lid + "_divname'><a href='AddEditOfferLink.aspx?linkid=" + dr["LinkID"].ToString() + "' class='link'>" + str + "</a></div></br><span class='thread'>RandomId -" + dr["RandomUniqueId"].ToString() + "</span></td>";
+                            txt += "<td  width='250px'  align='left' style='padding-left:5px;color:#000000;font-family:verdana;font-size:11px;' bgcolor='" + color + "' valign='middle' nowrap title='" + dr["LinkName"].ToString() + "'><a  href='AddEditOfferLink.aspx?linkid=" + dr["LinkID"].ToString() + "' class='link'>" + str + "</a></td>";
 
-                            txt += "<td  align='left' style='padding-left:5px;color:#000000;font-family:verdana;font-size:11px;' bgcolor='" + color + "' valign='middle' nowrap>" + dr["LinkID"].ToString() + "</td>";
+                            txt += "<td  align='center' style='padding-left:5px;color:#000000;font-family:verdana;font-size:11px;' bgcolor='" + color + "' valign='middle' nowrap>" + dr["LinkID"].ToString() + "</td>";
                             //if (dr["linkreference"].ToString().Length > 30)
                             //{
                             //   // str = Util.StringHandlers.splitNewsString(dr["linkreference"].ToString(), 30);
@@ -199,7 +206,7 @@ namespace offerlinkmanageradmin.OfferLink
                             str = dr["linkreference"].ToString();
                             
                             //txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle'><div id='" + lid + "_div'><a href='" + dr["linkreference"].ToString() + "' target='_blank' id='" + lid + "_a' class='text'> " + str + " </a></div></br>CM-Link : <a target='_blank' href='" + BLL.Constants.Bitlyurl + dr["RandomUniqueId"].ToString() + "'>" + BLL.Constants.Bitlyurl + dr["RandomUniqueId"].ToString() + "</a></td>";
-                            txt += "<td  align='left' style='padding-left:5px;color:#000000;font-family:verdana;font-size:11px;' bgcolor='" + color + "' valign='middle'><div id='" + lid + "_div'><a href='" + dr["linkreference"].ToString() + "' target='_blank' id='" + lid + "_a' class='text'> " + str + " </a></div></td>";
+                            txt += "<td  align='left' style='padding-left:5px;color:#000000;font-family:verdana;font-size:11px;' bgcolor='" + color + "' valign='middle'><a class='publink' href='" + dr["linkreference"].ToString() + "' target='_blank' id='" + lid + "_a' > " + str + " </a></td>";
                             if (dr["IsBetSlip"].ToString() == "Y")
                             {
                                 urlhttp = "http://";
@@ -208,8 +215,8 @@ namespace offerlinkmanageradmin.OfferLink
                             {
                                 urlhttp = "";
                             }
-                            txt += "<td  align='left' style='padding-left:5px;color:#000000;font-family:verdana;font-size:11px;' bgcolor='" + color + "' valign='middle' nowrap><div id='" + lid + "_divbit'><a href='" + urlhttp + dr["shortenurl"].ToString().Trim() + "' target='_blank' id='" + lid + "_divbita' class='text'> " + dr["shortenurl"].ToString() + " </a></div></td>";
-                            txt += "<td  align='left' style='padding-left:5px;color:#000000;font-family:verdana;font-size:11px;' bgcolor='" + color + "' valign='middle'><div id='" + lid + "_divbitylrel'>" + dr["bitlyrelation"].ToString() + "</div></td>";
+                            txt += "<td  align='left' style='padding-left:5px;color:#000000;font-family:verdana;font-size:11px;' bgcolor='" + color + "' valign='middle' nowrap><a class='publink' href='" + urlhttp + dr["shortenurl"].ToString().Trim() + "' target='_blank' id='" + lid + "_divbita'> " + dr["shortenurl"].ToString() + " </a></td>";
+                            txt += "<td  align='left' style='padding-left:5px;color:#000000;font-family:verdana;font-size:11px;' bgcolor='" + color + "' valign='middle'> "+ dr["bitlyrelation"].ToString() + "</td>";
                             txt += "<td  class='linktd' bgcolor='" + color + "' align= 'center'  valign='middle' style='font-family:verdana;font-size:11px;color:#000000;'><span class='added' id='user_" + dr["LinkID"].ToString() + "'  data-id='" + dr["addedby"].ToString() + "," + dr["modifiedby"].ToString() + "'></span></br><span id='deluser_" + dr["LinkID"].ToString() + "' class='thread' data-id='" + dr["LinkID"].ToString() + "_" + dr["deletedby"].ToString() + "'></span></td>";
                             txt += "<td  align='left' style='padding-left:5px;color:#000000;font-family:verdana;font-size:11px;' bgcolor='" + color + "' valign='middle' nowrap>" + Convert.ToDateTime(dr["addedon"].ToString()).ToString("dd/MM/yyyy") + "</br>" + Convert.ToDateTime(dr["modifiedon"].ToString()).ToString("dd/MM/yyyy") + "</td>";
                             if (dr["IsExpire"].ToString() == "Y")
@@ -237,7 +244,7 @@ namespace offerlinkmanageradmin.OfferLink
                             }
                             txt += "<td  style='text-align:center;color:#000000;font-family:verdana;font-size:11px;' bgcolor='" + color + "' valign='middle'>" + tmp + "</td>";
                             txt += "<td  align='center' style='color:#000000;font-family:verdana;font-size:11px;' bgcolor='" + color + "' valign='middle'><a title='click to view history' class='editlink' href='#' data-linkid='" + dr["LinkID"].ToString() + "'>View</a></td>";
-                            txt += "<td   bgcolor='" + color + "' style='text-align:center;font-family:verdana;font-size:11px;' align=center valign=top style='padding-top:5px;'><input type ='checkbox' onclick='disselect()' name = 'fcheck[]' value='" + dr["linkID"].ToString() + "'></td>";
+                            
                             txt += "</tr>";
                         }
                     }
