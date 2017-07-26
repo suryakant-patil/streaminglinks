@@ -217,10 +217,9 @@
                         <tr>
                             <td class="text" align="left" bgcolor="#ffffff" colspan="11">
                                 Region
-                                <asp:DropDownList ID="ddlregion" runat="server" CssClass="text" AutoPostBack="true">
-                                    <asp:ListItem Text="-select-" Value="0"></asp:ListItem>
+                                <asp:DropDownList ID="ddlregion" runat="server" CssClass="text" AutoPostBack="true">                                   
                                     <asp:ListItem Text="AU" Value="AU"></asp:ListItem>
-                                    <asp:ListItem Text="UK" Value="GB"></asp:ListItem>
+                                    <asp:ListItem Text="UK" Value="GB" Selected="True"></asp:ListItem>
                                 </asp:DropDownList>
                                 Search
                                 <asp:TextBox ID="txtsearch" runat="server" size="50" CssClass="text"></asp:TextBox>

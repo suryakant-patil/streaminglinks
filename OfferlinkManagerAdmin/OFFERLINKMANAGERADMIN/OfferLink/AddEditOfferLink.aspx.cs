@@ -102,12 +102,12 @@ namespace offerlinkmanageradmin.OfferLink
                             }
                             int _linkid = 0;
                             objlink.RandomId = GenerateUniqueID();
-                            int fastbetcount = objlink.CheckDuplicateFastbet(objlink.Shortenurl, objlink.Linkid);
-                            int promolinkcount = objlink.CheckDuplicatePromotionalLink(objlink.LinkName, objlink.Linkid);
+                            int fastbetcount = objlink.CheckDuplicateFastbet(objlink.Shortenurl, objlink.Linkid, objlink.Region);
+                            int promolinkcount = objlink.CheckDuplicatePromotionalLink(objlink.LinkName, objlink.Linkid, objlink.Region);
                             if (fastbetcount == 0 && promolinkcount == 0)
                             {
                                 _linkid = objlink.LinkOffer_Save();
-
+                                Session["region"] = rdoregion.SelectedValue;
                                 //if (objlink.Linkid == "0")
                                 //{
                                 //    BitlyShortenUrl objbitly = new BitlyShortenUrl();
@@ -124,17 +124,18 @@ namespace offerlinkmanageradmin.OfferLink
                                 Response.Redirect("ListOfferLinks.aspx", false);
                             }
                             else
-                            {
-
+                            {                               
                                 dupli.Visible = true;
                                 if (fastbetcount > 0)
                                 {
-                                    ltdupsub.Text = "FastBet Name is already exist !";
+                                    ltdupsub.Text = "This FastBet Name already exists. Please choose another.";
                                 }
                                 if (promolinkcount > 0)
                                 {
-                                    ltdupsub.Text = "Link Name is already exist !";
+                                    ltdupsub.Text = "This link name already exists. Please choose another.";
                                 }
+                                objlink.SaveDuplicatePromoLink();
+                                
                             }
                         }
                     }

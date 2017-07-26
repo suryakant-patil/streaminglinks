@@ -67,8 +67,8 @@ namespace offerlinkmanageradmin.OfferLink
                 {
                     if (Session["datesort"] == null)
                     {
-                        ddlsort.SelectedValue = "0";
-                        Session["datesort"] = "0";
+                        ddlsort.SelectedValue = "adddesc";
+                        Session["datesort"] = "adddesc";
                     }
                     
                     if (Session["txtsearch"] != null)
