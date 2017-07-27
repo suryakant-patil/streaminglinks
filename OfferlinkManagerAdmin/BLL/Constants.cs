@@ -18,5 +18,57 @@ namespace BLL
         public static readonly string OldAdminUrl = System.Configuration.ConfigurationSettings.AppSettings["OldAdminUrl"];
         public static readonly string Fastbeturl = System.Configuration.ConfigurationSettings.AppSettings["Fastbeturl"];
 
+
+        public static String toTitle(object input)
+        {
+           
+            string output = input.ToString().Trim().Replace("\"", @"");
+            output = output.ToString().Trim().Replace("é", "e");
+            output = output.ToString().Trim().Replace("â", "a");
+            output = output.ToString().Trim().Replace("´", " ");
+            output = output.ToString().Trim().Replace("®", " ");
+            output = output.ToString().Trim().Replace("*", " ");
+            output = output.ToString().Trim().Replace("–", "");
+            output = output.ToString().Trim().Replace("’", "'");
+            output = output.ToString().Trim().Replace("!", "-");
+            output = output.ToString().Trim().Replace("‘", "'");
+            output = output.ToString().Trim().Replace("“", "");
+            output = output.ToString().Trim().Replace("”", "");
+            output = output.ToString().Trim().Replace("‘", "'");
+            output = output.ToString().Trim().Replace("¼", "1/4");
+            output = output.ToString().Trim().Replace("€", "");
+            output = output.ToString().Trim().Replace("¥", "");
+            output = output.ToString().Trim().Replace("…", "...");
+            output = output.ToString().Trim().Replace("'", @"");
+            output = output.ToString().Trim().Replace(".", " ");
+            output = output.ToString().Trim().Replace(":", " ");
+            output = output.ToString().Trim().Replace(";", " ");
+            output = output.ToString().Trim().Replace("?", " ");
+            output = output.ToString().Trim().Replace("? ", " ");
+            output = output.ToString().Trim().Replace(",", " ");
+            output = output.ToString().Trim().Replace("|", " ");
+            output = output.ToString().Trim().Replace("£", " ");
+            output = output.ToString().Trim().Replace("$", " ");
+            output = output.ToString().Trim().Replace("&", " ");
+            output = output.ToString().Trim().Replace("<", " ");
+            output = output.ToString().Trim().Replace(">", " ");
+            output = output.ToString().Trim().Replace(", ", " ");
+            output = output.ToString().Trim().Replace("/", " ");
+            output = output.ToString().Trim().Replace("%", " ");
+            output = output.ToString().Trim().Replace("#", " ");
+            output = output.ToString().Trim().Replace(" ", "-");
+            output = output.ToString().Trim().Replace("--", "-");
+            output = output.ToString().Trim().Replace("+", "-");
+            output = output.ToString().Trim().Replace("[", "-");
+            output = output.ToString().Trim().Replace("]", "-");
+            output = output.ToString().Trim().Replace("»", "-");
+            output = output.ToString().Trim().Replace("@", "");
+            output = output.ToString().Trim().Replace("--", "-");          
+               
+            return output;
+
+        }
+
+
     }
 }

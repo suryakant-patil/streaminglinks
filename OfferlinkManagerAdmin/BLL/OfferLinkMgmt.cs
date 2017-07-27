@@ -66,10 +66,31 @@ namespace BLL
         private string _expireDate = string.Empty;
         private string _fastbetname = string.Empty;
         private string _fastbettotile = string.Empty;
+        private string _sel = string.Empty;
+        private string _stake = string.Empty;
+        private string _whurl = string.Empty;
 
         #endregion
 
         #region :: public properties ::
+
+        public string Sel
+        {
+            get { return _sel; }
+            set { _sel = value; }
+        }
+
+        public string Stake
+        {
+            get { return _stake; }
+            set { _stake = value; }
+        }
+
+        public string Whurl
+        {
+            get { return _whurl; }
+            set { _whurl = value; }
+        }
 
         public string FastBetTotitle
         {
@@ -187,7 +208,7 @@ namespace BLL
         /// <param name="currentpage">currentpage</param>
         /// <param name="search">search text</param>
         /// <returns>datattable</returns>
-        public DataTable GetOfferLinkList(int pagesize, int currentpage, string search,string region)
+        public DataTable GetOfferLinkList(int pagesize, int currentpage, string search, string region, string datesort)
         {
             DataTable dt = new DataTable();
             try
@@ -196,14 +217,16 @@ namespace BLL
 										 new SqlParameter("@CurrentPage",SqlDbType.Int),
 										 new SqlParameter("@ItemCount",SqlDbType.Int),										 
 										 new SqlParameter("@Search",SqlDbType.VarChar),
-									     new SqlParameter("@region",SqlDbType.Char)
+									     new SqlParameter("@region",SqlDbType.Char),
+                                         new SqlParameter("@datesort",SqlDbType.VarChar)
 										 };
                 param[0].Value = pagesize;
                 param[1].Value = currentpage;
                 param[2].Value = 0;
                 param[2].Direction = ParameterDirection.InputOutput;
                 param[3].Value = search;
-                param[4].Value = region;             
+                param[4].Value = region;
+                param[5].Value = datesort;
                 dt = dal.GetDataTable(CommandType.StoredProcedure, "AN_SP_OfferLinkList", param);
                 TotalCount = Convert.ToInt32(param[2].Value);
             }
@@ -517,16 +540,19 @@ namespace BLL
             return dt;
         }
 
-        public int CheckDuplicateFastbet(string shortenurl,string linkid)
+        public int CheckDuplicateFastbet(string shortenurl,string linkid,string region)
         {
             int count = 0;
             object objcount = null;
             try
             {
                 SqlParameter[] param = { new SqlParameter("@shortenurl",SqlDbType.VarChar),
-                                       new SqlParameter("@linkid",SqlDbType.Int)};
+                                       new SqlParameter("@linkid",SqlDbType.Int),
+                                       new SqlParameter("@region",SqlDbType.Char)};
+                                       
                 param[0].Value = shortenurl;
                 param[1].Value = linkid;
+                param[2].Value = region;
                 objcount = dal.ExecuteScalar(CommandType.StoredProcedure, "AN_SP_CheckDuplicateFastBetUrl", param);
             }
             catch (Exception ex)
@@ -540,16 +566,18 @@ namespace BLL
             return count;
         }
 
-        public int CheckDuplicatePromotionalLink(string linkname, string linkid)
+        public int CheckDuplicatePromotionalLink(string linkname, string linkid,string region)
         {
             int count = 0;
             object objcount = null;
             try
             {
                 SqlParameter[] param = { new SqlParameter("@linkname",SqlDbType.VarChar),
-                                       new SqlParameter("@linkid",SqlDbType.Int)};
+                                       new SqlParameter("@linkid",SqlDbType.Int),
+                                       new SqlParameter("@region",SqlDbType.Char)};
                 param[0].Value = linkname;
                 param[1].Value = linkid;
+                param[2].Value = region;
                 objcount = dal.ExecuteScalar(CommandType.StoredProcedure, "AN_SP_CheckDuplicatePromotionalLink", param);
             }
             catch (Exception ex)
@@ -562,6 +590,184 @@ namespace BLL
             }
             return count;
         }
+
+        public void SaveDuplicatePromoLink()
+        {
+            try
+            {
+                SqlParameter[] param = { new SqlParameter("@LinkName",SqlDbType.VarChar),
+                                       new SqlParameter("@region",SqlDbType.Char),
+                                       new SqlParameter("@FastBetName",SqlDbType.VarChar),
+                                       new SqlParameter("@IsBetSlip",SqlDbType.Char),
+                                       new SqlParameter("@IsExpire",SqlDbType.Char),
+                                       new SqlParameter("@ExpireDate",SqlDbType.SmallDateTime),
+                                       new SqlParameter("@Addedby",SqlDbType.Int),
+                                       new SqlParameter("@fastbeturl",SqlDbType.VarChar)};
+
+                param[0].Value = LinkName;
+                param[1].Value = Region;
+                param[2].Value = FastBetName;
+                param[3].Value = IsBetSlip;
+                param[4].Value = IsExpire;
+                param[5].Value = ExpireDate;
+                param[6].Value = LoginInfo.Userid;
+                param[7].Value = Shortenurl;
+
+                dal.ExecuteNonQuery(CommandType.StoredProcedure, "AN_SP_DuplicatePromoLink_Save", param);
+            }
+            catch (Exception ex)
+            {
+                CommonLib.ExceptionHandler.WriteLog(CommonLib.Sections.BLL, "GamingNetBLL.OfferLinkMgmt.cs SaveDuplicatePromoLink", ex);
+            }
+        }
+
+        #endregion
+
+
+        #region :: WH URL ::
+
+        /// <summary>
+        /// Save link  for william hill
+        /// </summary>
+        /// <returns></returns>
+        public int WHLink_Save()
+        {
+            int linkid = 0;
+            try
+            {
+                SqlParameter[] param ={new SqlParameter("@LinkID",SqlDbType.Int),
+				new SqlParameter("@LinkName",SqlDbType.VarChar),
+				new SqlParameter("@LinkReference",SqlDbType.VarChar),				
+                new SqlParameter("@addedby",SqlDbType.Int),
+                new SqlParameter("@RandomUniqueId",SqlDbType.VarChar),
+                new SqlParameter("@region",SqlDbType.Char),
+                new SqlParameter("@IsBetSlip",SqlDbType.Char),
+                new SqlParameter("@IsExpire",SqlDbType.Char),
+                new SqlParameter("@ExpireDate",SqlDbType.DateTime),
+                new SqlParameter("@shortenurl",SqlDbType.NVarChar),
+                new SqlParameter("@FastBetName",SqlDbType.VarChar),
+                new SqlParameter("@fastbettotitle",SqlDbType.VarChar),
+                new SqlParameter("@sel",SqlDbType.NVarChar),
+                new SqlParameter("@stake",SqlDbType.NVarChar),
+                new SqlParameter("@whurl",SqlDbType.NVarChar)
+                };
+
+                param[0].Direction = ParameterDirection.InputOutput;
+                param[0].Value = Linkid;
+                param[1].Value = LinkName;
+                param[2].Value = LinkReference;               
+                param[3].Value = LoginInfo.Userid;
+                param[4].Value = RandomId;
+                param[5].Value = Region;
+                param[6].Value = IsBetSlip;
+                param[7].Value = IsExpire;
+                param[8].Value = ExpireDate;
+                param[9].Value = Shortenurl;
+                param[10].Value = FastBetName;
+                param[11].Value = FastBetTotitle;
+                param[12].Value = Sel;
+                param[13].Value =Stake ;
+                param[14].Value = Whurl;
+                dal.ExecuteNonQuery(CommandType.StoredProcedure, "AN_SP_WHLink_Save", param);
+                linkid = Convert.ToInt32(param[0].Value);
+
+            }
+            catch (Exception ex)
+            {
+                CommonLib.ExceptionHandler.WriteLog(CommonLib.Sections.BLL, "GamingNetBLL.OfferLinkMgmt.cs WHLink_Save", ex);
+            }
+            return linkid;
+        }
+
+
+        /// <summary>
+        /// check duplicate fastbeturl name for william hill
+        /// </summary>
+        /// <param name="shortenurl"></param>
+        /// <param name="linkid"></param>
+        /// <param name="region"></param>
+        /// <returns></returns>
+        public int CheckDuplicateFastbetForWHUrl(string shortenurl, string linkid, string region)
+        {
+            int count = 0;
+            object objcount = null;
+            try
+            {
+                SqlParameter[] param = { new SqlParameter("@shortenurl",SqlDbType.VarChar),
+                                       new SqlParameter("@linkid",SqlDbType.Int),
+                                       new SqlParameter("@region",SqlDbType.Char)};
+
+                param[0].Value = shortenurl;
+                param[1].Value = linkid;
+                param[2].Value = region;
+                objcount = dal.ExecuteScalar(CommandType.StoredProcedure, "AN_SP_CheckDuplicateFastBetUrlForWHUrl", param);
+            }
+            catch (Exception ex)
+            {
+                CommonLib.ExceptionHandler.WriteLog(CommonLib.Sections.BLL, "GamingNetBLL.OfferLinkMgmt.cs CheckDuplicateFastbetForWHUrl", ex);
+            }
+            if (!string.IsNullOrEmpty(objcount.ToString()))
+            {
+                count = Convert.ToInt32(objcount);
+            }
+            return count;
+        }
+
+
+        /// <summary>
+        /// check duplicate william hill name
+        /// </summary>
+        /// <param name="linkname"></param>
+        /// <param name="linkid"></param>
+        /// <param name="region"></param>
+        /// <returns></returns>
+        public int CheckDuplicateWHLinkName(string linkname, string linkid, string region)
+        {
+            int count = 0;
+            object objcount = null;
+            try
+            {
+                SqlParameter[] param = { new SqlParameter("@linkname",SqlDbType.VarChar),
+                                       new SqlParameter("@linkid",SqlDbType.Int),
+                                       new SqlParameter("@region",SqlDbType.Char)};
+                param[0].Value = linkname;
+                param[1].Value = linkid;
+                param[2].Value = region;
+                objcount = dal.ExecuteScalar(CommandType.StoredProcedure, "AN_SP_CheckDuplicateWHLinkName", param);
+            }
+            catch (Exception ex)
+            {
+                CommonLib.ExceptionHandler.WriteLog(CommonLib.Sections.BLL, "GamingNetBLL.OfferLinkMgmt.cs CheckDuplicateWHLinkName", ex);
+            }
+            if (!string.IsNullOrEmpty(objcount.ToString()))
+            {
+                count = Convert.ToInt32(objcount);
+            }
+            return count;
+        }
+
+
+        /// <summary>
+        /// get william hill link details
+        /// </summary>
+        /// <param name="linkid"></param>
+        /// <returns></returns>
+        public DataTable GetWHLinkDetails(string linkid)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                SqlParameter[] param = { new SqlParameter("@LinkID", SqlDbType.Int) };
+                param[0].Value = linkid;
+                dt = dal.GetDataTable(CommandType.StoredProcedure, "AN_SP_WHLink_Details", param);
+            }
+            catch (Exception ex)
+            {
+                CommonLib.ExceptionHandler.WriteLog(CommonLib.Sections.BLL, "GamingNetBLL.OfferLinkMgmt.cs GetWHLinkDetails", ex);
+            }
+            return dt;
+        }
+
 
         #endregion
     }
