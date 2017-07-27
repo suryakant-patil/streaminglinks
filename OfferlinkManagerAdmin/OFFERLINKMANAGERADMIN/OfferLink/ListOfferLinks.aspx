@@ -211,6 +211,8 @@
                                         type="button" value="Delete" name="delete">
                                     <input class="buttontext" id="addfooter1" onclick="ShowAdd();" type="button" value="Add Link"
                                         name="adcat" />
+                                     <input class="buttontext" id="btnaddwh" onclick="window.location.href='AddEditWHLink.aspx?linktype=w'" type="button" value="Add WH Link"
+                                        name="adcat" />
                                 </div>
                             </td>
                         </tr>

@@ -19,10 +19,15 @@ namespace offerlinkmanageradmin
                 {
                     if (url.Contains(Constants.OldAdminUrl))
                     {
-                        if (Request.QueryString["userid"] != null)
+                        if (Request.QueryString["userid"] != null && Request.QueryString["linktype"] == null)
                         {
                             LoginInfo.SetSession(Request.QueryString["userid"]);
                             Response.Redirect(BLL.Constants.AdminURL + "OfferLink/ListOfferLinks.aspx",false);
+                        }
+                        if (Request.QueryString["linktype"] != null && Request.QueryString["userid"] != null)
+                        {
+                            LoginInfo.SetSession(Request.QueryString["userid"]);
+                            Response.Redirect(BLL.Constants.AdminURL + "OfferLink/AddEditWHLink.aspx?linktype=w", false);
                         }
                     }
                     else

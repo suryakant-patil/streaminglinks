@@ -160,6 +160,14 @@ namespace offerlinkmanageradmin.OfferLink
 
         }
 
+        /// <summary>
+        ///  Offer Link & william hill link List
+        /// </summary>
+        /// <param name="pagesize"></param>
+        /// <param name="currentpageno"></param>
+        /// <param name="search"></param>
+        /// <param name="region"></param>
+        /// <param name="datesort"></param>
         private void OfferLinkList(int pagesize, int currentpageno, string search,string region,string datesort)
         {
             string txt = "";
@@ -188,24 +196,22 @@ namespace offerlinkmanageradmin.OfferLink
                             }
 
                             txt += "<tr height='30' valign='top'>";
-                            txt += "<td   bgcolor='" + color + "' style='text-align:center;font-family:verdana;font-size:11px;' align=center valign=top style='padding-top:5px;'><input type ='checkbox' onclick='disselect()' name = 'fcheck[]' value='" + dr["linkID"].ToString() + "'></td>";
-                           // txt += "<td class='text' align='right'   bgcolor='#FFFFFF' valign='middle' style='padding-right:5px;'>" + dr["rownumber"].ToString() + ".</td>";
+                            txt += "<td   bgcolor='" + color + "' style='text-align:center;font-family:verdana;font-size:11px;' align='center' valign='middle' style='padding-top:5px;'><input type ='checkbox' onclick='disselect()' name = 'fcheck[]' value='" + dr["linkID"].ToString() + "'></td>";
                             str = dr["linkname"].ToString();
                             lid = dr["LinkID"].ToString();
-                            txt += "<td  width='250px'  align='left' style='padding-left:5px;color:#000000;font-family:verdana;font-size:11px;' bgcolor='" + color + "' valign='middle' nowrap title='" + dr["LinkName"].ToString() + "'><a  href='AddEditOfferLink.aspx?linkid=" + dr["LinkID"].ToString() + "' class='link'>" + str + "</a></td>";
-
+                            if (dr["linktype"].ToString().ToLower() == "w")
+                            {
+                                txt += "<td  width='250px'  align='left' style='padding-left:5px;color:#000000;font-family:verdana;font-size:11px;' bgcolor='" + color + "' valign='middle' nowrap title='" + dr["LinkName"].ToString() + "'><a  href='AddEditWHLink.aspx?linkid=" + dr["LinkID"].ToString() + "' class='link'>" + str + "</a></br><span class='thread'>William Hill</span></td>";
+                               
+                            }
+                            else
+                            {
+                                txt += "<td  width='250px'  align='left' style='padding-left:5px;color:#000000;font-family:verdana;font-size:11px;' bgcolor='" + color + "' valign='middle' nowrap title='" + dr["LinkName"].ToString() + "'><a  href='AddEditOfferLink.aspx?linkid=" + dr["LinkID"].ToString() + "' class='link'>" + str + "</a></td>";
+                            }
                             txt += "<td  align='center' style='padding-left:5px;color:#000000;font-family:verdana;font-size:11px;' bgcolor='" + color + "' valign='middle' nowrap>" + dr["LinkID"].ToString() + "</td>";
-                            //if (dr["linkreference"].ToString().Length > 30)
-                            //{
-                            //   // str = Util.StringHandlers.splitNewsString(dr["linkreference"].ToString(), 30);
-                            //}
-                            //else
-                            //{
-                            //    str = dr["linkreference"].ToString();
-                            //}
+                           
                             str = dr["linkreference"].ToString();
                             
-                            //txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle'><div id='" + lid + "_div'><a href='" + dr["linkreference"].ToString() + "' target='_blank' id='" + lid + "_a' class='text'> " + str + " </a></div></br>CM-Link : <a target='_blank' href='" + BLL.Constants.Bitlyurl + dr["RandomUniqueId"].ToString() + "'>" + BLL.Constants.Bitlyurl + dr["RandomUniqueId"].ToString() + "</a></td>";
                             txt += "<td  align='left' style='padding-left:5px;color:#000000;font-family:verdana;font-size:11px;' bgcolor='" + color + "' valign='middle'><a class='publink' href='" + dr["linkreference"].ToString() + "' target='_blank' id='" + lid + "_a' > " + str + " </a></td>";
                             if (dr["IsBetSlip"].ToString() == "Y")
                             {
@@ -281,73 +287,88 @@ namespace offerlinkmanageradmin.OfferLink
         }
 
 
+        /// <summary>
+        ///  nvigation on paging
+        /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <param name="TotalCount"></param>
+        /// <returns></returns>
         public string getNavigationHTML(int pageNumber, int TotalCount)
         {
-            int TotalPages = 0;
-            int range = 9;
-            int mid = 5;
-            int start = 1;
-
-            TotalPages = TotalCount / pagesize;
-
-            if (TotalCount % pagesize != 0)
-                TotalPages = TotalPages + 1;
-            int end = (TotalPages > 9) ? 9 : TotalPages;
             string retVal = "";
-            string url = BaseUrl + "OfferLink/ListOfferLinks.aspx?p=";
-            if (pageNumber > (mid + 1) && TotalPages > range)
+            try
             {
-                int remaining = TotalPages - pageNumber;
+                int TotalPages = 0;
+                int range = 9;
+                int mid = 5;
+                int start = 1;
 
-                if (remaining >= 3)
+                TotalPages = TotalCount / pagesize;
+
+                if (TotalCount % pagesize != 0)
+                    TotalPages = TotalPages + 1;
+                int end = (TotalPages > 9) ? 9 : TotalPages;
+               
+                string url = BaseUrl + "OfferLink/ListOfferLinks.aspx?p=";
+                if (pageNumber > (mid + 1) && TotalPages > range)
                 {
-                    // eqally distribute on both sides
-                    start = pageNumber - mid;
-                    end = pageNumber + mid;
+                    int remaining = TotalPages - pageNumber;
+
+                    if (remaining >= 3)
+                    {
+                        // eqally distribute on both sides
+                        start = pageNumber - mid;
+                        end = pageNumber + mid;
+                    }
+                    else
+                    {
+                        // find distribution
+                        end = TotalPages;
+                        start = TotalPages - (range - 1);
+                    }
+                }
+                string imgP = "";
+                string imgN = "";
+                if (pageNumber == 1)
+                {
+                    imgP = "&nbsp;";
                 }
                 else
                 {
-                    // find distribution
-                    end = TotalPages;
-                    start = TotalPages - (range - 1);
+                    imgP = "&nbsp; <a href='" + url + (pageNumber - 1).ToString() + "' class='link'><<</a>&nbsp;";
                 }
-            }
-            string imgP = "";
-            string imgN = "";
-            if (pageNumber == 1)
-            {
-                imgP = "&nbsp;";
-            }
-            else
-            {
-                imgP = "&nbsp; <a href='" + url + (pageNumber - 1).ToString() + "' class='link'><<</a>&nbsp;";
-            }
-            if (pageNumber < TotalPages)
-            {
-                imgN = "&nbsp;<a href='" + url + (pageNumber + 1).ToString() + "' class='link'>>></a>";
-            }
-            else
-            {
-                imgN = "&nbsp;";
-            }
-
-            for (int i = start; i <= end; i++)
-            {
-                if (i != pageNumber)
+                if (pageNumber < TotalPages)
                 {
-                    retVal += "&nbsp;<a href='" + url + i.ToString() + "' class='link'>" + i + "</a>&nbsp;";
+                    imgN = "&nbsp;<a href='" + url + (pageNumber + 1).ToString() + "' class='link'>>></a>";
                 }
                 else
                 {
-                    retVal += "&nbsp;<span class=headings>" + i + "</span>";
-                }
-                if (i < end)
-                {
-                    retVal += "&nbsp;&nbsp;";
+                    imgN = "&nbsp;";
                 }
 
+                for (int i = start; i <= end; i++)
+                {
+                    if (i != pageNumber)
+                    {
+                        retVal += "&nbsp;<a href='" + url + i.ToString() + "' class='link'>" + i + "</a>&nbsp;";
+                    }
+                    else
+                    {
+                        retVal += "&nbsp;<span class=headings>" + i + "</span>";
+                    }
+                    if (i < end)
+                    {
+                        retVal += "&nbsp;&nbsp;";
+                    }
+
+                }
+                retVal = imgP + " " + retVal + " " + imgN;
             }
-            retVal = imgP + " " + retVal + " " + imgN;
+            catch (Exception ex)
+            {
+                CommonLib.ExceptionHandler.WriteLog(CommonLib.Sections.Admin, "OfferLink/ListOfferLinks.aspx.cs getNavigationHTML", ex);
+            }
+
             return retVal;
         }
         #endregion      
