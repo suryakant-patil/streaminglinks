@@ -49,15 +49,15 @@ namespace offerlinkmanageradmin.OfferLink
                     Response.Redirect(BLL.Constants.OldAdminUrl + "login.aspx", false);
                 }
 
-                if (Request.QueryString["id"] != null)
+                if (Request.QueryString["linkid"] != null)
                 {
-                    ltheader.Text = "Edit WH Link";
-                    lttop.Text = "&nbsp;&nbsp;&nbsp; Edit WH Link";
+                    ltheader.Text = "Edit William Hill - Your Odds";
+                    lttop.Text = "&nbsp;&nbsp;&nbsp; Edit William Hill - Your Odds";
                 }
                 else
                 {
-                    ltheader.Text = "Add WH Link";
-                    lttop.Text = "&nbsp;&nbsp;&nbsp; Add WH Link";
+                    ltheader.Text = "Add William Hill - Your Odds";
+                    lttop.Text = "&nbsp;&nbsp;&nbsp; Add William Hill - Your Odds";
                 }
 
                 validPage.Visible = false;

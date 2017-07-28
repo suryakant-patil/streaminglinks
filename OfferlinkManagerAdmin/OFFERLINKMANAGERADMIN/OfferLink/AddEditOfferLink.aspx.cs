@@ -50,7 +50,7 @@ namespace offerlinkmanageradmin.OfferLink
                     Response.Redirect(BLL.Constants.OldAdminUrl + "login.aspx", false);
                 }
 
-                if (Request.QueryString["id"] != null)
+                if (Request.QueryString["linkid"] != null)
                 {
                     ltheader.Text = "Edit Promotional Link";
                     lttop.Text = "&nbsp;&nbsp;&nbsp; Edit Promotional Link";                  
