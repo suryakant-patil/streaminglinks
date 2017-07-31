@@ -116,14 +116,14 @@
                         </tr>
                         <tr class="text" bgcolor="#ffffff">
                             <td class="headings" height="30" width="10%" nowrap align="left">
-                                &nbsp;<span class="bold"> Url </span>
+                                &nbsp;<span class="bold">Destination Landing Page </span>
                             </td>
                             <td class="text" width="90%" align="left">
                                 <asp:TextBox ID="txtUrl" runat="server" Columns="85" Rows="2" TextMode="MultiLine"
                                     class="text"></asp:TextBox>
                                 
                                 <asp:RequiredFieldValidator ID="Requiredfieldvalidator4" runat="server" ControlToValidate="txtUrl"
-                                    ErrorMessage="Please Enter Url !"><span class="error">*</span>
+                                    ErrorMessage="Please Enter Destination Landing Page !"><span class="error">*</span>
                                 </asp:RequiredFieldValidator>
                                
                             </td>
