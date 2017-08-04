@@ -34,9 +34,6 @@ namespace offerlinkmanageradmin.OfferLink
                 {
                     Response.Redirect(BLL.Constants.OldAdminUrl + "login.aspx", false);
                 }
-
-                     
-                //upload pages on main site 
                 if (IsPostBack)
                 {                   
                     if (null != Request.QueryString["p"])
@@ -80,6 +77,12 @@ namespace offerlinkmanageradmin.OfferLink
             ltheader.Text = "Promotional Link History List";
         }
 
+        /// <summary>
+        ///  offer link history list
+        /// </summary>
+        /// <param name="pagesize"></param>
+        /// <param name="currentpageno"></param>
+        /// <param name="linkid"></param>
         private void OfferLinkHistoryList(int pagesize, int currentpageno,string linkid)
         {
             string txt = "";            
@@ -138,73 +141,87 @@ namespace offerlinkmanageradmin.OfferLink
         }
 
 
+        /// <summary>
+        /// navigation on paging
+        /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <param name="TotalCount"></param>
+        /// <returns></returns>
         public string getNavigationHTML(int pageNumber, int TotalCount)
         {
-            int TotalPages = 0;
-            int range = 9;
-            int mid = 5;
-            int start = 1;
-
-            TotalPages = TotalCount / pagesize;
-
-            if (TotalCount % pagesize != 0)
-                TotalPages = TotalPages + 1;
-            int end = (TotalPages > 9) ? 9 : TotalPages;
             string retVal = "";
-            string url = BaseUrl + "OfferLink/ListOfferLinkHistory.aspx?linkid="+Request.QueryString["linkid"]+"&p=";
-            if (pageNumber > (mid + 1) && TotalPages > range)
+            try
             {
-                int remaining = TotalPages - pageNumber;
+                int TotalPages = 0;
+                int range = 9;
+                int mid = 5;
+                int start = 1;
 
-                if (remaining >= 3)
+                TotalPages = TotalCount / pagesize;
+
+                if (TotalCount % pagesize != 0)
+                    TotalPages = TotalPages + 1;
+                int end = (TotalPages > 9) ? 9 : TotalPages;
+               
+                string url = BaseUrl + "OfferLink/ListOfferLinkHistory.aspx?linkid=" + Request.QueryString["linkid"] + "&p=";
+                if (pageNumber > (mid + 1) && TotalPages > range)
                 {
-                    // eqally distribute on both sides
-                    start = pageNumber - mid;
-                    end = pageNumber + mid;
+                    int remaining = TotalPages - pageNumber;
+
+                    if (remaining >= 3)
+                    {
+                        // eqally distribute on both sides
+                        start = pageNumber - mid;
+                        end = pageNumber + mid;
+                    }
+                    else
+                    {
+                        // find distribution
+                        end = TotalPages;
+                        start = TotalPages - (range - 1);
+                    }
+                }
+                string imgP = "";
+                string imgN = "";
+                if (pageNumber == 1)
+                {
+                    imgP = "&nbsp;";
                 }
                 else
                 {
-                    // find distribution
-                    end = TotalPages;
-                    start = TotalPages - (range - 1);
+                    imgP = "&nbsp; <a href='" + url + (pageNumber - 1).ToString() + "' class='link'><<</a>&nbsp;";
                 }
-            }
-            string imgP = "";
-            string imgN = "";
-            if (pageNumber == 1)
-            {
-                imgP = "&nbsp;";
-            }
-            else
-            {
-                imgP = "&nbsp; <a href='" + url + (pageNumber - 1).ToString() + "' class='link'><<</a>&nbsp;";
-            }
-            if (pageNumber < TotalPages)
-            {
-                imgN = "&nbsp;<a href='" + url + (pageNumber + 1).ToString() + "' class='link'>>></a>";
-            }
-            else
-            {
-                imgN = "&nbsp;";
-            }
-
-            for (int i = start; i <= end; i++)
-            {
-                if (i != pageNumber)
+                if (pageNumber < TotalPages)
                 {
-                    retVal += "&nbsp;<a href='" + url + i.ToString() + "' class='link'>" + i + "</a>&nbsp;";
+                    imgN = "&nbsp;<a href='" + url + (pageNumber + 1).ToString() + "' class='link'>>></a>";
                 }
                 else
                 {
-                    retVal += "&nbsp;<span class=headings>" + i + "</span>";
-                }
-                if (i < end)
-                {
-                    retVal += "&nbsp;&nbsp;";
+                    imgN = "&nbsp;";
                 }
 
+                for (int i = start; i <= end; i++)
+                {
+                    if (i != pageNumber)
+                    {
+                        retVal += "&nbsp;<a href='" + url + i.ToString() + "' class='link'>" + i + "</a>&nbsp;";
+                    }
+                    else
+                    {
+                        retVal += "&nbsp;<span class=headings>" + i + "</span>";
+                    }
+                    if (i < end)
+                    {
+                        retVal += "&nbsp;&nbsp;";
+                    }
+
+                }
+                retVal = imgP + " " + retVal + " " + imgN;
             }
-            retVal = imgP + " " + retVal + " " + imgN;
+            catch (Exception ex)
+            {
+                CommonLib.ExceptionHandler.WriteLog(CommonLib.Sections.Admin, "OfferLink/ListOfferLinkHistory.aspx.cs getNavigationHTML", ex);
+            }
             return retVal;
         }
 
