@@ -42,8 +42,6 @@ namespace offerlinkmanageradmin.OfferLink
                     Response.Redirect(BLL.Constants.OldAdminUrl + "login.aspx", false);
                 }
 
-
-                //upload pages on main site 
                 if (IsPostBack)
                 {
                     string day1 = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
@@ -62,15 +60,8 @@ namespace offerlinkmanageradmin.OfferLink
                 {
                     string day1 = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
                     string day2 = DateTime.Now.ToString("yyyy-MM-dd");
-
-                    //txtstartdate.Text = DateTime.Now.AddDays(-1).ToString("dd/MM/yyyy");
-                    //txtenddate.Text = DateTime.Now.ToString("dd/MM/yyyy");
                     disp_labels();
-                    //if (Request.QueryString["clear"] != null)
-                    //{
-                    //    txtstartdate.Text = DateTime.Now.AddDays(-1).ToString("dd/MM/yyyy");
-                    //    txtenddate.Text = DateTime.Now.ToString("dd/MM/yyyy");
-                    //}
+                    
                     if (Request.QueryString["excel"] != null)
                     {
                         if (Request.QueryString["excel"] == "excel")
@@ -112,6 +103,12 @@ namespace offerlinkmanageradmin.OfferLink
             ltheader.Text = "Promotional Link Report";
         }
 
+
+        /// <summary>
+        /// promotional link report List
+        /// </summary>
+        /// <param name="day1"></param>
+        /// <param name="day2"></param>
         private void PromotinalLinkReportList(string day1,string day2)
         {
             string txt = "";
@@ -172,26 +169,38 @@ namespace offerlinkmanageradmin.OfferLink
             }
         }
 
+        /// <summary>
+        /// get formated date
+        /// </summary>
+        /// <param name="strdate"></param>
+        /// <returns></returns>
         public string GetDate(string strdate)
         {
             string date = "";
-            if (strdate.Trim().Length > 0)
+            try
             {
-                string[] strarray;
-                string[] arr;
-
-                arr = strdate.Split(' ');
-                //string time=arr[1];
-                strarray = arr[0].Split('/');
-
-                if (strarray.Length > 2)
+                if (strdate.Trim().Length > 0)
                 {
-                    date = string.Format("{0}-{1}-{2} ", strarray[2], strarray[1], strarray[0]);
+                    string[] strarray;
+                    string[] arr;
+
+                    arr = strdate.Split(' ');
+                    //string time=arr[1];
+                    strarray = arr[0].Split('/');
+
+                    if (strarray.Length > 2)
+                    {
+                        date = string.Format("{0}-{1}-{2} ", strarray[2], strarray[1], strarray[0]);
+                    }
+                }
+                else
+                {
+                    date = string.Format("{0} ", DateTime.Now.ToString("yyyy-MM-dd"));
                 }
             }
-            else
+            catch (Exception ex)
             {
-                date = string.Format("{0} ", DateTime.Now.ToString("yyyy-MM-dd"));
+                CommonLib.ExceptionHandler.WriteLog(CommonLib.Sections.Admin, "OfferLink/List_PromotionalLinkReport.aspx.cs GetDate", ex);
             }
             return date;
 
@@ -209,73 +218,87 @@ namespace offerlinkmanageradmin.OfferLink
         }
 
 
+        /// <summary>
+        /// get navigation on paging
+        /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <param name="TotalCount"></param>
+        /// <returns></returns>
         public string getNavigationHTML(int pageNumber, int TotalCount)
         {
-            int TotalPages = 0;
-            int range = 9;
-            int mid = 5;
-            int start = 1;
-
-            TotalPages = TotalCount / pagesize;
-
-            if (TotalCount % pagesize != 0)
-                TotalPages = TotalPages + 1;
-            int end = (TotalPages > 9) ? 9 : TotalPages;
             string retVal = "";
-            string url = BaseUrl + "OfferLink/List_PromotionalLinkReport.aspx?linkid=" + Request.QueryString["linkid"] + "&p=";
-            if (pageNumber > (mid + 1) && TotalPages > range)
+            try
             {
-                int remaining = TotalPages - pageNumber;
+                int TotalPages = 0;
+                int range = 9;
+                int mid = 5;
+                int start = 1;
 
-                if (remaining >= 3)
+                TotalPages = TotalCount / pagesize;
+
+                if (TotalCount % pagesize != 0)
+                    TotalPages = TotalPages + 1;
+                int end = (TotalPages > 9) ? 9 : TotalPages;
+
+                string url = BaseUrl + "OfferLink/List_PromotionalLinkReport.aspx?linkid=" + Request.QueryString["linkid"] + "&p=";
+                if (pageNumber > (mid + 1) && TotalPages > range)
                 {
-                    // eqally distribute on both sides
-                    start = pageNumber - mid;
-                    end = pageNumber + mid;
+                    int remaining = TotalPages - pageNumber;
+
+                    if (remaining >= 3)
+                    {
+                        // eqally distribute on both sides
+                        start = pageNumber - mid;
+                        end = pageNumber + mid;
+                    }
+                    else
+                    {
+                        // find distribution
+                        end = TotalPages;
+                        start = TotalPages - (range - 1);
+                    }
+                }
+                string imgP = "";
+                string imgN = "";
+                if (pageNumber == 1)
+                {
+                    imgP = "&nbsp;";
                 }
                 else
                 {
-                    // find distribution
-                    end = TotalPages;
-                    start = TotalPages - (range - 1);
+                    imgP = "&nbsp; <a href='" + url + (pageNumber - 1).ToString() + "' class='link'><<</a>&nbsp;";
                 }
-            }
-            string imgP = "";
-            string imgN = "";
-            if (pageNumber == 1)
-            {
-                imgP = "&nbsp;";
-            }
-            else
-            {
-                imgP = "&nbsp; <a href='" + url + (pageNumber - 1).ToString() + "' class='link'><<</a>&nbsp;";
-            }
-            if (pageNumber < TotalPages)
-            {
-                imgN = "&nbsp;<a href='" + url + (pageNumber + 1).ToString() + "' class='link'>>></a>";
-            }
-            else
-            {
-                imgN = "&nbsp;";
-            }
-
-            for (int i = start; i <= end; i++)
-            {
-                if (i != pageNumber)
+                if (pageNumber < TotalPages)
                 {
-                    retVal += "&nbsp;<a href='" + url + i.ToString() + "' class='link'>" + i + "</a>&nbsp;";
+                    imgN = "&nbsp;<a href='" + url + (pageNumber + 1).ToString() + "' class='link'>>></a>";
                 }
                 else
                 {
-                    retVal += "&nbsp;<span class=headings>" + i + "</span>";
-                }
-                if (i < end)
-                {
-                    retVal += "&nbsp;&nbsp;";
+                    imgN = "&nbsp;";
                 }
 
+                for (int i = start; i <= end; i++)
+                {
+                    if (i != pageNumber)
+                    {
+                        retVal += "&nbsp;<a href='" + url + i.ToString() + "' class='link'>" + i + "</a>&nbsp;";
+                    }
+                    else
+                    {
+                        retVal += "&nbsp;<span class=headings>" + i + "</span>";
+                    }
+                    if (i < end)
+                    {
+                        retVal += "&nbsp;&nbsp;";
+                    }
+
+                }
+                retVal = imgP + " " + retVal + " " + imgN;
             }
-            retVal = imgP + " " + retVal + " " + imgN;
+            catch (Exception ex)
+            {
+                CommonLib.ExceptionHandler.WriteLog(CommonLib.Sections.Admin, "OfferLink/List_PromotionalLinkReport.aspx.cs getNavigationHTML", ex);
+            }
             return retVal;
         }
 
