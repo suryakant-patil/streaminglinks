@@ -31,7 +31,6 @@ namespace offerlinkmanageradmin.OfferLink
 
         private void Page_Load(object sender, System.EventArgs e)
         {
-            // Put user code to initialize the page here
             try
             {              
                 
@@ -108,12 +107,6 @@ namespace offerlinkmanageradmin.OfferLink
                             {
                                 _linkid = objlink.LinkOffer_Save();
                                 Session["region"] = rdoregion.SelectedValue;
-                                //if (objlink.Linkid == "0")
-                                //{
-                                //    BitlyShortenUrl objbitly = new BitlyShortenUrl();
-                                //    objlink.Shortenurl = objbitly.ShortenUrl(Constants.Bitlyurl + objlink.RandomId);
-                                //    objlink.AddShortenUrl(_linkid);
-                                //}
 
                                 if (ViewState["oldvalue"] != null)
                                 {
@@ -192,27 +185,38 @@ namespace offerlinkmanageradmin.OfferLink
         }
 
         
-
+        /// <summary>
+        /// get formated date
+        /// </summary>
+        /// <param name="strdate"></param>
+        /// <returns></returns>
         public string GetDate(string strdate)
         {
             string date = "";
-            if (strdate.Trim().Length > 0)
+            try
             {
-                string[] strarray;
-                string[] arr;
-
-                arr = strdate.Split(' ');
-                string time = arr[1];
-                strarray = arr[0].Split('/');
-
-                if (strarray.Length > 2)
+                if (strdate.Trim().Length > 0)
                 {
-                    date = string.Format("{0}-{1}-{2} {3}", strarray[2], strarray[1], strarray[0], time);
+                    string[] strarray;
+                    string[] arr;
+
+                    arr = strdate.Split(' ');
+                    string time = arr[1];
+                    strarray = arr[0].Split('/');
+
+                    if (strarray.Length > 2)
+                    {
+                        date = string.Format("{0}-{1}-{2} {3}", strarray[2], strarray[1], strarray[0], time);
+                    }
+                }
+                else
+                {
+                    date = string.Format("{0} ", DateTime.Now.AddYears(5).ToString("yyyy-MM-dd"));
                 }
             }
-            else
+            catch (Exception ex)
             {
-                date = string.Format("{0} ", DateTime.Now.AddYears(5).ToString("yyyy-MM-dd"));
+                CommonLib.ExceptionHandler.WriteLog(CommonLib.Sections.Admin, "OfferLink/AddEditOfferLink.aspx.cs GetDate", ex);
             }
             return date;
 
