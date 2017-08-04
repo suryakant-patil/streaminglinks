@@ -54,6 +54,11 @@ namespace BLL
         }
 
         #region :: Method ::
+
+        /// <summary>
+        /// get main refferal url
+        /// </summary>
+        /// <returns></returns>
         public DataTable GetMainReferrelName()
         {
             DataTable dt = new DataTable();
@@ -68,6 +73,11 @@ namespace BLL
             return dt;
         }
 
+        /// <summary>
+        /// get parent refferal url
+        /// </summary>
+        /// <param name="parentreferrelid"></param>
+        /// <returns></returns>
         public DataTable GetParentReferrel(string parentreferrelid)
         {
             DataTable dt = new DataTable();
@@ -84,7 +94,12 @@ namespace BLL
             return dt;
         }
 
-        //
+         /// <summary>
+         ///  get promotional  link exit click list
+         /// </summary>
+         /// <param name="fromdate"></param>
+         /// <param name="todate"></param>
+         /// <returns></returns>
         public DataTable GetPromotionalExitClickList(string fromdate ,string todate)
         {
             DataTable dt = new DataTable();
@@ -103,6 +118,15 @@ namespace BLL
             return dt;
         }
 
+        /// <summary>
+        ///  get promotional link exit click
+        /// </summary>
+        /// <param name="fromdate"></param>
+        /// <param name="todate"></param>
+        /// <param name="referrerid"></param>
+        /// <param name="pagesize"></param>
+        /// <param name="currentpage"></param>
+        /// <returns></returns>
         public DataTable GetPromotionalExitClickListDetails(string fromdate, string todate, string referrerid, int pagesize, int currentpage)
         {
             DataTable dt = new DataTable();
@@ -132,6 +156,13 @@ namespace BLL
         }
 
 
+        /// <summary>
+        /// get promotional link details for excel 
+        /// </summary>
+        /// <param name="fromdate"></param>
+        /// <param name="todate"></param>
+        /// <param name="referrerid"></param>
+        /// <returns></returns>
         public DataTable GetPromotionalLinkDetailsForExcel(string fromdate, string todate, string referrerid)
         {
             DataTable dt = new DataTable();
@@ -151,8 +182,15 @@ namespace BLL
             }
             return dt;
         }
-        //
+        
 
+
+        /// <summary>
+        /// get promotional link count day wise
+        /// </summary>
+        /// <param name="day"></param>
+        /// <param name="referrerid"></param>
+        /// <returns></returns>
         public int GetPromotionalLinkCountDayWise(int day,int referrerid)
         {
             int count = 0;
@@ -177,6 +215,12 @@ namespace BLL
 
         }
 
+        /// <summary>
+        ///  ger count of refferal url daywise
+        /// </summary>
+        /// <param name="day"></param>
+        /// <param name="referrerurl"></param>
+        /// <returns></returns>
         public int GetPromotionalReferrelurlCountDayWise(int day, string referrerurl)
         {
             int count = 0;
@@ -201,6 +245,12 @@ namespace BLL
 
         }
 
+        /// <summary>
+        /// get sitewise tracking details
+        /// </summary>
+        /// <param name="day1"></param>
+        /// <param name="day2"></param>
+        /// <returns></returns>
         public DataTable GetSiteWiseTrackingDetails(string day1,string day2)
         {
             DataTable dt = new DataTable();
@@ -219,6 +269,13 @@ namespace BLL
             return dt;
         }
 
+        /// <summary>
+        ///  get promotional link count daywise using sitewise
+        /// </summary>
+        /// <param name="day"></param>
+        /// <param name="referrerid"></param>
+        /// <param name="siteid"></param>
+        /// <returns></returns>
         public int GetPromotionalLinkCountDayWise_Site(int day, int referrerid,string siteid)
         {
             int count = 0;
@@ -246,6 +303,11 @@ namespace BLL
         }
 
 
+        /// <summary>
+        /// get exit click hourwise
+        /// </summary>
+        /// <param name="startdate"></param>
+        /// <returns></returns>
         public string GetExitClikHourswise(string startdate)
         {
             DataTable dt = new DataTable();

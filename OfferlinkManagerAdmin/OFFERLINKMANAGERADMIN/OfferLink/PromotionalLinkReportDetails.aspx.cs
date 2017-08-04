@@ -43,11 +43,9 @@ namespace offerlinkmanageradmin.OfferLink
                     Response.Redirect(BLL.Constants.OldAdminUrl + "login.aspx", false);
                 }
 
-                //upload pages on main site 
                 if (IsPostBack)
                 {
-                    //string day1 = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
-                    //string day2 = DateTime.Now.ToString("yyyy-MM-dd");
+                    
                     Session["day1"] = txtstartdate.Text;
                     Session["day2"] = txtenddate.Text;
                     if (null != Request.QueryString["p"])
@@ -62,8 +60,7 @@ namespace offerlinkmanageradmin.OfferLink
                 }
                 else
                 {
-                    //string day1 = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd");
-                    //string day2 = DateTime.Now.ToString("yyyy-MM-dd");
+                   
                     if (null != Request.QueryString["p"])
                     {
                         pagenumber = Convert.ToInt32(Request.QueryString["p"].ToString());
@@ -138,6 +135,14 @@ namespace offerlinkmanageradmin.OfferLink
              }
         }
 
+        /// <summary>
+        /// List
+        /// </summary>
+        /// <param name="fromdate"></param>
+        /// <param name="todate"></param>
+        /// <param name="referrerid"></param>
+        /// <param name="pagesize"></param>
+        /// <param name="currentpageno"></param>
         private void PromotinalLinkReportList(string fromdate, string todate, string referrerid, int pagesize, int currentpageno)
         {
             string txt = "";
@@ -151,21 +156,14 @@ namespace offerlinkmanageradmin.OfferLink
                     dt = obj.GetPromotionalExitClickListDetails(fromdate, todate,referrerid,pagesize,currentpageno);
                     if (dt.Rows.Count > 0)
                     {
-                        //ltheader.Text = dt.Rows[0]["ReferrerName"].ToString() +" Details";
                         foreach (DataRow dr in dt.Rows)
                         {
                             i++;
-                            //int todaysclick = obj.GetPromotionalReferrelurlCountDayWise(0, dr["ReferrerUrl"].ToString());
-                            //int yesterdayclick = obj.GetPromotionalReferrelurlCountDayWise(1, dr["ReferrerUrl"].ToString());
-                            //int totalclick = 0;
-                            //totalclick = todaysclick + yesterdayclick;
+                            
                             txt += "<tr height='30' valign='top'>";
                             txt += "<td class='text' align= 'center' bgcolor='#FFFFFF' valign='middle' style='font-family:verdana;font-size:11px;text-align: center;'>" + i.ToString() + "</td>";
                             txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle' >" + dr["LinkName"].ToString() + " </td>";
                             txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle' >" + dr["ReferrerUrl"].ToString() + "</td>";
-                          //  txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle' >" + dr["UserIP"].ToString() + "</td>";
-                            //txt += "<td class='text' align='left' style='padding-left:5px;text-align:center;' bgcolor='#FFFFFF' valign='middle' >" + todaysclick + "</td>";
-                            //txt += "<td class='text' align='left' style='padding-left:5px;text-align:center;' bgcolor='#FFFFFF' valign='middle' >" + yesterdayclick + "</td>";
                             txt += "<td class='text' align='left' style='padding-left:5px;' bgcolor='#FFFFFF' valign='middle' >" + Convert.ToDateTime(dr["HitDate"]).ToString("dd/MM/yyyy HH:mm") + "</td>";
                             txt += "<td class='text' align='center' style='padding-left:5px;text-align:center;' bgcolor='#FFFFFF' valign='middle' >" + dr["Exitclick"].ToString() + "</td>";
                             
@@ -194,26 +192,37 @@ namespace offerlinkmanageradmin.OfferLink
             }
         }
 
+        /// <summary>
+        /// get formated date
+        /// </summary>
+        /// <param name="strdate"></param>
+        /// <returns></returns>
         public string GetDate(string strdate)
         {
             string date = "";
-            if (strdate.Trim().Length > 0)
+            try
             {
-                string[] strarray;
-                string[] arr;
-
-                arr = strdate.Split(' ');
-                //string time=arr[1];
-                strarray = arr[0].Split('/');
-
-                if (strarray.Length > 2)
+                if (strdate.Trim().Length > 0)
                 {
-                    date = string.Format("{0}-{1}-{2} ", strarray[2], strarray[1], strarray[0]);
+                    string[] strarray;
+                    string[] arr;
+
+                    arr = strdate.Split(' ');
+                    strarray = arr[0].Split('/');
+
+                    if (strarray.Length > 2)
+                    {
+                        date = string.Format("{0}-{1}-{2} ", strarray[2], strarray[1], strarray[0]);
+                    }
+                }
+                else
+                {
+                    date = string.Format("{0} ", DateTime.Now.ToString("yyyy-MM-dd"));
                 }
             }
-            else
+            catch (Exception ex)
             {
-                date = string.Format("{0} ", DateTime.Now.ToString("yyyy-MM-dd"));
+                CommonLib.ExceptionHandler.WriteLog(CommonLib.Sections.Admin, "OfferLink/PromotionalLinkReportDetails.aspx.cs GetDate", ex);
             }
             return date;
 
