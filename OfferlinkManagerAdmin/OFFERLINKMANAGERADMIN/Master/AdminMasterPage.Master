@@ -85,18 +85,9 @@
                            <ul class="headLinks">
 								<li>
 									<asp:Literal runat="server" ID="ltname"></asp:Literal></li>
-								<li>									
-									
-									<span>Site</span>
-									
-								</li>
-                                <li>							
-									
-									<span>Bettingpro</span>
-									
-								</li>
+								
 								<li>
-									<span id="header_lbsitenama" class="bluenormal">(Currently editing Bettingpro)</span>
+									<span id="header_lbsitenama" class="bluenormal">(Currently editing OfferLink)</span>
 								</li>
 								<li>
                                  <span id="header_lbldatetime"style="float: right;"><asp:Literal runat="server" ID="ltDateTime"></asp:Literal>
@@ -105,6 +96,7 @@
                                 </span>
                                 
                                 </li>
+                                <li><a href="http://www.writersllc.com/News/list_newnews.aspx?newsfilter=all">News Menu</a></li>
 								
 							</ul>
                             

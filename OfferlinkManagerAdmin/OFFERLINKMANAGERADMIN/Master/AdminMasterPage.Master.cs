@@ -35,10 +35,9 @@ namespace offerlinkmanageradmin.Master
                             }
                             ltname.Text += "(" + userl.ToString() + ")";
                         }
-                        ltlogout.Text = "<a href='" + BLL.Constants.AdminURL + "logout.aspx' class='logout'>Logout</a>";
+                        ltlogout.Text = "<a href='" + BLL.Constants.OldAdminUrl + "logout.aspx' class='logout'>Logout</a>";
                         ltDateTime.Text = System.DateTime.Now.DayOfWeek + "  " + System.DateTime.Now.ToShortDateString() + "   " + System.DateTime.Now.ToShortTimeString();
                         ltdate.Text = "Server Time : " + System.DateTime.Now.ToString("HH:mm , dd MMM yyyy");
-
                     }
                 }
                 catch (Exception ex)
