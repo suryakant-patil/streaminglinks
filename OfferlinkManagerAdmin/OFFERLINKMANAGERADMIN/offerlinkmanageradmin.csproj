@@ -690,7 +690,6 @@
     <Content Include="scripts\Sportevent.js" />
     <Content Include="scripts\tabpane.js" />
     <Content Include="scripts\tabpane_new.js" />
-    <Content Include="test.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -800,13 +799,6 @@
     </Compile>
     <Compile Include="Report\List_ExitClickOfferLinkReport.aspx.designer.cs">
       <DependentUpon>List_ExitClickOfferLinkReport.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="test.aspx.cs">
-      <DependentUpon>test.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="test.aspx.designer.cs">
-      <DependentUpon>test.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
