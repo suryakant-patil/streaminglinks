@@ -12,7 +12,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>offerlinkmanageradmin</RootNamespace>
     <AssemblyName>offerlinkmanageradmin</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,22 +37,21 @@
     <Reference Include="CommonLib">
       <HintPath>..\BLL\bin\Debug\CommonLib.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Build.Conversion.v3.5" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
-    <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AjaxOfferLink.aspx" />
@@ -65,6 +66,9 @@
     <Content Include="css\LightStyle.css" />
     <Content Include="css\linkmanager.css" />
     <Content Include="css\style.css" />
+    <Content Include="datepicker\jquery.datetimepicker.css" />
+    <Content Include="datepicker\jquery.datetimepicker.js" />
+    <Content Include="datepicker\jquery.js" />
     <Content Include="images\ace.jpg" />
     <Content Include="images\active.gif" />
     <Content Include="images\add.png" />
@@ -655,8 +659,14 @@
     <Content Include="index.aspx" />
     <Content Include="logout.aspx" />
     <Content Include="OfferLink\AddEditOfferLink.aspx" />
+    <Content Include="OfferLink\AddEditWHLink.aspx" />
     <Content Include="OfferLink\ListOfferLinkHistory.aspx" />
     <Content Include="OfferLink\ListOfferLinks.aspx" />
+    <Content Include="OfferLink\List_PromotionalLinkReport.aspx" />
+    <Content Include="OfferLink\PromotionalLinkReport.aspx" />
+    <Content Include="OfferLink\PromotionalLinkReportDetails.aspx" />
+    <Content Include="Report\LinkWiseLandingReport.aspx" />
+    <Content Include="Report\List_ExitClickOfferLinkReport.aspx" />
     <Content Include="scripts\actb.js" />
     <Content Include="scripts\calendar-en.js" />
     <Content Include="scripts\calendar.js" />
@@ -680,7 +690,10 @@
     <Content Include="scripts\Sportevent.js" />
     <Content Include="scripts\tabpane.js" />
     <Content Include="scripts\tabpane_new.js" />
-    <Content Include="Web.config" />
+    <Content Include="test.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -731,6 +744,13 @@
     <Compile Include="OfferLink\AddEditOfferLink.aspx.designer.cs">
       <DependentUpon>AddEditOfferLink.aspx</DependentUpon>
     </Compile>
+    <Compile Include="OfferLink\AddEditWHLink.aspx.cs">
+      <DependentUpon>AddEditWHLink.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OfferLink\AddEditWHLink.aspx.designer.cs">
+      <DependentUpon>AddEditWHLink.aspx</DependentUpon>
+    </Compile>
     <Compile Include="OfferLink\ListOfferLinkHistory.aspx.cs">
       <DependentUpon>ListOfferLinkHistory.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -745,15 +765,52 @@
     <Compile Include="OfferLink\ListOfferLinks.aspx.designer.cs">
       <DependentUpon>ListOfferLinks.aspx</DependentUpon>
     </Compile>
+    <Compile Include="OfferLink\List_PromotionalLinkReport.aspx.cs">
+      <DependentUpon>List_PromotionalLinkReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OfferLink\List_PromotionalLinkReport.aspx.designer.cs">
+      <DependentUpon>List_PromotionalLinkReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OfferLink\PromotionalLinkReport.aspx.cs">
+      <DependentUpon>PromotionalLinkReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OfferLink\PromotionalLinkReport.aspx.designer.cs">
+      <DependentUpon>PromotionalLinkReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OfferLink\PromotionalLinkReportDetails.aspx.cs">
+      <DependentUpon>PromotionalLinkReportDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OfferLink\PromotionalLinkReportDetails.aspx.designer.cs">
+      <DependentUpon>PromotionalLinkReportDetails.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report\LinkWiseLandingReport.aspx.cs">
+      <DependentUpon>LinkWiseLandingReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report\LinkWiseLandingReport.aspx.designer.cs">
+      <DependentUpon>LinkWiseLandingReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report\List_ExitClickOfferLinkReport.aspx.cs">
+      <DependentUpon>List_ExitClickOfferLinkReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report\List_ExitClickOfferLinkReport.aspx.designer.cs">
+      <DependentUpon>List_ExitClickOfferLinkReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="test.aspx.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="test.aspx.designer.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BLL\BLL.csproj">
-      <Project>{83088F50-23D7-433E-9028-4513256D1173}</Project>
-      <Name>BLL</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <None Include="datepicker\vssver.scc" />
     <None Include="images\flag\vssver.scc" />
     <Content Include="images\pics.zip" />
     <None Include="images\pics\vssver.scc" />
@@ -765,6 +822,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Master\AdminMasterPage.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{83088F50-23D7-433E-9028-4513256D1173}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
