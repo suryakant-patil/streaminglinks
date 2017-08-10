@@ -432,7 +432,7 @@
                                  
                  
                  <li><a class="slMenuItem_depth2" href="<%=BLL.Constants.AdminURL %>Report/List_ExitClickOfferLinkReport.aspx"
-                    title="View Exit Click By Promotiona Link">Exit Click By Promotiona Link</a>
+                    title="View Exit Click By Promotiona Link">Link Wise Click</a>
                  </li> 
                                        
             </ul>
