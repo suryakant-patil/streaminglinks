@@ -429,24 +429,8 @@
                  <li><a class="slMenuItem_depth2" href="<%=BLL.Constants.AdminURL %>OfferLink/AddEditOfferLink.aspx"
                     title="View Add Edit Promotional Link">Add/Edit Promotional Link</a>
                  </li> 
-                   <li><a class="slMenuItem_depth2" href="<%=BLL.Constants.AdminURL %>OfferLink/List_PromotionalLinkReport.aspx"
-                    title="View Promotional Link Report">Promotional Link Report</a>
-                 </li> 
-                 </li> 
-                   <li><a class="slMenuItem_depth2" href="<%=BLL.Constants.AdminURL %>OfferLink/PromotionalLinkReportDetails.aspx?referrerid=1"
-                    title="View Twitter Promotional Link Report">Twitter Promotional Link Report</a>
-                 </li> 
-                 </li> 
-                   <li><a class="slMenuItem_depth2" href="<%=BLL.Constants.AdminURL %>OfferLink/PromotionalLinkReportDetails.aspx?referrerid=2"
-                    title="View Facebook Promotional Link Report">Facebook Promotional Link Report</a>
-                 </li> 
-                 </li> 
-                   <li><a class="slMenuItem_depth2" href="<%=BLL.Constants.AdminURL %>OfferLink/PromotionalLinkReportDetails.aspx?referrerid=3"
-                    title="View WebSite Promotional Link Report">WebSite Promotional Link Report</a>
-                 </li> 
-                  <li><a class="slMenuItem_depth2" href="<%=BLL.Constants.AdminURL %>Report/LinkWiseLandingReport.aspx"
-                    title="View User Journey by Exit Click">User Journey by Exit Click</a>
-                 </li> 
+                                 
+                 
                  <li><a class="slMenuItem_depth2" href="<%=BLL.Constants.AdminURL %>Report/List_ExitClickOfferLinkReport.aspx"
                     title="View Exit Click By Promotiona Link">Exit Click By Promotiona Link</a>
                  </li> 
