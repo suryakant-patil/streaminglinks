@@ -78,7 +78,7 @@
                             </td>
                             <td class="text" width="90%" align="left">
                                 <asp:TextBox ID="txtWhUrl" runat="server" Columns="85" Rows="4" TextMode="MultiLine"
-                                    class="text" Text="http://ads2.williamhill.com/redirect.aspx?pid=191319428&lpid=1092000163&bid=908371202&var3=bet/EN/addtoslip?action=BuildSlip%26price=y%26ew=n" ReadOnly="true"></asp:TextBox>
+                                    class="text" Text="http://ads2.williamhill.com/redirect.aspx?pid=191319428&lpid=908300452&bid=1092072397&var3=nui/C30-promotion-nui/#http://sports.williamhill.com/bet/EN/addtoslip?action=BuildSlip&price=y&ew=n" ReadOnly="true"></asp:TextBox>
                                 
                                 <asp:RequiredFieldValidator ID="Requiredfieldvalidator5" runat="server" ControlToValidate="txtWhUrl"
                                     ErrorMessage="Please Enter WH Url !"><span class="error">*</span>
