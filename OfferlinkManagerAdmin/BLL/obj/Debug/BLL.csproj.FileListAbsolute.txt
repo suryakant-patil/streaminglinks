@@ -1,6 +1,0 @@
-D:\WWW\offerlinkmanageradmin\BLL\bin\Debug\BLL.dll
-D:\WWW\offerlinkmanageradmin\BLL\bin\Debug\BLL.pdb
-D:\WWW\offerlinkmanageradmin\BLL\bin\Debug\CommonLib.dll
-D:\WWW\offerlinkmanageradmin\BLL\obj\Debug\ResolveAssemblyReference.cache
-D:\WWW\offerlinkmanageradmin\BLL\obj\Debug\BLL.dll
-D:\WWW\offerlinkmanageradmin\BLL\obj\Debug\BLL.pdb
