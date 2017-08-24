@@ -1,0 +1,43 @@
+﻿
+#tdpreview{padding:10;}
+				#betBookmaker{background-color:#999999; border-spacing: 1px;}
+				#betBookmaker td{background-color:white;padding:0; text-align:center; }
+				#betBookmaker tr:first-child td{font-weight:bold; padding:5px;}
+				#betBookmaker td input{border:1px solid #fff; background:none;width:calc(100% - 10px); width:-webkit-calc(100% - 10px);width:-moz-calc(100% - 10px); text-align:left; font-size:12px; line-height:18px;}
+				#betBookmaker td input:focus{border-color:#}
+#betBookmaker tr:first-child td input{border:0; background:#f8f8f8; margin:0 5px; font-weight:bold; padding:0 5px; line-height:24px;}
+
+#betBookmaker { font:14px Arial, sans-serif;}
+#betBookmaker { border:solid 1px #d9d9d9; border-width:1px 0 0 1px;}
+#betBookmaker td, #betBookmaker td { border:solid 1px #d9d9d9; border-width:0 1px 1px 0; padding:8px 10px; text-align:left;}
+#betBookmaker tr:not(:first-child) td{padding:4px 5px;}
+#betBookmaker td:first-child, #betBookmaker td:first-child { text-align:left; width:180px;}
+#betBookmaker td span { display:block; width:26px; height:75px; margin:0 auto;}
+
+
+
+#betBookmaker tr:nth-child(2n) { background:#f9f9f9;}
+#betBookmaker tr:nth-child(2n) td input{border-color:#f9f9f9;}
+#betBookmaker tr:hover { background:#f3f3f3;}
+#betBookmaker td.topodd { background:#43A35B;}
+#betBookmaker td.topodd a, #betBookmaker td.topodd a:hover { color:#FFFFFF;}
+#betBookmaker td.topodd:hover { background:#4DC46B;}
+#betBookmaker td span img { width:24px; height:19px; vertical-align:middle; margin:0 10px 0 0; background:url(images/flags.png) no-repeat center top;}
+#betBookmaker td span img.grmny { background-position:center -339px;}
+#betBookmaker td span img.prtugl { background-position:center -603px;}
+#betBookmaker td span img.usa { background-position:center -723px;}
+#betBookmaker td a { display:block; text-decoration:none; color:#555555;}
+#betBookmaker td a:hover { color:#000000;}
+.subTitle{font-weight:bold; font-size:16px;text-align:left;}
+#betBookmaker tr td:last-child{position:relative;}
+#betBookmaker tr td .controls{width:50px; position:absolute; background:rgba(0,0,0,0.6); z-index:2; text-align:center; left:1px; top:20%;cursor:pointer; visibility:hidden; opacity:0; -webkit-transition: all .3s;-moz-transition: all .3s;transition: all .3s;}
+#betBookmaker tr td .controls{visibility:visible; opacity:1;}
+#betBookmaker tr td .controls i{display:block; height:18px;}
+#betBookmaker tr td .controls i.remove::before{content:'\2715'; color:#fff; font-style:normal; line-height:18px; }
+#betBookmaker tr td .controls i.up{background:url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0ZWQgYnkgSWNvTW9vbi5pbyAtLT4KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4KPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyNSIgaGVpZ2h0PSIyNSIgdmlld0JveD0iMCAwIDI1IDI1Ij4KPGc+Cgk8bGluZSBzdHJva2Utd2lkdGg9IjEiIHgxPSIiIHkxPSIiIHgyPSIiIHkyPSIiIHN0cm9rZT0iIzQ0OUZEQiIgb3BhY2l0eT0iIj48L2xpbmU+CjwvZz4KCTxwYXRoIGQ9Ik0xLjg4IDE4Ljg0OHEwLjAyNC0wLjA0OSAwLjAyNC0wLjA5OHQwLjA5OC0wLjA5OGwxMC4wMTAtMTIuNzQ0IDAuMDk4LTAuMDk4dDAuMTIyLTAuMDczIDAuMTIyLTAuMDQ5IDAuMTk1LTAuMDI0cTAuMDQ5IDAgMC4xNDYgMC4wMjR0MC4xMjIgMC4wNDkgMC4xMjIgMC4wNzMgMC4wNDkgMC4wOThsMTAuMTA3IDEyLjc0NHEwIDAuMDQ5IDAuMDQ5IDAuMDk4dDAuMDI0IDAuMDk4LTAuMDI0IDAuMDk4LTAuMDk4IDAuMDk4cTAgMC4wNDktMC4wNzMgMC4wOTh0LTAuMTIyIDAuMDczLTAuMTQ2IDAuMDQ5bC0wLjA5OCAwLjAyNGgtMjAuMTE3cS0wLjA5OCAwLTAuMTQ2LTAuMDI0dC0wLjE0Ni0wLjA0OS0wLjEyMi0wLjA3My0wLjEyMi0wLjA5OHEwLTAuMDQ5LTAuMDQ5LTAuMDk4dC0wLjAyNC0wLjA5OHoiIGZpbGw9IiNjY2NjY2MiPjwvcGF0aD4KPC9zdmc+Cg==) no-repeat;
+background-position:center center; background-size:80%;
+}
+#betBookmaker tr td .controls i.down{background:url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0ZWQgYnkgSWNvTW9vbi5pbyAtLT4KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4KPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSIyNSIgaGVpZ2h0PSIyNSIgdmlld0JveD0iMCAwIDI1IDI1Ij4KPGc+Cgk8bGluZSBzdHJva2Utd2lkdGg9IjEiIHgxPSIiIHkxPSIiIHgyPSIiIHkyPSIiIHN0cm9rZT0iIzQ0OUZEQiIgb3BhY2l0eT0iIj48L2xpbmU+CjwvZz4KCTxwYXRoIGQ9Ik0xLjg1NSA2LjEwNHEwLTAuMDQ5IDAuMDI0LTAuMDk4dDAuMDczLTAuMDk4bDAuMDk4LTAuMDk4dDAuMTIyLTAuMDczbDAuMTQ2LTAuMDQ5dDAuMTIyLTAuMDI0aDIwLjExN3EwLjA0OSAwIDAuMTIyIDAuMDI0bDAuMTQ2IDAuMDQ5dDAuMTIyIDAuMDczbDAuMDk4IDAuMDk4dDAuMDczIDAuMDk4IDAuMDI0IDAuMDk4LTAuMDI0IDAuMTIyLTAuMDczIDAuMTIybC0xMC4wNTkgMTIuNjk1cTAgMC4wNDktMC4wNzMgMC4wOTh0LTAuMTIyIDAuMDczLTAuMTIyIDAuMDQ5LTAuMTcxIDAuMDI0LTAuMTcxLTAuMDI0LTAuMTIyLTAuMDQ5LTAuMTIyLTAuMDczLTAuMDczLTAuMDk4bC0xMC4wNTktMTIuNjk1cS0wLjA0OS0wLjA0OS0wLjA3My0wLjEyMnQtMC4wMjQtMC4xMjJ6IiBmaWxsPSIjY2NjY2NjIj48L3BhdGg+Cjwvc3ZnPgo=)no-repeat;
+background-position:center center; background-size:80%;
+background-postion:center center;
+}
